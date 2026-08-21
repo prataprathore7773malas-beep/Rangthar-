@@ -1,966 +1,6267 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RANGTHAR — Wear Your Legacy | Luxury Fashion House</title>
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            sand: '#F7F4EF',
-                            gold: '#D4AF37',
-                            darkGold: '#AA7C11',
-                            black: '#0A0A0A',
-                            charcoal: '#141414',
-                            card: '#1A1A1A',
-                            muted: '#A3A3A3',
-                            terracotta: '#8C3D22',
-                            deepRed: '#5C1D13'
-                        }
-                    },
-                    fontFamily: {
-                        serif: ['Playfair Display', 'serif'],
-                        sans: ['Plus Jakarta Sans', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090806" />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>Rangthar — Wear Your Legacy</title>
 
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta
+    name="description"
+    content="Rangthar — Rajasthan rooted contemporary fashion. Wear your legacy."
+  />
 
-    <!-- GSAP & ScrollTrigger for High-End Scroll Animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <!-- Premium editorial typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
 
-    <!-- Lenis for Buttery Smooth International Luxury Scrolling -->
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 
-    <style>
-        ::selection {
-            background: #D4AF37;
-            color: #0A0A0A;
-        }
-        body {
-            background-color: #0A0A0A;
-            color: #F7F4EF;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow-x: hidden;
-            cursor: default;
-        }
-        h1, h2, h3, h4, .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
-        /* Custom Magnetic Luxury Cursor */
-        .cursor-dot, .cursor-outline {
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            border-radius: 50%;
-            z-index: 9999;
-            transition: transform 0.15s ease-out, opacity 0.15s ease-out;
-        }
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background: #D4AF37;
-        }
-        .cursor-outline {
-            width: 36px;
-            height: 36px;
-            border: 1px solid rgba(212, 175, 55, 0.5);
-            transform: translate(-14px, -14px);
-        }
-        .glass-nav {
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
-        }
-        .glass-card {
-            background: rgba(26, 26, 26, 0.55);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-        }
-        .glass-card:hover {
-            border-color: rgba(212, 175, 55, 0.4);
-        }
-        .gold-gradient-text {
-            background: linear-gradient(135deg, #FDF0CD 0%, #D4AF37 50%, #997515 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0A0A0A;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #333;
-            border-radius: 3px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #D4AF37;
-        }
-        .hero-mask {
-            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
-            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
-        }
-        .reveal-up {
-            opacity: 0;
-            transform: translateY(60px);
-        }
-    </style>
+  <style>
+    /* =========================================================
+       RANGTHAR — GLOBAL FOUNDATION
+       ========================================================= */
+
+    :root {
+      --bg: #090806;
+      --bg-soft: #100d0a;
+      --bg-warm: #17100b;
+
+      --gold: #b58a4d;
+      --gold-light: #d8b875;
+      --cream: #eee4d2;
+      --muted: #a99d8b;
+
+      --white: #f7f2e9;
+
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+
+      --ease-premium: cubic-bezier(.16, 1, .3, 1);
+      --ease-soft: cubic-bezier(.22, 1, .36, 1);
+
+      --nav-height: 92px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: auto;
+      background: var(--bg);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: var(--sans);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    body.loading {
+      overflow: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ::selection {
+      background: var(--gold);
+      color: var(--bg);
+    }
+
+    /* =========================================================
+       CUSTOM SCROLLBAR
+       ========================================================= */
+
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #080706;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--gold);
+    }
+
+    /* =========================================================
+       GRAIN / ATMOSPHERE
+       ========================================================= */
+
+    .grain {
+      position: fixed;
+      inset: -50%;
+      width: 200%;
+      height: 200%;
+      pointer-events: none;
+      z-index: 9997;
+      opacity: .045;
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+      animation: grainMove .18s steps(2) infinite;
+    }
+
+    @keyframes grainMove {
+      0% {
+        transform: translate3d(0, 0, 0);
+      }
+      25% {
+        transform: translate3d(2%, -1%, 0);
+      }
+      50% {
+        transform: translate3d(-1%, 2%, 0);
+      }
+      75% {
+        transform: translate3d(1%, 1%, 0);
+      }
+      100% {
+        transform: translate3d(-2%, -1%, 0);
+      }
+    }
+
+    /* =========================================================
+       PRELOADER
+       ========================================================= */
+
+    .loader {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .loader-inner {
+      width: min(520px, 80vw);
+      position: relative;
+      text-align: center;
+    }
+
+    .loader-brand {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 400;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--cream);
+      line-height: .9;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .loader-tagline {
+      margin-top: 18px;
+      font-size: 9px;
+      letter-spacing: .42em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      opacity: 0;
+    }
+
+    .loader-line {
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      margin: 30px auto 0;
+    }
+
+    /* =========================================================
+       GLOBAL CURSOR
+       ========================================================= */
+
+    .cursor,
+    .cursor-follower {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 10001;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+    }
+
+    .cursor {
+      width: 6px;
+      height: 6px;
+      background: var(--gold-light);
+    }
+
+    .cursor-follower {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(216, 184, 117, .65);
+      transition:
+        width .35s var(--ease-premium),
+        height .35s var(--ease-premium),
+        background .35s ease,
+        border-color .35s ease;
+    }
+
+    .cursor-follower.active {
+      width: 74px;
+      height: 74px;
+      background: rgba(181, 138, 77, .08);
+      border-color: var(--gold-light);
+    }
+
+    .cursor-label {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10002;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      font-size: 8px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--cream);
+      opacity: 0;
+    }
+
+    @media (hover: none) {
+      .cursor,
+      .cursor-follower,
+      .cursor-label {
+        display: none;
+      }
+    }
+
+    /* =========================================================
+       NAVIGATION
+       ========================================================= */
+
+    .site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--nav-height);
+      z-index: 900;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(22px, 4vw, 70px);
+      transition:
+        background .6s ease,
+        height .6s var(--ease-premium),
+        backdrop-filter .6s ease;
+    }
+
+    .site-nav.scrolled {
+      height: 74px;
+      background: rgba(9, 8, 6, .72);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(216, 184, 117, .08);
+    }
+
+    .nav-logo {
+      position: relative;
+      z-index: 2;
+      width: 100px;
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+
+    .nav-logo img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(22px, 3vw, 48px);
+      margin-left: auto;
+      margin-right: 40px;
+    }
+
+    .nav-link {
+      position: relative;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(238, 228, 210, .82);
+      padding: 8px 0;
+      opacity: 0;
+      transform: translateY(-15px);
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 2px;
+      width: 100%;
+      height: 1px;
+      background: var(--gold-light);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform .5s var(--ease-premium);
+    }
+
+    .nav-link:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .nav-cta {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 42px;
+      padding: 0 20px;
+      border: 1px solid rgba(216, 184, 117, .5);
+      color: var(--cream);
+      font-size: 8px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-15px);
+    }
+
+    .nav-cta::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      transform: translateX(-101%);
+      transition: transform .55s var(--ease-premium);
+      z-index: -1;
+    }
+
+    .nav-cta:hover {
+      color: var(--bg);
+    }
+
+    .nav-cta:hover::before {
+      transform: translateX(0);
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: var(--cream);
+      cursor: pointer;
+    }
+
+    .menu-icon {
+      width: 28px;
+      height: 18px;
+      position: relative;
+    }
+
+    .menu-icon span {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--cream);
+      transition: transform .5s var(--ease-premium);
+    }
+
+    .menu-icon span:first-child {
+      top: 4px;
+    }
+
+    .menu-icon span:last-child {
+      bottom: 4px;
+    }
+
+    .menu-toggle.open .menu-icon span:first-child {
+      transform: translateY(5px) rotate(45deg);
+    }
+
+    .menu-toggle.open .menu-icon span:last-child {
+      transform: translateY(-5px) rotate(-45deg);
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 850;
+      background: rgba(9, 8, 6, .97);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .mobile-menu-inner {
+      width: min(500px, 84vw);
+    }
+
+    .mobile-menu-link {
+      display: block;
+      font-family: var(--serif);
+      font-size: clamp(3rem, 12vw, 6rem);
+      font-weight: 300;
+      line-height: .9;
+      color: var(--cream);
+      margin: 12px 0;
+      transform: translateY(40px);
+      opacity: 0;
+    }
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+
+    .hero {
+      position: relative;
+      height: 100svh;
+      min-height: 700px;
+      overflow: hidden;
+      background: #0a0807;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: -8%;
+      width: 116%;
+      height: 116%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0;
+      transform: scale(1.12);
+      filter: saturate(.82) contrast(1.04);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(5, 4, 3, .4) 0%,
+          rgba(5, 4, 3, .03) 32%,
+          rgba(5, 4, 3, .18) 65%,
+          rgba(5, 4, 3, .9) 100%
+        );
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          ellipse at center,
+          transparent 35%,
+          rgba(0,0,0,.5) 100%
+        );
+      opacity: .7;
+    }
+
+    .hero-layers {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      pointer-events: none;
+      perspective: 1200px;
+    }
+
+    .hero-layer {
+      position: absolute;
+      max-width: none;
+      opacity: 0;
+      will-change: transform, opacity;
+      user-select: none;
+    }
+
+    /*
+      h1-h5 are intentionally independent.
+      Their exact visual placement adapts to the provided PNGs.
+    */
+
+    .hero-layer-1 {
+      width: min(46vw, 680px);
+      left: 5%;
+      top: 18%;
+      transform: translate3d(-70px, 40px, 100px) scale(.96);
+    }
+
+    .hero-layer-2 {
+      width: min(42vw, 610px);
+      right: 4%;
+      top: 12%;
+      transform: translate3d(80px, -30px, 160px) scale(.94);
+    }
+
+    .hero-layer-3 {
+      width: min(38vw, 550px);
+      left: 28%;
+      top: 23%;
+      transform: translate3d(0, 80px, 220px) scale(.9);
+    }
+
+    .hero-layer-4 {
+      width: min(36vw, 520px);
+      right: 14%;
+      bottom: 10%;
+      transform: translate3d(90px, 70px, 280px) scale(.92);
+    }
+
+    .hero-layer-5 {
+      width: min(34vw, 500px);
+      left: 9%;
+      bottom: 5%;
+      transform: translate3d(-80px, 80px, 340px) scale(.9);
+    }
+
+    .hero-content {
+      position: absolute;
+      z-index: 8;
+      left: clamp(22px, 6vw, 110px);
+      bottom: clamp(55px, 9vh, 110px);
+      max-width: 650px;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .hero-eyebrow-line {
+      width: 36px;
+      height: 1px;
+      background: var(--gold-light);
+    }
+
+    .hero-eyebrow-text {
+      font-size: 8px;
+      letter-spacing: .38em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(4.4rem, 10.5vw, 11rem);
+      line-height: .76;
+      letter-spacing: -.045em;
+      color: var(--cream);
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    .hero-title span {
+      display: block;
+    }
+
+    .hero-title .italic {
+      font-style: italic;
+      margin-left: .4em;
+      color: rgba(238, 228, 210, .84);
+    }
+
+    .hero-description {
+      margin-top: 30px;
+      max-width: 390px;
+      font-size: 11px;
+      line-height: 1.8;
+      font-weight: 300;
+      color: rgba(238, 228, 210, .68);
+      opacity: 0;
+      transform: translateY(25px);
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      margin-top: 30px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .magnetic-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      min-width: 190px;
+      height: 52px;
+      padding: 0 25px;
+      border: 1px solid rgba(216, 184, 117, .65);
+      overflow: hidden;
+      font-size: 8px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--cream);
+      transition: color .4s ease;
+    }
+
+    .magnetic-btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      transform: translateY(101%);
+      transition: transform .65s var(--ease-premium);
+    }
+
+    .magnetic-btn span,
+    .magnetic-btn svg {
+      position: relative;
+      z-index: 2;
+    }
+
+    .magnetic-btn:hover {
+      color: var(--bg);
+    }
+
+    .magnetic-btn:hover::before {
+      transform: translateY(0);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      right: clamp(22px, 4vw, 70px);
+      bottom: 50px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transform: rotate(90deg);
+      transform-origin: right center;
+      opacity: 0;
+    }
+
+    .hero-scroll span {
+      font-size: 7px;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: rgba(238, 228, 210, .6);
+      white-space: nowrap;
+    }
+
+    .hero-scroll-line {
+      width: 70px;
+      height: 1px;
+      background: rgba(216, 184, 117, .6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-scroll-line::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--cream);
+      transform: translateX(-100%);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollLine {
+      0% { transform: translateX(-100%); }
+      50%, 70% { transform: translateX(0); }
+      100% { transform: translateX(100%); }
+    }
+
+    .hero-bottom-mark {
+      position: absolute;
+      bottom: 26px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 8;
+      font-size: 7px;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: rgba(238, 228, 210, .32);
+    }
+
+    /* =========================================================
+       SECTION SHARED
+       ========================================================= */
+
+    .section {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--gold-light);
+      font-size: 8px;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+    }
+
+    .section-label::before {
+      content: "";
+      width: 30px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    .section-heading {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(3.6rem, 8vw, 9rem);
+      line-height: .82;
+      letter-spacing: -.04em;
+    }
+
+    .section-copy {
+      font-size: 12px;
+      line-height: 1.9;
+      color: rgba(238, 228, 210, .63);
+      font-weight: 300;
+    }
+
+    /* =========================================================
+       MANIFESTO
+       ========================================================= */
+
+    .manifesto {
+      min-height: 120vh;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .manifesto-inner {
+      width: min(1280px, 88vw);
+      padding: 18vh 0;
+      position: relative;
+    }
+
+    .manifesto-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 13vh;
+    }
+
+    .manifesto-number {
+      font-family: var(--serif);
+      font-size: 16px;
+      color: var(--gold);
+      opacity: .8;
+    }
+
+    .manifesto-note {
+      width: min(270px, 35vw);
+      font-size: 10px;
+      line-height: 1.7;
+      color: rgba(238, 228, 210, .45);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .manifesto-words {
+      position: relative;
+    }
+
+    .manifesto-word {
+      display: block;
+      overflow: hidden;
+      font-family: var(--serif);
+      font-size: clamp(5rem, 15vw, 15rem);
+      font-weight: 300;
+      line-height: .72;
+      letter-spacing: -.06em;
+      color: var(--cream);
+      margin-bottom: 1.2vw;
+    }
+
+    .manifesto-word:nth-child(2) {
+      margin-left: 13vw;
+      color: rgba(238, 228, 210, .74);
+    }
+
+    .manifesto-word:nth-child(3) {
+      margin-left: 5vw;
+      color: var(--gold-light);
+      font-style: italic;
+    }
+
+    .manifesto-word-inner {
+      display: block;
+      transform: translateY(110%);
+    }
+
+    .manifesto-bottom {
+      margin-top: 14vh;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .manifesto-statement {
+      width: min(430px, 80vw);
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 2.2vw, 2.3rem);
+      line-height: 1.05;
+      font-weight: 300;
+      color: rgba(238, 228, 210, .8);
+    }
+
+    .manifesto-statement em {
+      color: var(--gold-light);
+    }
+
+    /* =========================================================
+       STORY / ABOUT
+       ========================================================= */
+
+    .story {
+      min-height: 130vh;
+      background: #0d0a08;
+    }
+
+    .story-inner {
+      min-height: 130vh;
+      width: min(1380px, 92vw);
+      margin: 0 auto;
+      padding: 15vh 0;
+      position: relative;
+    }
+
+    .story-header {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .story-title {
+      width: min(650px, 60vw);
+      margin-top: 6vh;
+    }
+
+    .story-title .line {
+      overflow: hidden;
+    }
+
+    .story-title .line span {
+      display: block;
+      transform: translateY(110%);
+    }
+
+    .story-title .line:nth-child(2) {
+      margin-left: 1.8em;
+    }
+
+    .story-title .line:nth-child(3) {
+      color: var(--gold-light);
+      font-style: italic;
+      margin-left: .7em;
+    }
+
+    .story-index {
+      font-family: var(--serif);
+      font-size: 15px;
+      color: rgba(216, 184, 117, .6);
+    }
+
+    .story-visual-wrap {
+      position: relative;
+      width: min(850px, 68vw);
+      margin: 8vh auto 0 10%;
+      z-index: 2;
+    }
+
+    .story-image-mask {
+      position: relative;
+      width: 100%;
+      height: min(75vh, 820px);
+      overflow: hidden;
+      clip-path: inset(0 100% 0 0);
+    }
+
+    .story-image {
+      width: 115%;
+      height: 115%;
+      object-fit: cover;
+      object-position: center;
+      transform: scale(1.12);
+      filter: saturate(.78);
+    }
+
+    .story-image-shade {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(8, 6, 5, .03),
+          rgba(8, 6, 5, .28)
+        );
+      pointer-events: none;
+    }
+
+    .story-floating-copy {
+      position: absolute;
+      z-index: 5;
+      right: -14%;
+      bottom: -8%;
+      width: min(390px, 36vw);
+      padding: 42px;
+      background: rgba(15, 11, 8, .78);
+      border: 1px solid rgba(216, 184, 117, .16);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      opacity: 0;
+      transform: translateY(80px);
+    }
+
+    .story-floating-copy h3 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 3.5rem);
+      font-weight: 300;
+      line-height: .9;
+      color: var(--cream);
+      margin-bottom: 24px;
+    }
+
+    .story-floating-copy p {
+      font-size: 11px;
+      line-height: 1.9;
+      color: rgba(238, 228, 210, .58);
+    }
+
+    .story-quote {
+      position: absolute;
+      left: 0;
+      bottom: 12%;
+      width: min(330px, 30vw);
+      font-family: var(--serif);
+      font-size: clamp(1.3rem, 2vw, 2rem);
+      line-height: 1.05;
+      color: rgba(238, 228, 210, .48);
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+
+    .story-quote strong {
+      color: var(--gold-light);
+      font-weight: 400;
+    }
+
+    /* =========================================================
+       HERITAGE TRANSITION
+       ========================================================= */
+
+    .heritage-intro {
+      height: 100vh;
+      min-height: 650px;
+      background: #080706;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .heritage-intro-inner {
+      width: min(1100px, 90vw);
+    }
+
+    .heritage-small {
+      font-size: 8px;
+      letter-spacing: .42em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 30px;
+      opacity: 0;
+      transform: translateY(25px);
+    }
+
+    .heritage-title {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(5rem, 13vw, 13rem);
+      line-height: .72;
+      letter-spacing: -.055em;
+      color: var(--cream);
+      overflow: hidden;
+    }
+
+    .heritage-title span {
+      display: block;
+      transform: translateY(110%);
+    }
+
+    .heritage-title .gold {
+      color: var(--gold-light);
+      font-style: italic;
+    }
+
+    .heritage-sub {
+      max-width: 430px;
+      margin: 55px auto 0;
+      font-size: 11px;
+      line-height: 1.9;
+      color: rgba(238, 228, 210, .48);
+      opacity: 0;
+      transform: translateY(25px);
+    }
+
+    /* =========================================================
+       ORNAMENTAL DETAILS
+       ========================================================= */
+
+    .ornament {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border: 1px solid rgba(216, 184, 117, .16);
+      transform: rotate(45deg);
+      pointer-events: none;
+    }
+
+    .ornament::before,
+    .ornament::after {
+      content: "";
+      position: absolute;
+      inset: 15px;
+      border: 1px solid rgba(216, 184, 117, .1);
+    }
+
+    .ornament::after {
+      inset: 30px;
+    }
+
+    .ornament-a {
+      top: 16%;
+      right: -40px;
+    }
+
+    .ornament-b {
+      bottom: 13%;
+      left: -45px;
+      transform: rotate(20deg);
+    }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+
+    @media (max-width: 900px) {
+      :root {
+        --nav-height: 78px;
+      }
+
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+        opacity: 0;
+      }
+
+      .hero {
+        min-height: 720px;
+      }
+
+      .hero-layer-1 {
+        width: 65vw;
+        left: -5%;
+        top: 20%;
+      }
+
+      .hero-layer-2 {
+        width: 62vw;
+        right: -8%;
+        top: 18%;
+      }
+
+      .hero-layer-3 {
+        width: 58vw;
+        left: 18%;
+        top: 29%;
+      }
+
+      .hero-layer-4 {
+        width: 55vw;
+        right: -5%;
+        bottom: 16%;
+      }
+
+      .hero-layer-5 {
+        width: 52vw;
+        left: -5%;
+        bottom: 11%;
+      }
+
+      .hero-content {
+        bottom: 90px;
+        max-width: 80vw;
+      }
+
+      .hero-description {
+        max-width: 340px;
+      }
+
+      .hero-scroll {
+        right: 18px;
+        bottom: 38px;
+      }
+
+      .manifesto {
+        min-height: auto;
+      }
+
+      .manifesto-inner {
+        padding: 18vh 0;
+      }
+
+      .manifesto-note {
+        width: 40vw;
+      }
+
+      .story-inner {
+        min-height: auto;
+        padding: 15vh 0;
+      }
+
+      .story-header {
+        display: block;
+      }
+
+      .story-title {
+        width: 90vw;
+      }
+
+      .story-visual-wrap {
+        width: 88vw;
+        margin: 8vh auto 0;
+      }
+
+      .story-image-mask {
+        height: 70vh;
+      }
+
+      .story-floating-copy {
+        right: 3%;
+        bottom: -10%;
+        width: min(390px, 75vw);
+      }
+
+      .story-quote {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        width: 70vw;
+        margin-top: 18vh;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .site-nav {
+        padding: 0 20px;
+      }
+
+      .nav-logo {
+        width: 82px;
+      }
+
+      .hero {
+        min-height: 700px;
+      }
+
+      .hero-bg {
+        object-position: center;
+      }
+
+      .hero-layer-1 {
+        width: 88vw;
+        left: -18%;
+        top: 20%;
+      }
+
+      .hero-layer-2 {
+        width: 82vw;
+        right: -22%;
+        top: 17%;
+      }
+
+      .hero-layer-3 {
+        width: 78vw;
+        left: 8%;
+        top: 30%;
+      }
+
+      .hero-layer-4 {
+        width: 76vw;
+        right: -20%;
+        bottom: 19%;
+      }
+
+      .hero-layer-5 {
+        width: 72vw;
+        left: -20%;
+        bottom: 12%;
+      }
+
+      .hero-content {
+        left: 20px;
+        right: 20px;
+        bottom: 72px;
+        max-width: none;
+      }
+
+      .hero-title {
+        font-size: clamp(4.2rem, 19vw, 7rem);
+      }
+
+      .hero-description {
+        font-size: 10px;
+        line-height: 1.75;
+        margin-top: 24px;
+      }
+
+      .hero-actions {
+        margin-top: 24px;
+      }
+
+      .magnetic-btn {
+        min-width: 170px;
+        height: 48px;
+      }
+
+      .hero-scroll {
+        display: none;
+      }
+
+      .hero-bottom-mark {
+        bottom: 22px;
+      }
+
+      .manifesto-inner {
+        width: 88vw;
+        padding: 14vh 0;
+      }
+
+      .manifesto-top {
+        margin-bottom: 10vh;
+      }
+
+      .manifesto-note {
+        width: 45vw;
+        font-size: 8px;
+      }
+
+      .manifesto-word {
+        font-size: 20vw;
+      }
+
+      .manifesto-word:nth-child(2) {
+        margin-left: 8vw;
+      }
+
+      .manifesto-word:nth-child(3) {
+        margin-left: 3vw;
+      }
+
+      .manifesto-bottom {
+        margin-top: 11vh;
+      }
+
+      .manifesto-statement {
+        width: 82vw;
+        font-size: 1.5rem;
+      }
+
+      .story-inner {
+        width: 88vw;
+      }
+
+      .story-title {
+        width: 100%;
+      }
+
+      .story-title .line:nth-child(2) {
+        margin-left: .5em;
+      }
+
+      .story-title .line:nth-child(3) {
+        margin-left: .2em;
+      }
+
+      .story-visual-wrap {
+        width: 100%;
+      }
+
+      .story-image-mask {
+        height: 65vh;
+      }
+
+      .story-floating-copy {
+        right: -2%;
+        width: 82vw;
+        padding: 28px;
+      }
+
+      .story-quote {
+        width: 85vw;
+        margin-top: 16vh;
+      }
+
+      .heritage-intro {
+        min-height: 600px;
+      }
+
+      .heritage-title {
+        font-size: 22vw;
+      }
+
+      .heritage-sub {
+        width: 82vw;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+      }
+    }
+  </style>
 </head>
-<body class="bg-brand-black text-brand-sand antialiased">
 
-    <!-- Custom Cursor -->
-    <div class="cursor-dot hidden md:block" id="cursor-dot"></div>
-    <div class="cursor-outline hidden md:block" id="cursor-outline"></div>
+<body class="loading">
 
-    <!-- Cinematic Preloader -->
-    <div id="preloader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-brand-black transition-opacity duration-700">
-        <div class="relative w-32 h-32 mb-6 flex items-center justify-center">
-            <div class="absolute inset-0 border-2 border-brand-gold/20 rounded-full animate-ping"></div>
-            <div class="absolute inset-2 border border-brand-gold/40 rounded-full animate-spin" style="animation-duration: 8s;"></div>
-            <img src="logo.png" alt="Rangthar Logo" class="w-16 h-16 object-contain" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200';">
-        </div>
-        <h1 class="font-serif text-3xl tracking-[0.3em] gold-gradient-text uppercase font-light">Rangthar</h1>
-        <p class="text-xs tracking-[0.5em] text-brand-muted uppercase mt-3">Wear Your Legacy</p>
-        <div class="w-48 h-[1px] bg-brand-gold/20 mt-6 relative overflow-hidden">
-            <div id="loader-bar" class="absolute inset-y-0 left-0 bg-brand-gold w-0 transition-all duration-500"></div>
-        </div>
+  <!-- =======================================================
+       ATMOSPHERE
+       ======================================================= -->
+
+  <div class="grain"></div>
+
+  <!-- =======================================================
+       CUSTOM CURSOR
+       ======================================================= -->
+
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+  <div class="cursor-label">View</div>
+
+  <!-- =======================================================
+       PRELOADER
+       ======================================================= -->
+
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <div class="loader-brand">Rangthar</div>
+      <div class="loader-tagline">Wear Your Legacy</div>
+      <div class="loader-line"></div>
     </div>
+  </div>
 
-    <!-- Navigation Bar -->
-    <header class="fixed top-0 left-0 right-0 z-40 glass-nav transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-3 group">
-                <img src="logo.png" alt="Rangthar" class="w-10 h-10 object-contain group-hover:scale-105 transition-transform" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100';">
-                <span class="font-serif text-2xl tracking-[0.2em] font-medium gold-gradient-text">RANGTHAR</span>
-            </a>
+  <!-- =======================================================
+       NAVIGATION
+       ======================================================= -->
 
-            <nav class="hidden md:flex items-center gap-8 text-xs tracking-[0.2em] uppercase text-brand-sand/80 font-medium">
-                <a href="#heritage" class="hover:text-brand-gold transition-colors">Heritage</a>
-                <a href="#collection" class="hover:text-brand-gold transition-colors">Collection</a>
-                <a href="#why-us" class="hover:text-brand-gold transition-colors">Why Us</a>
-                <a href="#craft" class="hover:text-brand-gold transition-colors">Craft</a>
-                <a href="#reviews" class="hover:text-brand-gold transition-colors">Reviews</a>
-                <a href="#faq" class="hover:text-brand-gold transition-colors">FAQ</a>
-            </nav>
+  <header class="site-nav" id="siteNav">
 
-            <div class="hidden lg:flex items-center gap-5">
-                <a href="https://www.instagram.com/rangthar_/" target="_blank" class="text-brand-sand/80 hover:text-brand-gold transition-colors text-lg" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://wa.me/919079294929" target="_blank" class="px-5 py-2.5 rounded-full border border-brand-gold/40 text-brand-gold text-xs uppercase tracking-[0.2em] hover:bg-brand-gold hover:text-brand-black transition-all duration-300 font-medium flex items-center gap-2">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </a>
+    <a href="#home" class="nav-logo magnetic-hover">
+      <img src="logo.png" alt="Rangthar">
+    </a>
+
+    <nav class="nav-links">
+      <a href="#story" class="nav-link magnetic-hover">Story</a>
+      <a href="#heritage" class="nav-link magnetic-hover">Heritage</a>
+      <a href="#collection" class="nav-link magnetic-hover">Collection</a>
+      <a href="#contact" class="nav-link magnetic-hover">Contact</a>
+    </nav>
+
+    <a
+      href="https://wa.me/919079294929"
+      target="_blank"
+      rel="noopener"
+      class="nav-cta magnetic-hover"
+    >
+      Enquire
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+      <span class="menu-icon">
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+
+  </header>
+
+  <!-- =======================================================
+       MOBILE MENU
+       ======================================================= -->
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+
+      <a href="#home" class="mobile-menu-link">Home</a>
+      <a href="#story" class="mobile-menu-link">Story</a>
+      <a href="#heritage" class="mobile-menu-link">Heritage</a>
+      <a href="#collection" class="mobile-menu-link">Collection</a>
+      <a href="#contact" class="mobile-menu-link">Contact</a>
+
+    </div>
+  </div>
+
+  <main>
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+
+    <section class="hero" id="home">
+
+      <img
+        src="hero.png"
+        class="hero-bg"
+        id="heroBg"
+        alt="Rangthar"
+      >
+
+      <div class="hero-overlay"></div>
+      <div class="hero-vignette"></div>
+
+      <!-- Layered hero artwork -->
+      <div class="hero-layers">
+
+        <img
+          src="h1.png"
+          class="hero-layer hero-layer-1"
+          id="heroLayer1"
+          alt=""
+        >
+
+        <img
+          src="h2.png"
+          class="hero-layer hero-layer-2"
+          id="heroLayer2"
+          alt=""
+        >
+
+        <img
+          src="h3.png"
+          class="hero-layer hero-layer-3"
+          id="heroLayer3"
+          alt=""
+        >
+
+        <img
+          src="h4.png"
+          class="hero-layer hero-layer-4"
+          id="heroLayer4"
+          alt=""
+        >
+
+        <img
+          src="h5.png"
+          class="hero-layer hero-layer-5"
+          id="heroLayer5"
+          alt=""
+        >
+
+      </div>
+
+      <!-- Hero copy -->
+      <div class="hero-content">
+
+        <div class="hero-eyebrow">
+          <span class="hero-eyebrow-line"></span>
+          <span class="hero-eyebrow-text">
+            Rajasthan / Contemporary Fashion
+          </span>
+        </div>
+
+        <h1 class="hero-title">
+          <span>Wear</span>
+          <span class="italic">Your Legacy.</span>
+        </h1>
+
+        <p class="hero-description">
+          Rooted in Rajasthan. Reimagined for today.
+          Rangthar brings heritage, identity and contemporary
+          expression together through fashion.
+        </p>
+
+        <div class="hero-actions">
+
+          <a href="#collection" class="magnetic-btn magnetic-hover">
+            <span>Explore Collection</span>
+
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M3 8H12"
+                stroke="currentColor"
+                stroke-width="1"
+              />
+              <path
+                d="M8.5 4.5L12 8L8.5 11.5"
+                stroke="currentColor"
+                stroke-width="1"
+              />
+            </svg>
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="hero-scroll">
+        <span>Scroll to discover</span>
+        <span class="hero-scroll-line"></span>
+      </div>
+
+      <div class="hero-bottom-mark">
+        Rangthar — Wear Your Legacy
+      </div>
+
+    </section>
+
+    <!-- =====================================================
+         MANIFESTO
+         ===================================================== -->
+
+    <section class="section manifesto" id="manifesto">
+
+      <div class="ornament ornament-a"></div>
+
+      <div class="manifesto-inner">
+
+        <div class="manifesto-top">
+
+          <div class="manifesto-number">
+            01 / 05
+          </div>
+
+          <div class="manifesto-note">
+            A contemporary expression of
+            Rajasthan's timeless spirit.
+          </div>
+
+        </div>
+
+        <div class="manifesto-words">
+
+          <div class="manifesto-word">
+            <span class="manifesto-word-inner">WEAR</span>
+          </div>
+
+          <div class="manifesto-word">
+            <span class="manifesto-word-inner">YOUR</span>
+          </div>
+
+          <div class="manifesto-word">
+            <span class="manifesto-word-inner">LEGACY.</span>
+          </div>
+
+        </div>
+
+        <div class="manifesto-bottom">
+
+          <p class="manifesto-statement">
+            Your roots are not something to leave behind.
+            They are something to <em>carry forward.</em>
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =====================================================
+         STORY
+         ===================================================== -->
+
+    <section class="section story" id="story">
+
+      <div class="ornament ornament-b"></div>
+
+      <div class="story-inner">
+
+        <div class="story-header">
+
+          <div class="story-index">
+            02 / 05
+          </div>
+
+          <div class="story-title section-heading">
+
+            <div class="line">
+              <span>More Than</span>
             </div>
 
-            <button id="menu-btn" class="md:hidden text-brand-gold text-2xl focus:outline-none" aria-label="Toggle Menu">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </header>
-
-    <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 z-30 bg-brand-black/98 backdrop-blur-2xl flex flex-col items-center justify-center opacity-0 pointer-events-none transition-all duration-500 md:hidden">
-        <button id="close-menu" class="absolute top-8 right-8 text-brand-gold text-3xl focus:outline-none" aria-label="Close Menu">
-            <i class="fas fa-times"></i>
-        </button>
-        <nav class="flex flex-col items-center gap-6 text-center text-lg tracking-[0.2em] uppercase font-serif">
-            <a href="#heritage" class="mobile-link text-brand-sand hover:text-brand-gold transition-colors">Heritage</a>
-            <a href="#collection" class="mobile-link text-brand-sand hover:text-brand-gold transition-colors">Collection</a>
-            <a href="#why-us" class="mobile-link text-brand-sand hover:text-brand-gold transition-colors">Why Us</a>
-            <a href="#craft" class="mobile-link text-brand-sand hover:text-brand-gold transition-colors">Craft</a>
-            <a href="#reviews" class="mobile-link text-brand-sand hover:text-brand-gold transition-colors">Reviews</a>
-            <a href="#faq" class="mobile-link text-brand-sand hover:text-brand-gold transition-colors">FAQ</a>
-            <a href="#contact" class="mobile-link text-brand-gold hover:text-brand-sand transition-colors">Enquiry</a>
-        </nav>
-        <div class="flex items-center gap-6 mt-10">
-            <a href="https://www.instagram.com/rangthar_/" target="_blank" class="w-12 h-12 rounded-full border border-brand-gold/30 flex items-center justify-center text-brand-gold">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://wa.me/919079294929" target="_blank" class="w-12 h-12 rounded-full border border-brand-gold/30 flex items-center justify-center text-brand-gold">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="tel:+918955505266" class="w-12 h-12 rounded-full border border-brand-gold/30 flex items-center justify-center text-brand-gold">
-                <i class="fas fa-phone-alt"></i>
-            </a>
-        </div>
-    </div>
-
-    <!-- Hero Section with Multi-Layer Parallax Assets (hero.png + h1-h5) -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 hero-mask" id="hero-section">
-        <div class="absolute inset-0 z-0">
-            <img src="hero.png" alt="Rangthar Hero Background" class="w-full h-full object-cover object-center opacity-50 scale-105 transition-transform duration-1000" id="parallax-bg" onerror="this.src='https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&q=80&w=2000';">
-            <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/40 to-brand-black/80"></div>
-        </div>
-
-        <!-- Floating Atmospheric Layers (h1.png to h5.png) -->
-        <div class="absolute inset-0 pointer-events-none z-1 overflow-hidden hidden lg:block">
-            <img src="h1.png" alt="" class="absolute top-1/4 left-12 w-48 opacity-25" style="animation: floatSlow 8s ease-in-out infinite;" onerror="this.style.display='none';">
-            <img src="h2.png" alt="" class="absolute bottom-12 right-16 w-56 opacity-30" style="animation: floatSlow 10s ease-in-out infinite 1s;" onerror="this.style.display='none';">
-            <img src="h3.png" alt="" class="absolute top-1/3 right-12 w-40 opacity-25" style="animation: floatSlow 9s ease-in-out infinite 2s;" onerror="this.style.display='none';">
-            <img src="h4.png" alt="" class="absolute bottom-1/4 left-20 w-44 opacity-20" style="animation: floatSlow 11s ease-in-out infinite 1.5s;" onerror="this.style.display='none';">
-            <img src="h5.png" alt="" class="absolute top-20 right-1/3 w-36 opacity-20" style="animation: floatSlow 7s ease-in-out infinite 0.5s;" onerror="this.style.display='none';">
-        </div>
-
-        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center">
-            <div class="inline-flex items-center gap-3 px-5 py-2 rounded-full glass-card mb-8 border border-brand-gold/30 opacity-0 animate-fade-in-down" style="animation: fadeInDown 1s forwards 0.3s;">
-                <span class="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span>
-                <span class="text-xs uppercase tracking-[0.3em] text-brand-gold font-medium">Royal Heritage Reimagined</span>
+            <div class="line">
+              <span>Clothing.</span>
             </div>
 
-            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[1.1] mb-6 font-light opacity-0 translate-y-10" id="hero-title">
-                WEAR YOUR <span class="gold-gradient-text italic font-normal">LEGACY</span>
-            </h1>
+            <div class="line">
+              <span>A Legacy.</span>
+            </div>
 
-            <p class="max-w-2xl text-brand-muted text-base md:text-lg tracking-wide font-light leading-relaxed mb-10 opacity-0 translate-y-10" id="hero-subtitle">
-                Rooted in the timeless grandeur, culture, and regal identity of Rajasthan. Rangthar bridges centuries-old royal craftsmanship with modern haute couture elegance.
+          </div>
+
+        </div>
+
+        <div class="story-visual-wrap">
+
+          <div class="story-image-mask">
+
+            <img
+              src="about.jpg"
+              class="story-image"
+              alt="Rangthar Rajasthan Heritage"
+            >
+
+            <div class="story-image-shade"></div>
+
+          </div>
+
+          <div class="story-floating-copy">
+
+            <h3>
+              Born from<br>
+              the roots.
+            </h3>
+
+            <p>
+              Rangthar is built around a simple belief:
+              what you wear can carry a story.
+              A story of where you come from,
+              what you value and what you choose
+              to pass forward.
             </p>
 
-            <div class="flex flex-col sm:flex-row items-center gap-5 opacity-0 translate-y-10" id="hero-cta">
-                <a href="#collection" class="w-full sm:w-auto px-9 py-4 rounded-full bg-brand-gold text-brand-black text-xs uppercase tracking-[0.25em] font-semibold hover:bg-white transition-all duration-300 shadow-xl shadow-brand-gold/10">
-                    Explore Collection
-                </a>
-                <a href="#contact" class="w-full sm:w-auto px-9 py-4 rounded-full border border-brand-gold/40 text-brand-sand text-xs uppercase tracking-[0.25em] font-medium hover:border-brand-gold hover:text-brand-gold transition-all duration-300">
-                    Private Enquiry
-                </a>
-            </div>
+            <br>
+
+            <p>
+              Inspired by Rajasthan's heritage,
+              artistry and unmistakable character,
+              Rangthar brings that spirit into
+              contemporary fashion.
+            </p>
+
+          </div>
+
         </div>
 
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-60">
-            <span class="text-[10px] uppercase tracking-[0.3em] text-brand-muted">Scroll</span>
-            <div class="w-[1px] h-12 bg-gradient-to-b from-brand-gold to-transparent animate-bounce"></div>
-        </div>
+        <p class="story-quote">
+          “Wear something that carries
+          <strong>where you come from.</strong>”
+        </p>
+
+      </div>
+
     </section>
 
-    <!-- Brand Heritage Section (about.jpg) -->
-    <section id="heritage" class="py-32 relative overflow-hidden border-t border-brand-gold/10">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-                <div class="lg:col-span-6 relative reveal-up">
-                    <div class="relative z-10 rounded-2xl overflow-hidden border border-brand-gold/25 shadow-2xl">
-                        <img src="about.jpg" alt="Rangthar Heritage Craft" class="w-full h-[600px] object-cover hover:scale-105 transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&q=80&w=1000';">
-                    </div>
-                    <div class="absolute -bottom-6 -right-6 w-full h-full border border-brand-gold/30 rounded-2xl -z-10 hidden sm:block"></div>
-                </div>
+    <!-- =====================================================
+         HERITAGE INTRO
+         ===================================================== -->
 
-                <div class="lg:col-span-6 flex flex-col justify-center reveal-up">
-                    <div class="inline-flex items-center gap-2 text-brand-gold text-xs uppercase tracking-[0.3em] mb-4">
-                        <i class="fas fa-crown text-[10px]"></i> The Philosophy
-                    </div>
-                    <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl tracking-tight leading-tight mb-8 font-light">
-                        Where Ancient Rajasthan <span class="gold-gradient-text italic font-normal">Meets Modernity</span>
-                    </h2>
-                    <p class="text-brand-muted text-base md:text-lg leading-relaxed mb-8 font-light">
-                        Rangthar is not merely a fashion label; it is a profound custodian of identity, culture, and centuries-old royal legacy. Every thread weaves the rich tapestry of desert palaces, vibrant folklore, and artisan heritage into sleek, contemporary silhouettes designed for the global connoisseur.
-                    </p>
-                    <div class="grid grid-cols-2 gap-6 pt-4 border-t border-brand-gold/15">
-                        <div>
-                            <h4 class="font-serif text-xl text-brand-gold mb-2">Royal Roots</h4>
-                            <p class="text-sm text-brand-muted font-light leading-relaxed">Inspired by the majestic architecture and textile traditions of Rajputana.</p>
-                        </div>
-                        <div>
-                            <h4 class="font-serif text-xl text-brand-gold mb-2">Haute Craft</h4>
-                            <p class="text-sm text-brand-muted font-light leading-relaxed">Hand-finished details merging traditional artistry with modern tailoring.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="section heritage-intro" id="heritage">
+
+      <div class="heritage-intro-inner">
+
+        <div class="heritage-small">
+          03 / 05 — The Spirit of Rangthar
         </div>
+
+        <h2 class="heritage-title">
+
+          <span>Rooted</span>
+
+          <span class="gold">in Rajasthan.</span>
+
+        </h2>
+
+        <p class="heritage-sub">
+          Timeless influence. Contemporary expression.
+          A visual language shaped by heritage,
+          interpreted for a new generation.
+        </p>
+
+      </div>
+
     </section>
 
-    <!-- Signature Collection Showcase (p1.png to p6.png) -->
-    <section id="collection" class="py-32 relative bg-brand-charcoal/50 border-t border-brand-gold/10">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 reveal-up">
-                <div>
-                    <span class="text-xs uppercase tracking-[0.3em] text-brand-gold block mb-3 font-medium">Curated Masterpieces</span>
-                    <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl tracking-tight font-light">
-                        The Signature <span class="gold-gradient-text italic font-normal">Collection</span>
-                    </h2>
-                </div>
-                <p class="text-brand-muted max-w-md mt-4 md:mt-0 text-sm font-light">
-                    Exquisite ensembles crafted with precision, honoring traditional aesthetics while embracing contemporary sophistication.
-                </p>
-            </div>
+    <!-- =====================================================
+         PART 1 ENDS HERE
+         ===================================================== -->
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Product 1 -->
-                <div class="group relative glass-card rounded-2xl overflow-hidden reveal-up">
-                    <div class="relative h-[420px] overflow-hidden bg-brand-black">
-                        <img src="p1.png" alt="Rajputana Sherwani" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&q=80&w=800';">
-                        <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
-                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-brand-black/85 backdrop-blur-md text-[10px] uppercase tracking-[0.2em] text-brand-gold border border-brand-gold/30">Heritage Series</span>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-serif text-2xl mb-2 text-brand-sand group-hover:text-brand-gold transition-colors">The Rajputana Regal Sherwani</h3>
-                        <p class="text-sm text-brand-muted font-light mb-6">Hand-embroidered zardozi motifs paired with fine heritage silk.</p>
-                        <div class="flex items-center justify-between pt-4 border-t border-brand-gold/10">
-                            <span class="text-xs uppercase tracking-[0.2em] text-brand-gold font-medium">Limited Edition</span>
-                            <a href="#contact" class="text-xs uppercase tracking-[0.2em] text-brand-sand hover:text-brand-gold transition-colors flex items-center gap-2">
-                                Enquire <i class="fas fa-arrow-right text-[10px]"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+  </main>
 
-                <!-- Product 2 -->
-                <div class="group relative glass-card rounded-2xl overflow-hidden reveal-up">
-                    <div class="relative h-[420px] overflow-hidden bg-brand-black">
-                        <img src="p2.png" alt="Jodhpuri Bandhgala" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=800';">
-                        <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
-                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-brand-black/85 backdrop-blur-md text-[10px] uppercase tracking-[0.2em] text-brand-gold border border-brand-gold/30">Contemporary</span>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-serif text-2xl mb-2 text-brand-sand group-hover:text-brand-gold transition-colors">Modern Jodhpuri Bandhgala</h3>
-                        <p class="text-sm text-brand-muted font-light mb-6">Structured tailoring infused with subtle desert-gold metallic accents.</p>
-                        <div class="flex items-center justify-between pt-4 border-t border-brand-gold/10">
-                            <span class="text-xs uppercase tracking-[0.2em] text-brand-gold font-medium">Bespoke</span>
-                            <a href="#contact" class="text-xs uppercase tracking-[0.2em] text-brand-sand hover:text-brand-gold transition-colors flex items-center gap-2">
-                                Enquire <i class="fas fa-arrow-right text-[10px]"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+  <script>
+    /* =========================================================
+       RANGTHAR — PART 1 JAVASCRIPT
+       ========================================================= */
 
-                <!-- Product 3 -->
-                <div class="group relative glass-card rounded-2xl overflow-hidden reveal-up">
-                    <div class="relative h-[420px] overflow-hidden bg-brand-black">
-                        <img src="p3.png" alt="Thar Silk Ensemble" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=800';">
-                        <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
-                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-brand-black/85 backdrop-blur-md text-[10px] uppercase tracking-[0.2em] text-brand-gold border border-brand-gold/30">Couture</span>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-serif text-2xl mb-2 text-brand-sand group-hover:text-brand-gold transition-colors">Thar Desert Silk Ensemble</h3>
-                        <p class="text-sm text-brand-muted font-light mb-6">Flowing drapes reflecting the golden dunes and evening skies of Rajasthan.</p>
-                        <div class="flex items-center justify-between pt-4 border-t border-brand-gold/10">
-                            <span class="text-xs uppercase tracking-[0.2em] text-brand-gold font-medium">Signature</span>
-                            <a href="#contact" class="text-xs uppercase tracking-[0.2em] text-brand-sand hover:text-brand-gold transition-colors flex items-center gap-2">
-                                Enquire <i class="fas fa-arrow-right text-[10px]"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+    gsap.registerPlugin(ScrollTrigger);
 
-                <!-- Product 4 -->
-                <div class="group relative glass-card rounded-2xl overflow-hidden reveal-up">
-                    <div class="relative h-[420px] overflow-hidden bg-brand-black">
-                        <img src="p4.png" alt="Udaipur Velvet Achkan" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=800';">
-                        <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
-                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-brand-black/85 backdrop-blur-md text-[10px] uppercase tracking-[0.2em] text-brand-gold border border-brand-gold/30">Festive Edit</span>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-serif text-2xl mb-2 text-brand-sand group-hover:text-brand-gold transition-colors">Udaipur Velvet Achkan</h3>
-                        <p class="text-sm text-brand-muted font-light mb-6">Deep jewel tones adorned with antique brass hardware and intricate piping.</p>
-                        <div class="flex items-center justify-between pt-4 border-t border-brand-gold/10">
-                            <span class="text-xs uppercase tracking-[0.2em] text-brand-gold font-medium">Festive Edit</span>
-                            <a href="#contact" class="text-xs uppercase tracking-[0.2em] text-brand-sand hover:text-brand-gold transition-colors flex items-center gap-2">
-                                Enquire <i class="fas fa-arrow-right text-[10px]"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+    /* ---------------------------------------------------------
+       GLOBAL SETTINGS
+       --------------------------------------------------------- */
 
-                <!-- Product 5 -->
-                <div class="group relative glass-card rounded-2xl overflow-hidden reveal-up">
-                    <div class="relative h-[420px] overflow-hidden bg-brand-black">
-                        <img src="p5.png" alt="Jaipur Palace Kurta" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&q=80&w=800';">
-                        <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
-                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-brand-black/85 backdrop-blur-md text-[10px] uppercase tracking-[0.2em] text-brand-gold border border-brand-gold/30">Royal Jaipur</span>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-serif text-2xl mb-2 text-brand-sand group-hover:text-brand-gold transition-colors">Jaipur Palace Kurta Set</h3>
-                        <p class="text-sm text-brand-muted font-light mb-6">Breathable linen-silk blend featuring block-print inspired motifs.</p>
-                        <div class="flex items-center justify-between pt-4 border-t border-brand-gold/10">
-                            <span class="text-xs uppercase tracking-[0.2em] text-brand-gold font-medium">Classic</span>
-                            <a href="#contact" class="text-xs uppercase tracking-[0.2em] text-brand-sand hover:text-brand-gold transition-colors flex items-center gap-2">
-                                Enquire <i class="fas fa-arrow-right text-[10px]"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+    const prefersReducedMotion =
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-                <!-- Product 6 -->
-                <div class="group relative glass-card rounded-2xl overflow-hidden reveal-up">
-                    <div class="relative h-[420px] overflow-hidden bg-brand-black">
-                        <img src="p6.png" alt="Legacy Cape" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&q=80&w=800';">
-                        <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
-                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-brand-black/85 backdrop-blur-md text-[10px] uppercase tracking-[0.2em] text-brand-gold border border-brand-gold/30">Avant-Garde</span>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-serif text-2xl mb-2 text-brand-sand group-hover:text-brand-gold transition-colors">The Legacy Cape & Layer</h3>
-                        <p class="text-sm text-brand-muted font-light mb-6">An experimental fusion of traditional Rajasthani drapes with modern outerwear.</p>
-                        <div class="flex items-center justify-between pt-4 border-t border-brand-gold/10">
-                            <span class="text-xs uppercase tracking-[0.2em] text-brand-gold font-medium">Bespoke</span>
-                            <a href="#contact" class="text-xs uppercase tracking-[0.2em] text-brand-sand hover:text-brand-gold transition-colors flex items-center gap-2">
-                                Enquire <i class="fas fa-arrow-right text-[10px]"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    /* ---------------------------------------------------------
+       DOM READY
+       --------------------------------------------------------- */
 
-    <!-- NEW: "Why Us" Section -->
-    <section id="why-us" class="py-32 relative border-t border-brand-gold/10 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-20 reveal-up">
-                <span class="text-xs uppercase tracking-[0.3em] text-brand-gold block mb-3 font-medium">The Rangthar Standard</span>
-                <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl tracking-tight font-light mb-6">
-                    Why Connoisseurs <span class="gold-gradient-text italic font-normal">Choose Us</span>
-                </h2>
-                <p class="text-brand-muted text-base font-light">
-                    We transcend ordinary fashion by preserving authentic cultural artistry while meeting the rigorous demands of modern luxury.
-                </p>
-            </div>
+    window.addEventListener("load", () => {
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="glass-card p-8 rounded-2xl reveal-up">
-                    <div class="w-14 h-14 rounded-full bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold text-xl mb-6">
-                        <i class="fas fa-medal"></i>
-                    </div>
-                    <h3 class="font-serif text-xl mb-3 text-brand-sand">Authentic Roots</h3>
-                    <p class="text-sm text-brand-muted font-light leading-relaxed">
-                        Direct connection with royal textile houses and artisan lineages across Rajasthan.
-                    </p>
-                </div>
+      document.body.classList.remove("loading");
 
-                <div class="glass-card p-8 rounded-2xl reveal-up">
-                    <div class="w-14 h-14 rounded-full bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold text-xl mb-6">
-                        <i class="fas fa-cut"></i>
-                    </div>
-                    <h3 class="font-serif text-xl mb-3 text-brand-sand">Bespoke Precision</h3>
-                    <p class="text-sm text-brand-muted font-light leading-relaxed">
-                        Custom tailored to absolute perfection to ensure impeccable posture and grace.
-                    </p>
-                </div>
+      if (prefersReducedMotion) {
+        document.querySelector(".loader").style.display = "none";
+        initSite();
+        return;
+      }
 
-                <div class="glass-card p-8 rounded-2xl reveal-up">
-                    <div class="w-14 h-14 rounded-full bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold text-xl mb-6">
-                        <i class="fas fa-leaf"></i>
-                    </div>
-                    <h3 class="font-serif text-xl mb-3 text-brand-sand">Pure Sustainable Fabrics</h3>
-                    <p class="text-sm text-brand-muted font-light leading-relaxed">
-                        Sustainably sourced organic silks, rich velvets, and handloom cottons of the highest tier.
-                    </p>
-                </div>
+      initLoader();
 
-                <div class="glass-card p-8 rounded-2xl reveal-up">
-                    <div class="w-14 h-14 rounded-full bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold text-xl mb-6">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3 class="font-serif text-xl mb-3 text-brand-sand">Dedicated Concierge</h3>
-                        <p class="text-sm text-brand-muted font-light leading-relaxed">
-                        Personal styling assistance available 24/7 via WhatsApp and direct consultation.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+    });
 
-    <!-- The Craft & Artistry Section -->
-    <section id="craft" class="py-32 relative overflow-hidden bg-brand-charcoal/30 border-t border-brand-gold/10">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-20 reveal-up">
-                <span class="text-xs uppercase tracking-[0.3em] text-brand-gold block mb-3 font-medium">Uncompromising Standards</span>
-                <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl tracking-tight font-light mb-6">
-                    The Art of <span class="gold-gradient-text italic font-normal">Rajasthani Tailoring</span>
-                </h2>
-                <p class="text-brand-muted text-base font-light">
-                    Every garment tells a story of patience, generational mastery, and supreme dedication to luxury.
-                </p>
-            </div>
+    /* ---------------------------------------------------------
+       LOADER
+       --------------------------------------------------------- */
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div class="glass-card p-10 rounded-2xl text-center reveal-up">
-                    <div class="w-16 h-16 rounded-full bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center mx-auto mb-6 text-brand-gold text-2xl">
-                        <i class="fas fa-seedling"></i>
-                    </div>
-                    <h3 class="font-serif text-2xl mb-4 text-brand-sand">Pure Sustainable Textiles</h3>
-                    <p class="text-sm text-brand-muted font-light leading-relaxed">
-                        Sourced directly from artisan clusters across Rajasthan, utilizing organic silks and rich sustainable velvet.
-                    </p>
-                </div>
+    function initLoader() {
 
-                <div class="glass-card p-10 rounded-2xl text-center reveal-up">
-                    <div class="w-16 h-16 rounded-full bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center mx-auto mb-6 text-brand-gold text-2xl">
-                        <i class="fas fa-hands"></i>
-                    </div>
-                    <h3 class="font-serif text-2xl mb-4 text-brand-sand">Master Artisan Craft</h3>
-                    <p class="text-sm text-brand-muted font-light leading-relaxed">
-                        Intricate hand-embroidery, block printing, and zardozi techniques passed down through royal households.
-                    </p>
-                </div>
+      const loader = document.querySelector("#loader");
+      const brand = document.querySelector(".loader-brand");
+      const tagline = document.querySelector(".loader-tagline");
+      const line = document.querySelector(".loader-line");
 
-                <div class="glass-card p-10 rounded-2xl text-center reveal-up">
-                    <div class="w-16 h-16 rounded-full bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center mx-auto mb-6 text-brand-gold text-2xl">
-                        <i class="fas fa-gem"></i>
-                    </div>
-                    <h3 class="font-serif text-2xl mb-4 text-brand-sand">Regal Aesthetics</h3>
-                    <p class="text-sm text-brand-muted font-light leading-relaxed">
-                        Designed with modern architectural cuts to ensure a commanding presence while preserving traditional comfort.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+      const tl = gsap.timeline();
 
-    <!-- NEW: Reviews / Testimonials Section -->
-    <section id="reviews" class="py-32 relative border-t border-brand-gold/10">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-20 reveal-up">
-                <span class="text-xs uppercase tracking-[0.3em] text-brand-gold block mb-3 font-medium">Client Testimonials</span>
-                <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl tracking-tight font-light mb-6">
-                    Praised by <span class="gold-gradient-text italic font-normal">Connoisseurs</span>
-                </h2>
-                <p class="text-brand-muted text-base font-light">
-                    Read what our esteemed patrons have to say about their bespoke Rangthar experience.
-                </p>
-            </div>
+      tl.to(brand, {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: "power4.out"
+      })
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass-card p-8 rounded-2xl reveal-up flex flex-col justify-between">
-                    <div>
-                        <div class="flex text-brand-gold gap-1 text-sm mb-6">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="text-brand-sand font-serif italic text-lg leading-relaxed mb-6">
-                            "The Rajputana Sherwani I ordered for my wedding was an absolute masterpiece. The craftsmanship and fit felt truly royal."
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-brand-gold/10">
-                        <h4 class="font-serif text-brand-gold text-base">Digvijay Singh Rathore</h4>
-                        <span class="text-xs text-brand-muted uppercase tracking-widest">Udaipur</span>
-                    </div>
-                </div>
+      .to(tagline, {
+        opacity: 1,
+        duration: .8,
+        ease: "power2.out"
+      }, "-=.55")
 
-                <div class="glass-card p-8 rounded-2xl reveal-up flex flex-col justify-between">
-                    <div>
-                        <div class="flex text-brand-gold gap-1 text-sm mb-6">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="text-brand-sand font-serif italic text-lg leading-relaxed mb-6">
-                            "Rangthar successfully captures the essence of Rajasthan's heritage in modern silhouettes. Their WhatsApp concierge was extremely helpful."
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-brand-gold/10">
-                        <h4 class="font-serif text-brand-gold text-base">Aarav Mehta</h4>
-                        <span class="text-xs text-brand-muted uppercase tracking-widest">Jaipur</span>
-                    </div>
-                </div>
+      .to(line, {
+        width: "100%",
+        duration: 1.3,
+        ease: "power3.inOut"
+      }, "-=.35")
 
-                <div class="glass-card p-8 rounded-2xl reveal-up flex flex-col justify-between">
-                    <div>
-                        <div class="flex text-brand-gold gap-1 text-sm mb-6">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="text-brand-sand font-serif italic text-lg leading-relaxed mb-6">
-                            "Unmatched fabric quality and sophisticated detailing. Wearing Rangthar genuinely makes you feel connected to a rich legacy."
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-brand-gold/10">
-                        <h4 class="font-serif text-brand-gold text-base">Vikramaditya Jodhpur</h4>
-                        <span class="text-xs text-brand-muted uppercase tracking-widest">Jodhpur</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- NEW: FAQ Section -->
-    <section id="faq" class="py-32 relative bg-brand-charcoal/30 border-t border-brand-gold/10">
-        <div class="max-w-4xl mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-20 reveal-up">
-                <span class="text-xs uppercase tracking-[0.3em] text-brand-gold block mb-3 font-medium">Got Questions?</span>
-                <h2 class="font-serif text-4xl md:text-5xl tracking-tight font-light mb-6">
-                    Frequently Asked <span class="gold-gradient-text italic font-normal">Questions</span>
-                </h2>
-            </div>
-
-            <div class="space-y-4 reveal-up">
-                <!-- FAQ Item 1 -->
-                <div class="glass-card rounded-2xl overflow-hidden border border-brand-gold/15">
-                    <button class="faq-toggle w-full px-8 py-6 text-left flex justify-between items-center text-brand-sand font-serif text-xl focus:outline-none">
-                        <span>How do I place a custom bespoke order?</span>
-                        <i class="fas fa-plus text-brand-gold transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 px-8 text-brand-muted font-light text-sm leading-relaxed">
-                        <p class="pb-6">You can easily initiate a bespoke order by filling out our client enquiry form below or contacting our concierge directly via WhatsApp at +91 9079294929. We will guide you through measurements and design customization.</p>
-                    </div>
-                </div>
-
-                <!-- FAQ Item 2 -->
-                <div class="glass-card rounded-2xl overflow-hidden border border-brand-gold/15">
-                    <button class="faq-toggle w-full px-8 py-6 text-left flex justify-between items-center text-brand-sand font-serif text-xl focus:outline-none">
-                        <span>What is the delivery timeline for signature pieces?</span>
-                        <i class="fas fa-plus text-brand-gold transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 px-8 text-brand-muted font-light text-sm leading-relaxed">
-                        <p class="pb-6">Since our pieces involve intricate hand-embroidery and master artisan tailors, standard bespoke creation and delivery take between 14 to 21 business days.</p>
-                    </div>
-                </div>
-
-                <!-- FAQ Item 3 -->
-                <div class="glass-card rounded-2xl overflow-hidden border border-brand-gold/15">
-                    <button class="faq-toggle w-full px-8 py-6 text-left flex justify-between items-center text-brand-sand font-serif text-xl focus:outline-none">
-                        <span>Do you ship internationally?</span>
-                        <i class="fas fa-plus text-brand-gold transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 px-8 text-brand-muted font-light text-sm leading-relaxed">
-                        <p class="pb-6">Yes, Rangthar caters to connoisseurs globally. International shipping arrangements can be coordinated directly through our WhatsApp concierge.</p>
-                    </div>
-                </div>
-
-                <!-- FAQ Item 4 -->
-                <div class="glass-card rounded-2xl overflow-hidden border border-brand-gold/15">
-                    <button class="faq-toggle w-full px-8 py-6 text-left flex justify-between items-center text-brand-sand font-serif text-xl focus:outline-none">
-                        <span>How should I care for my Rangthar silk and velvet garments?</span>
-                        <i class="fas fa-plus text-brand-gold transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 px-8 text-brand-muted font-light text-sm leading-relaxed">
-                        <p class="pb-6">We strictly recommend professional dry cleaning only to preserve the intricate zardozi metallic threads and pure luxury fabrics.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Enquiry / Contact Section with WhatsApp Integration -->
-    <section id="contact" class="py-32 relative border-t border-brand-gold/10">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
-                <!-- Left: Contact Info -->
-                <div class="lg:col-span-5 flex flex-col justify-between reveal-up">
-                    <div>
-                        <span class="text-xs uppercase tracking-[0.3em] text-brand-gold block mb-3 font-medium">Connect With Us</span>
-                        <h2 class="font-serif text-4xl md:text-5xl tracking-tight font-light mb-6">
-                            Begin Your <span class="gold-gradient-text italic font-normal">Bespoke Journey</span>
-                        </h2>
-                        <p class="text-brand-muted text-base font-light leading-relaxed mb-10">
-                            Whether you seek private consultations, custom sizing, or bridal curation, our concierge team is available to assist you.
-                        </p>
-
-                        <div class="space-y-6">
-                            <a href="tel:+918955505266" class="flex items-center gap-5 p-4 rounded-xl glass-card border border-brand-gold/15 hover:border-brand-gold/40 transition-all group">
-                                <div class="w-12 h-12 rounded-full bg-brand-gold/10 flex items-center justify-center text-brand-gold text-lg group-hover:bg-brand-gold group-hover:text-brand-black transition-all">
-                                    <i class="fas fa-phone-alt"></i>
-                                </div>
-                                <div>
-                                    <span class="text-[10px] uppercase tracking-[0.2em] text-brand-muted block">Direct Call</span>
-                                    <span class="text-lg font-serif text-brand-sand">+91 8955505266</span>
-                                </div>
-                            </a>
-
-                            <a href="https://wa.me/919079294929" target="_blank" class="flex items-center gap-5 p-4 rounded-xl glass-card border border-brand-gold/15 hover:border-brand-gold/40 transition-all group">
-                                <div class="w-12 h-12 rounded-full bg-brand-gold/10 flex items-center justify-center text-brand-gold text-lg group-hover:bg-brand-gold group-hover:text-brand-black transition-all">
-                                    <i class="fab fa-whatsapp"></i>
-                                </div>
-                                <div>
-                                    <span class="text-[10px] uppercase tracking-[0.2em] text-brand-muted block">WhatsApp Concierge</span>
-                                    <span class="text-lg font-serif text-brand-sand">+91 9079294929</span>
-                                </div>
-                            </a>
-
-                            <a href="https://www.instagram.com/rangthar_/" target="_blank" class="flex items-center gap-5 p-4 rounded-xl glass-card border border-brand-gold/15 hover:border-brand-gold/40 transition-all group">
-                                <div class="w-12 h-12 rounded-full bg-brand-gold/10 flex items-center justify-center text-brand-gold text-lg group-hover:bg-brand-gold group-hover:text-brand-black transition-all">
-                                    <i class="fab fa-instagram"></i>
-                                </div>
-                                <div>
-                                    <span class="text-[10px] uppercase tracking-[0.2em] text-brand-muted block">Instagram Gallery</span>
-                                    <span class="text-lg font-serif text-brand-sand">@rangthar_</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right: Enquiry Form (WhatsApp Redirection) -->
-                <div class="lg:col-span-7 reveal-up">
-                    <div class="glass-card p-8 md:p-12 rounded-3xl border border-brand-gold/20 shadow-2xl relative">
-                        <form id="enquiry-form" class="space-y-6">
-                            <h3 class="font-serif text-2xl mb-6 text-brand-sand">Client Consultation Form</h3>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label class="block text-xs uppercase tracking-[0.2em] text-brand-muted mb-2 font-medium">Your Name *</label>
-                                    <input type="text" id="client-name" required class="w-full bg-brand-black/60 border border-brand-gold/20 rounded-xl px-5 py-4 text-brand-sand focus:outline-none focus:border-brand-gold transition-colors text-sm" placeholder="Maharana Pratap">
-                                </div>
-                                <div>
-                                    <label class="block text-xs uppercase tracking-[0.2em] text-brand-muted mb-2 font-medium">Phone Number *</label>
-                                    <input type="tel" id="client-phone" required class="w-full bg-brand-black/60 border border-brand-gold/20 rounded-xl px-5 py-4 text-brand-sand focus:outline-none focus:border-brand-gold transition-colors text-sm" placeholder="+91 98765 43210">
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="block text-xs uppercase tracking-[0.2em] text-brand-muted mb-2 font-medium">Requirement / Category *</label>
-                                <select id="client-requirement" required class="w-full bg-brand-black/60 border border-brand-gold/20 rounded-xl px-5 py-4 text-brand-sand focus:outline-none focus:border-brand-gold transition-colors text-sm">
-                                    <option value="" disabled selected>Select your collection interest</option>
-                                    <option value="Heritage Series / Sherwani">Heritage Series / Sherwani</option>
-                                    <option value="Modern Bandhgala">Modern Bandhgala</option>
-                                    <option value="Thar Desert Silk / Couture">Thar Desert Silk / Couture</option>
-                                    <option value="Bridal & Festive Ensemble">Bridal & Festive Ensemble</option>
-                                    <option value="Bespoke Custom Tailoring">Bespoke Custom Tailoring</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label class="block text-xs uppercase tracking-[0.2em] text-brand-muted mb-2 font-medium">Message / Specific Details *</label>
-                                <textarea id="client-message" rows="4" required class="w-full bg-brand-black/60 border border-brand-gold/20 rounded-xl px-5 py-4 text-brand-sand focus:outline-none focus:border-brand-gold transition-colors text-sm resize-none" placeholder="Share your custom requirements, event dates, or sizing preferences..."></textarea>
-                            </div>
-
-                            <button type="submit" class="w-full py-4 rounded-xl bg-brand-gold text-brand-black text-xs uppercase tracking-[0.25em] font-semibold hover:bg-white transition-all duration-300 shadow-xl shadow-brand-gold/10 flex items-center justify-center gap-2">
-                                <i class="fab fa-whatsapp text-lg"></i> Send Enquiry via WhatsApp
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-brand-black border-t border-brand-gold/20 pt-20 pb-12">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-                <div>
-                    <div class="flex items-center gap-3 mb-6">
-                        <img src="logo.png" alt="Rangthar" class="w-8 h-8 object-contain" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100';">
-                        <span class="font-serif text-2xl tracking-[0.2em] font-medium gold-gradient-text">RANGTHAR</span>
-                    </div>
-                    <p class="text-sm text-brand-muted font-light leading-relaxed mb-6">
-                        Wear Your Legacy. Celebrating the majestic heritage, culture, and regal identity of Rajasthan through modern luxury fashion.
-                    </p>
-                    <div class="flex items-center gap-4">
-                        <a href="https://www.instagram.com/rangthar_/" target="_blank" class="w-10 h-10 rounded-full border border-brand-gold/30 flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-brand-black transition-all">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://wa.me/919079294929" target="_blank" class="w-10 h-10 rounded-full border border-brand-gold/30 flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-brand-black transition-all">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                        <a href="tel:+918955505266" class="w-10 h-10 rounded-full border border-brand-gold/30 flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-brand-black transition-all">
-                            <i class="fas fa-phone-alt"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div>
-                    <h4 class="font-serif text-lg text-brand-sand mb-6 tracking-wide">Navigation</h4>
-                    <ul class="space-y-3 text-sm text-brand-muted font-light">
-                        <li><a href="#heritage" class="hover:text-brand-gold transition-colors">Heritage & Philosophy</a></li>
-                        <li><a href="#collection" class="hover:text-brand-gold transition-colors">Signature Collection</a></li>
-                        <li><a href="#why-us" class="hover:text-brand-gold transition-colors">Why Us</a></li>
-                        <li><a href="#craft" class="hover:text-brand-gold transition-colors">The Craft & Artistry</a></li>
-                        <li><a href="#reviews" class="hover:text-brand-gold transition-colors">Client Reviews</a></li>
-                        <li><a href="#faq" class="hover:text-brand-gold transition-colors">FAQ</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-serif text-lg text-brand-sand mb-6 tracking-wide">Collections</h4>
-                    <ul class="space-y-3 text-sm text-brand-muted font-light">
-                        <li><span class="hover:text-brand-gold transition-colors cursor-pointer">Rajputana Sherwani Series</span></li>
-                        <li><span class="hover:text-brand-gold transition-colors cursor-pointer">Modern Jodhpuri Bandhgala</span></li>
-                        <li><span class="hover:text-brand-gold transition-colors cursor-pointer">Thar Desert Silk Line</span></li>
-                        <li><span class="hover:text-brand-gold transition-colors cursor-pointer">Udaipur Velvet Achkan</span></li>
-                        <li><span class="hover:text-brand-gold transition-colors cursor-pointer">Jaipur Palace Edit</span></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-serif text-lg text-brand-sand mb-6 tracking-wide">Concierge</h4>
-                    <ul class="space-y-4 text-sm text-brand-muted font-light">
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-phone-alt text-brand-gold mt-1"></i>
-                            <span>Call: +91 8955505266</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fab fa-whatsapp text-brand-gold mt-1"></i>
-                            <span>WhatsApp: +91 9079294929</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fab fa-instagram text-brand-gold mt-1"></i>
-                            <span>Instagram: @rangthar_</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="pt-8 border-t border-brand-gold/10 flex flex-col md:flex-row items-center justify-between text-xs text-brand-muted font-light">
-                <p>&copy; 2026 RANGTHAR. All Rights Reserved. Wear Your Legacy.</p>
-                <div class="flex gap-6 mt-4 md:mt-0">
-                    <span class="hover:text-brand-gold cursor-pointer transition-colors">Privacy Policy</span>
-                    <span class="hover:text-brand-gold cursor-pointer transition-colors">Terms of Service</span>
-                    <span class="hover:text-brand-gold cursor-pointer transition-colors">Bespoke Terms</span>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts & Animations -->
-    <script>
-        // Lenis Smooth Scroll Setup
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            smooth: true
-        });
-
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
+      .to(loader, {
+        clipPath: "inset(0 0 100% 0)",
+        duration: 1.25,
+        ease: "power4.inOut",
+        onComplete: () => {
+          loader.style.display = "none";
+          initSite();
         }
-        requestAnimationFrame(raf);
+      }, "+=.25");
 
-        // Preloader Logic
-        window.addEventListener('load', () => {
-            const loaderBar = document.getElementById('loader-bar');
-            const preloader = document.getElementById('preloader');
-            
-            loaderBar.style.width = '100%';
-            
-            setTimeout(() => {
-                preloader.style.opacity = '0';
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                    initHeroAnimations();
-                }, 700);
-            }, 500);
-        });
+    }
 
-        // Hero Entrance Animations
-        function initHeroAnimations() {
-            gsap.to('#hero-title', { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out' });
-            gsap.to('#hero-subtitle', { opacity: 1, y: 0, duration: 1.2, delay: 0.3, ease: 'power3.out' });
-            gsap.to('#hero-cta', { opacity: 1, y: 0, duration: 1.2, delay: 0.6, ease: 'power3.out' });
+    /* ---------------------------------------------------------
+       SITE INITIALIZATION
+       --------------------------------------------------------- */
+
+    function initSite() {
+
+      initNavigation();
+      initHero();
+      initManifesto();
+      initStory();
+      initHeritage();
+      initCursor();
+      initMagneticElements();
+      initSmoothAnchorLinks();
+
+      ScrollTrigger.refresh();
+
+    }
+
+    /* ---------------------------------------------------------
+       NAVIGATION
+       --------------------------------------------------------- */
+
+    function initNavigation() {
+
+      const nav = document.querySelector("#siteNav");
+
+      const navLogo = document.querySelector(".nav-logo");
+      const navLinks = document.querySelectorAll(".nav-link");
+      const navCta = document.querySelector(".nav-cta");
+      const menuToggle = document.querySelector("#menuToggle");
+
+      const intro = gsap.timeline({
+        delay: .15
+      });
+
+      intro
+        .to(navLogo, {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power4.out"
+        })
+        .to(navLinks, {
+          opacity: 1,
+          y: 0,
+          duration: .75,
+          stagger: .08,
+          ease: "power3.out"
+        }, "-=.65")
+        .to(navCta, {
+          opacity: 1,
+          y: 0,
+          duration: .75,
+          ease: "power3.out"
+        }, "-=.55")
+        .to(menuToggle, {
+          opacity: 1,
+          duration: .5
+        }, "-=.45");
+
+      ScrollTrigger.create({
+        start: "top top",
+        end: "max",
+        onUpdate: self => {
+          if (self.scroll() > 60) {
+            nav.classList.add("scrolled");
+          } else {
+            nav.classList.remove("scrolled");
+          }
         }
+      });
 
-        // GSAP ScrollTrigger Reveals for all sections
-        gsap.registerPlugin(ScrollTrigger);
-        
-        document.querySelectorAll('.reveal-up').forEach((elem) => {
-            gsap.to(elem, {
-                scrollTrigger: {
-                    trigger: elem,
-                    start: 'top 85%',
-                    toggleActions: 'play none none none'
-                },
-                opacity: 1,
-                y: 0,
-                duration: 1,
-                ease: 'power3.out'
-            });
-        });
+      initMobileMenu();
 
-        // Navbar Scroll Background Transition
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
-                navbar.style.boxShadow = '0 10px 30px rgba(0,0,0,0.5)';
-            } else {
-                navbar.style.background = 'rgba(10, 10, 10, 0.85)';
-                navbar.style.boxShadow = 'none';
-            }
-        });
+    }
 
-        // Custom Magnetic Cursor Logic
-        const cursorDot = document.getElementById('cursor-dot');
-        const cursorOutline = document.getElementById('cursor-outline');
+    /* ---------------------------------------------------------
+       MOBILE MENU
+       --------------------------------------------------------- */
 
-        window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
+    function initMobileMenu() {
 
-            cursorDot.style.transform = `translate(${posX}px, ${posY}px)`;
-            
-            gsap.to(cursorOutline, {
-                x: posX,
-                y: posY,
-                duration: 0.15,
-                ease: 'power2.out'
-            });
-        });
+      const toggle = document.querySelector("#menuToggle");
+      const menu = document.querySelector("#mobileMenu");
+      const links = document.querySelectorAll(".mobile-menu-link");
 
-        // Mobile Menu Toggle
-        const menuBtn = document.getElementById('menu-btn');
-        const closeMenu = document.getElementById('close-menu');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
+      let opened = false;
 
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
-            mobileMenu.classList.add('opacity-100');
-            document.body.style.overflow = 'hidden';
-        });
+      toggle.addEventListener("click", () => {
 
-        const closeMobileNav = () => {
-            mobileMenu.classList.remove('opacity-100');
-            mobileMenu.classList.add('opacity-0', 'pointer-events-none');
-            document.body.style.overflow = 'auto';
-        };
+        opened = !opened;
 
-        closeMenu.addEventListener('click', closeMobileNav);
-        mobileLinks.forEach(link => link.addEventListener('click', closeMobileNav));
+        toggle.classList.toggle("open", opened);
 
-        // FAQ Accordion Toggle
-        const faqToggles = document.querySelectorAll('.faq-toggle');
-        faqToggles.forEach(toggle => {
-            toggle.addEventListener('click', () => {
-                const content = toggle.nextElementSibling;
-                const icon = toggle.querySelector('i');
-                
-                // Close other open accordions
-                faqToggles.forEach(otherToggle => {
-                    if (otherToggle !== toggle) {
-                        otherToggle.nextElementSibling.style.maxHeight = null;
-                        otherToggle.querySelector('i').style.transform = 'rotate(0deg)';
-                    }
+        if (opened) {
+
+          document.body.style.overflow = "hidden";
+
+          gsap.set(menu, {
+            visibility: "visible"
+          });
+
+          gsap.timeline()
+            .to(menu, {
+              opacity: 1,
+              duration: .55,
+              ease: "power3.out"
+            })
+            .to(links, {
+              opacity: 1,
+              y: 0,
+              duration: .8,
+              stagger: .08,
+              ease: "power4.out"
+            }, "-=.3");
+
+        } else {
+
+          document.body.style.overflow = "";
+
+          gsap.timeline()
+            .to(links, {
+              opacity: 0,
+              y: 30,
+              duration: .35,
+              stagger: .03,
+              ease: "power2.in"
+            })
+            .to(menu, {
+              opacity: 0,
+              duration: .45,
+              ease: "power2.in",
+              onComplete: () => {
+                gsap.set(menu, {
+                  visibility: "hidden"
                 });
+              }
+            }, "-=.15");
 
-                if (content.style.maxHeight) {
-                    content.style.maxHeight = null;
-                    icon.style.transform = 'rotate(0deg)';
-                } else {
-                    content.style.maxHeight = content.scrollHeight + 'px';
-                    icon.style.transform = 'rotate(45deg)';
-                }
-            });
+        }
+
+      });
+
+      links.forEach(link => {
+
+        link.addEventListener("click", () => {
+
+          opened = false;
+
+          toggle.classList.remove("open");
+          document.body.style.overflow = "";
+
+          gsap.to(menu, {
+            opacity: 0,
+            duration: .35,
+            onComplete: () => {
+              menu.style.visibility = "hidden";
+            }
+          });
+
         });
 
-        // Direct WhatsApp Enquiry Form Submission
-        const enquiryForm = document.getElementById('enquiry-form');
-        enquiryForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('client-name').value;
-            const phone = document.getElementById('client-phone').value;
-            const requirement = document.getElementById('client-requirement').value;
-            const message = document.getElementById('client-message').value;
+      });
 
-            const whatsappUrl = `https://wa.me/919079294929?text=Hello%20Rangthar%20Concierge,%0A%0AMy%20Name:%20${encodeURIComponent(name)}%0APhone:%20${encodeURIComponent(phone)}%0ARequirement:%20${encodeURIComponent(requirement)}%0AMessage:%20${encodeURIComponent(message)}`;
-            
-            window.open(whatsappUrl, '_blank');
+    }
+
+    /* ---------------------------------------------------------
+       HERO INTRO
+       --------------------------------------------------------- */
+
+    function initHero() {
+
+      const bg = document.querySelector("#heroBg");
+
+      const layers = [
+        document.querySelector("#heroLayer1"),
+        document.querySelector("#heroLayer2"),
+        document.querySelector("#heroLayer3"),
+        document.querySelector("#heroLayer4"),
+        document.querySelector("#heroLayer5")
+      ];
+
+      const eyebrow = document.querySelector(".hero-eyebrow");
+      const title = document.querySelector(".hero-title");
+      const description = document.querySelector(".hero-description");
+      const actions = document.querySelector(".hero-actions");
+      const scrollIndicator = document.querySelector(".hero-scroll");
+
+      const heroIntro = gsap.timeline({
+        delay: .1
+      });
+
+      heroIntro
+
+        .to(bg, {
+          opacity: 1,
+          scale: 1,
+          duration: 2.4,
+          ease: "power4.out"
+        })
+
+        .to(layers[0], {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          z: 0,
+          scale: 1,
+          duration: 1.5,
+          ease: "power4.out"
+        }, "-=1.55")
+
+        .to(layers[1], {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          z: 0,
+          scale: 1,
+          duration: 1.45,
+          ease: "power4.out"
+        }, "-=1.15")
+
+        .to(layers[2], {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          z: 0,
+          scale: 1,
+          duration: 1.4,
+          ease: "power4.out"
+        }, "-=1.05")
+
+        .to(layers[3], {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          z: 0,
+          scale: 1,
+          duration: 1.35,
+          ease: "power4.out"
+        }, "-=1")
+
+        .to(layers[4], {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          z: 0,
+          scale: 1,
+          duration: 1.3,
+          ease: "power4.out"
+        }, "-=1")
+
+        .to(eyebrow, {
+          opacity: 1,
+          y: 0,
+          duration: .8,
+          ease: "power3.out"
+        }, "-=.7")
+
+        .to(title, {
+          opacity: 1,
+          y: 0,
+          duration: 1.1,
+          ease: "power4.out"
+        }, "-=.5")
+
+        .to(description, {
+          opacity: 1,
+          y: 0,
+          duration: .8,
+          ease: "power3.out"
+        }, "-=.6")
+
+        .to(actions, {
+          opacity: 1,
+          y: 0,
+          duration: .75,
+          ease: "power3.out"
+        }, "-=.5")
+
+        .to(scrollIndicator, {
+          opacity: 1,
+          duration: .7,
+          ease: "power2.out"
+        }, "-=.35");
+
+      /* Hero scroll choreography */
+
+      const heroScroll = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: 1.25
+        }
+      });
+
+      heroScroll
+
+        .to(bg, {
+          scale: 1.18,
+          yPercent: 7,
+          ease: "none"
+        }, 0)
+
+        .to(layers[0], {
+          yPercent: -12,
+          xPercent: -3,
+          scale: 1.04,
+          ease: "none"
+        }, 0)
+
+        .to(layers[1], {
+          yPercent: 18,
+          xPercent: 5,
+          scale: 1.06,
+          ease: "none"
+        }, 0)
+
+        .to(layers[2], {
+          yPercent: -22,
+          xPercent: -5,
+          scale: 1.08,
+          ease: "none"
+        }, 0)
+
+        .to(layers[3], {
+          yPercent: 25,
+          xPercent: 7,
+          scale: 1.1,
+          ease: "none"
+        }, 0)
+
+        .to(layers[4], {
+          yPercent: -30,
+          xPercent: -7,
+          scale: 1.12,
+          ease: "none"
+        }, 0)
+
+        .to(".hero-content", {
+          yPercent: -35,
+          opacity: .15,
+          ease: "none"
+        }, 0)
+
+        .to(".hero-overlay", {
+          opacity: 1,
+          ease: "none"
+        }, .2);
+
+    }
+
+    /* ---------------------------------------------------------
+       MANIFESTO
+       --------------------------------------------------------- */
+
+    function initManifesto() {
+
+      const words = document.querySelectorAll(
+        ".manifesto-word-inner"
+      );
+
+      const statement = document.querySelector(
+        ".manifesto-statement"
+      );
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".manifesto",
+          start: "top 72%",
+          end: "bottom 65%",
+          scrub: 1
+        }
+      });
+
+      tl.to(words[0], {
+        y: "0%",
+        duration: 1,
+        ease: "power4.out"
+      })
+
+      .to(words[1], {
+        y: "0%",
+        duration: 1,
+        ease: "power4.out"
+      }, "-=.45")
+
+      .to(words[2], {
+        y: "0%",
+        duration: 1,
+        ease: "power4.out"
+      }, "-=.45")
+
+      .fromTo(
+        statement,
+        {
+          opacity: 0,
+          y: 40
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out"
+        },
+        "-=.25"
+      );
+
+      /* subtle background movement */
+
+      gsap.to(".manifesto .ornament-a", {
+        rotation: 110,
+        y: 150,
+        scrollTrigger: {
+          trigger: ".manifesto",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 2
+        }
+      });
+
+    }
+
+    /* ---------------------------------------------------------
+       STORY
+       --------------------------------------------------------- */
+
+    function initStory() {
+
+      const titleLines = document.querySelectorAll(
+        ".story-title .line span"
+      );
+
+      const imageMask = document.querySelector(
+        ".story-image-mask"
+      );
+
+      const image = document.querySelector(
+        ".story-image"
+      );
+
+      const floatingCopy = document.querySelector(
+        ".story-floating-copy"
+      );
+
+      const quote = document.querySelector(
+        ".story-quote"
+      );
+
+      const storyTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".story",
+          start: "top 72%",
+          end: "bottom 40%",
+          scrub: 1.1
+        }
+      });
+
+      storyTl
+
+        .to(titleLines, {
+          y: "0%",
+          duration: 1.2,
+          stagger: .18,
+          ease: "power4.out"
+        })
+
+        .to(imageMask, {
+          clipPath: "inset(0 0% 0 0)",
+          duration: 1.5,
+          ease: "power4.inOut"
+        }, "-=.5")
+
+        .to(image, {
+          scale: 1,
+          duration: 1.5,
+          ease: "power3.out"
+        }, "-=1.4")
+
+        .to(floatingCopy, {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power4.out"
+        }, "-=.6")
+
+        .to(quote, {
+          opacity: 1,
+          x: 0,
+          duration: .9,
+          ease: "power3.out"
+        }, "-=.5");
+
+      /* Image parallax */
+
+      gsap.to(image, {
+        yPercent: -10,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".story-image-mask",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.4
+        }
+      });
+
+    }
+
+    /* ---------------------------------------------------------
+       HERITAGE INTRO
+       --------------------------------------------------------- */
+
+    function initHeritage() {
+
+      const small = document.querySelector(
+        ".heritage-small"
+      );
+
+      const titleLines = document.querySelectorAll(
+        ".heritage-title span"
+      );
+
+      const sub = document.querySelector(
+        ".heritage-sub"
+      );
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".heritage-intro",
+          start: "top 70%",
+          end: "bottom 40%",
+          scrub: 1
+        }
+      });
+
+      tl.to(small, {
+        opacity: 1,
+        y: 0,
+        duration: .8,
+        ease: "power3.out"
+      })
+
+      .to(titleLines, {
+        y: "0%",
+        duration: 1.2,
+        stagger: .2,
+        ease: "power4.out"
+      }, "-=.3")
+
+      .to(sub, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power3.out"
+      }, "-=.5");
+
+    }
+
+    /* ---------------------------------------------------------
+       CUSTOM CURSOR
+       --------------------------------------------------------- */
+
+    function initCursor() {
+
+      if (window.matchMedia("(hover: none)").matches) {
+        return;
+      }
+
+      const cursor = document.querySelector(".cursor");
+      const follower = document.querySelector(".cursor-follower");
+      const label = document.querySelector(".cursor-label");
+
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+
+      let followerX = mouseX;
+      let followerY = mouseY;
+
+      window.addEventListener("mousemove", e => {
+
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        gsap.set(cursor, {
+          x: mouseX,
+          y: mouseY,
+          opacity: 1
         });
-    </script>
+
+        gsap.set(label, {
+          x: mouseX,
+          y: mouseY
+        });
+
+      });
+
+      gsap.ticker.add(() => {
+
+        followerX += (mouseX - followerX) * .13;
+        followerY += (mouseY - followerY) * .13;
+
+        gsap.set(follower, {
+          x: followerX,
+          y: followerY,
+          opacity: 1
+        });
+
+      });
+
+      const interactiveElements = document.querySelectorAll(
+        "a, button, .magnetic-hover"
+      );
+
+      interactiveElements.forEach(el => {
+
+        el.addEventListener("mouseenter", () => {
+          follower.classList.add("active");
+        });
+
+        el.addEventListener("mouseleave", () => {
+          follower.classList.remove("active");
+        });
+
+      });
+
+    }
+
+    /* ---------------------------------------------------------
+       MAGNETIC ELEMENTS
+       --------------------------------------------------------- */
+
+    function initMagneticElements() {
+
+      if (window.matchMedia("(hover: none)").matches) {
+        return;
+      }
+
+      const elements = document.querySelectorAll(
+        ".magnetic-hover"
+      );
+
+      elements.forEach(el => {
+
+        el.addEventListener("mousemove", e => {
+
+          const rect = el.getBoundingClientRect();
+
+          const x =
+            e.clientX -
+            rect.left -
+            rect.width / 2;
+
+          const y =
+            e.clientY -
+            rect.top -
+            rect.height / 2;
+
+          gsap.to(el, {
+            x: x * .12,
+            y: y * .12,
+            duration: .45,
+            ease: "power3.out"
+          });
+
+        });
+
+        el.addEventListener("mouseleave", () => {
+
+          gsap.to(el, {
+            x: 0,
+            y: 0,
+            duration: .7,
+            ease: "elastic.out(1, .5)"
+          });
+
+        });
+
+      });
+
+    }
+
+    /* ---------------------------------------------------------
+       SMOOTH ANCHOR LINKS
+       --------------------------------------------------------- */
+
+    function initSmoothAnchorLinks() {
+
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+
+        link.addEventListener("click", e => {
+
+          const targetId =
+            link.getAttribute("href");
+
+          const target =
+            document.querySelector(targetId);
+
+          if (!target) return;
+
+          e.preventDefault();
+
+          const offset = 0;
+
+          window.scrollTo({
+            top:
+              target.getBoundingClientRect().top +
+              window.scrollY -
+              offset,
+            behavior: "smooth"
+          });
+
+        });
+
+      });
+
+    }
+  </script>
+
 </body>
 </html>
+<!-- =========================================================
+     RANGTHAR — PART 2
+     PRODUCTS + WHY RANGTHAR + HERITAGE + TESTIMONIALS
+     FAQ + WHATSAPP ENQUIRY + FOOTER
+     ========================================================= -->
+
+<!-- ================= PRODUCTS ================= -->
+
+<section class="products-section" id="collections">
+
+  <div class="section-heading reveal">
+    <span class="eyebrow">THE COLLECTION</span>
+    <h2>Pieces with a <em>past.</em></h2>
+    <p>
+      Crafted for those who carry their roots wherever they go.
+    </p>
+  </div>
+
+  <div class="product-showcase">
+
+    <article class="product-card product-large reveal">
+      <div class="product-image-wrap">
+        <img src="p1.png" alt="Rangthar Collection">
+        <div class="product-overlay">
+          <span>01 / 06</span>
+          <button onclick="openProduct('p1.png','Rangthar Heritage I')">
+            VIEW PIECE
+          </button>
+        </div>
+      </div>
+      <div class="product-info">
+        <span>RANGTHAR / 01</span>
+        <h3>Heritage I</h3>
+        <p>Timeless Rajasthan-inspired craftsmanship.</p>
+      </div>
+    </article>
+
+
+    <article class="product-card reveal reveal-delay-1">
+      <div class="product-image-wrap">
+        <img src="p2.png" alt="Rangthar Collection">
+        <div class="product-overlay">
+          <span>02 / 06</span>
+          <button onclick="openProduct('p2.png','Rangthar Heritage II')">
+            VIEW PIECE
+          </button>
+        </div>
+      </div>
+      <div class="product-info">
+        <span>RANGTHAR / 02</span>
+        <h3>Heritage II</h3>
+        <p>Tradition interpreted for the modern wardrobe.</p>
+      </div>
+    </article>
+
+
+    <article class="product-card reveal reveal-delay-2">
+      <div class="product-image-wrap">
+        <img src="p3.png" alt="Rangthar Collection">
+        <div class="product-overlay">
+          <span>03 / 06</span>
+          <button onclick="openProduct('p3.png','Rangthar Heritage III')">
+            VIEW PIECE
+          </button>
+        </div>
+      </div>
+      <div class="product-info">
+        <span>RANGTHAR / 03</span>
+        <h3>Heritage III</h3>
+        <p>A quiet expression of Indian identity.</p>
+      </div>
+    </article>
+
+
+    <article class="product-card reveal">
+      <div class="product-image-wrap">
+        <img src="p4.png" alt="Rangthar Collection">
+        <div class="product-overlay">
+          <span>04 / 06</span>
+          <button onclick="openProduct('p4.png','Rangthar Heritage IV')">
+            VIEW PIECE
+          </button>
+        </div>
+      </div>
+      <div class="product-info">
+        <span>RANGTHAR / 04</span>
+        <h3>Heritage IV</h3>
+        <p>Made to become part of your story.</p>
+      </div>
+    </article>
+
+
+    <article class="product-card product-wide reveal">
+      <div class="product-image-wrap">
+        <img src="p5.png" alt="Rangthar Collection">
+        <div class="product-overlay">
+          <span>05 / 06</span>
+          <button onclick="openProduct('p5.png','Rangthar Heritage V')">
+            VIEW PIECE
+          </button>
+        </div>
+      </div>
+      <div class="product-info">
+        <span>RANGTHAR / 05</span>
+        <h3>Heritage V</h3>
+        <p>Where heritage meets contemporary form.</p>
+      </div>
+    </article>
+
+
+    <article class="product-card reveal">
+      <div class="product-image-wrap">
+        <img src="p6.png" alt="Rangthar Collection">
+        <div class="product-overlay">
+          <span>06 / 06</span>
+          <button onclick="openProduct('p6.png','Rangthar Heritage VI')">
+            VIEW PIECE
+          </button>
+        </div>
+      </div>
+      <div class="product-info">
+        <span>RANGTHAR / 06</span>
+        <h3>Heritage VI</h3>
+        <p>Designed with a sense of place.</p>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="collection-cta reveal">
+    <a href="#enquiry" class="luxury-button">
+      <span>EXPLORE THE COLLECTION</span>
+      <i>↗</i>
+    </a>
+  </div>
+
+</section>
+
+
+
+<!-- ================= MARQUEE ================= -->
+
+<section class="heritage-marquee">
+  <div class="marquee-track">
+    <span>WEAR YOUR LEGACY</span>
+    <span>✦</span>
+    <span>WEAR YOUR LEGACY</span>
+    <span>✦</span>
+    <span>WEAR YOUR LEGACY</span>
+    <span>✦</span>
+    <span>WEAR YOUR LEGACY</span>
+    <span>✦</span>
+  </div>
+</section>
+
+
+
+<!-- ================= WHY RANGTHAR ================= -->
+
+<section class="why-section" id="why-rangthar">
+
+  <div class="why-intro reveal">
+    <span class="eyebrow">WHY RANGTHAR</span>
+
+    <h2>
+      More than clothing.
+      <br>
+      <em>A connection.</em>
+    </h2>
+
+    <p>
+      Rangthar draws inspiration from the richness of Rajasthan —
+      its culture, architecture, colours, craftsmanship and stories —
+      and translates that heritage into contemporary fashion.
+    </p>
+  </div>
+
+
+  <div class="why-grid">
+
+    <div class="why-card reveal">
+      <div class="why-number">01</div>
+      <div class="why-icon">✦</div>
+      <h3>Rooted in Heritage</h3>
+      <p>
+        Every piece carries the spirit of a culture that has
+        travelled through generations.
+      </p>
+    </div>
+
+
+    <div class="why-card reveal reveal-delay-1">
+      <div class="why-number">02</div>
+      <div class="why-icon">◌</div>
+      <h3>Contemporary Soul</h3>
+      <p>
+        Traditional inspiration is transformed into silhouettes
+        made for today's world.
+      </p>
+    </div>
+
+
+    <div class="why-card reveal reveal-delay-2">
+      <div class="why-number">03</div>
+      <div class="why-icon">◇</div>
+      <h3>Made to Be Remembered</h3>
+      <p>
+        Rangthar is designed not simply to be worn,
+        but to become part of your identity.
+      </p>
+    </div>
+
+
+    <div class="why-card reveal">
+      <div class="why-number">04</div>
+      <div class="why-icon">∞</div>
+      <h3>Beyond Trends</h3>
+      <p>
+        We believe true style does not disappear when
+        the season changes.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ================= HERITAGE STORY ================= -->
+
+<section class="story-section" id="story">
+
+  <div class="story-image reveal">
+    <div class="story-image-inner">
+      <img src="about.jpg" alt="Rangthar Heritage">
+    </div>
+    <span class="vertical-label">FROM RAJASTHAN / WITH LOVE</span>
+  </div>
+
+
+  <div class="story-content reveal reveal-delay-1">
+
+    <span class="eyebrow">THE STORY</span>
+
+    <h2>
+      Born from
+      <br>
+      <em>legacy.</em>
+    </h2>
+
+    <p class="story-lead">
+      Rajasthan is more than a place.
+      It is a feeling.
+    </p>
+
+    <p>
+      A land of royal architecture, vibrant traditions,
+      intricate craftsmanship and stories that refuse to fade.
+      Rangthar takes inspiration from this living heritage
+      and gives it a contemporary expression.
+    </p>
+
+    <p>
+      Because fashion should not only tell you
+      what is trending.
+      It should tell people who you are.
+    </p>
+
+    <div class="story-signature">
+      <span>RANGTHAR</span>
+      <small>WEAR YOUR LEGACY</small>
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ================= PHILOSOPHY ================= -->
+
+<section class="philosophy-section">
+
+  <div class="philosophy-content reveal">
+
+    <span class="eyebrow">OUR PHILOSOPHY</span>
+
+    <h2>
+      Wear what
+      <br>
+      <em>means something.</em>
+    </h2>
+
+    <div class="philosophy-line"></div>
+
+    <p>
+      In a world where everything moves fast,
+      we choose to create pieces that feel timeless.
+    </p>
+
+  </div>
+
+  <div class="philosophy-number">
+    <span>R</span>
+  </div>
+
+</section>
+
+
+
+<!-- ================= TESTIMONIALS ================= -->
+
+<section class="testimonials-section" id="reviews">
+
+  <div class="section-heading reveal">
+
+    <span class="eyebrow">THE RANGTHAR EXPERIENCE</span>
+
+    <h2>
+      Worn by people
+      <br>
+      <em>with a story.</em>
+    </h2>
+
+  </div>
+
+
+  <div class="testimonial-slider reveal">
+
+    <div class="testimonial active">
+
+      <div class="quote-mark">“</div>
+
+      <p>
+        Rangthar feels different. It has that rare quality
+        where the design feels modern but still connected
+        to something much older.
+      </p>
+
+      <div class="review-author">
+        <span></span>
+        <div>
+          <strong>Rangthar Customer</strong>
+          <small>Verified Experience</small>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="testimonial">
+
+      <div class="quote-mark">“</div>
+
+      <p>
+        The detailing and overall aesthetic immediately
+        stood out to me. It feels premium without trying
+        too hard.
+      </p>
+
+      <div class="review-author">
+        <span></span>
+        <div>
+          <strong>Rangthar Customer</strong>
+          <small>Verified Experience</small>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="testimonial">
+
+      <div class="quote-mark">“</div>
+
+      <p>
+        You can actually feel the heritage behind the
+        collection. It doesn't feel like just another
+        fashion brand.
+      </p>
+
+      <div class="review-author">
+        <span></span>
+        <div>
+          <strong>Rangthar Customer</strong>
+          <small>Verified Experience</small>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="testimonial-controls">
+
+      <button onclick="previousReview()">←</button>
+
+      <div class="testimonial-progress">
+        <span class="progress-active"></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <button onclick="nextReview()">→</button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ================= FAQ ================= -->
+
+<section class="faq-section" id="faq">
+
+  <div class="faq-title reveal">
+
+    <span class="eyebrow">QUESTIONS</span>
+
+    <h2>
+      Frequently
+      <br>
+      <em>asked.</em>
+    </h2>
+
+  </div>
+
+
+  <div class="faq-list reveal reveal-delay-1">
+
+    <div class="faq-item">
+
+      <button class="faq-question">
+        <span>What is Rangthar?</span>
+        <i>+</i>
+      </button>
+
+      <div class="faq-answer">
+        <p>
+          Rangthar is a fashion brand inspired by Rajasthan's
+          heritage, culture and timeless craftsmanship,
+          expressed through a contemporary aesthetic.
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="faq-item">
+
+      <button class="faq-question">
+        <span>How can I place an order?</span>
+        <i>+</i>
+      </button>
+
+      <div class="faq-answer">
+        <p>
+          You can enquire directly through WhatsApp.
+          Our team will help you with the collection,
+          availability and ordering process.
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="faq-item">
+
+      <button class="faq-question">
+        <span>Can I enquire about a specific piece?</span>
+        <i>+</i>
+      </button>
+
+      <div class="faq-answer">
+        <p>
+          Absolutely. Mention the piece you're interested
+          in through the enquiry form and our team will
+          get back to you.
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="faq-item">
+
+      <button class="faq-question">
+        <span>How do I contact Rangthar?</span>
+        <i>+</i>
+      </button>
+
+      <div class="faq-answer">
+        <p>
+          You can reach Rangthar through WhatsApp or
+          Instagram using the contact options below.
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="faq-item">
+
+      <button class="faq-question">
+        <span>Where can I discover new collections?</span>
+        <i>+</i>
+      </button>
+
+      <div class="faq-answer">
+        <p>
+          Follow Rangthar on Instagram for new pieces,
+          stories, launches and updates.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ================= ENQUIRY ================= -->
+
+<section class="enquiry-section" id="enquiry">
+
+  <div class="enquiry-background"></div>
+
+  <div class="enquiry-inner">
+
+    <div class="enquiry-copy reveal">
+
+      <span class="eyebrow">PRIVATE ENQUIRY</span>
+
+      <h2>
+        Let's find
+        <br>
+        your <em>piece.</em>
+      </h2>
+
+      <p>
+        Have a question about the collection?
+        Looking for a particular piece?
+        Leave us a message and our team will connect with you.
+      </p>
+
+      <div class="enquiry-contact">
+
+        <div>
+          <small>WHATSAPP</small>
+          <a href="https://wa.me/919414323733" target="_blank">
+            +91 94143 23733
+          </a>
+        </div>
+
+        <div>
+          <small>WHATSAPP</small>
+          <a href="https://wa.me/919829012755" target="_blank">
+            +91 98290 12755
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <form class="enquiry-form reveal reveal-delay-1"
+          onsubmit="sendWhatsApp(event)">
+
+      <div class="form-row">
+
+        <div class="field">
+
+          <label for="name">YOUR NAME</label>
+
+          <input
+            type="text"
+            id="name"
+            placeholder="Enter your name"
+            required
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="phone">PHONE NUMBER</label>
+
+          <input
+            type="tel"
+            id="phone"
+            placeholder="Enter your number"
+            required
+          >
+
+        </div>
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="email">EMAIL ADDRESS</label>
+
+        <input
+          type="email"
+          id="email"
+          placeholder="your@email.com"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="interest">I'M INTERESTED IN</label>
+
+        <select id="interest">
+
+          <option value="The Collection">
+            The Collection
+          </option>
+
+          <option value="Heritage I">
+            Heritage I
+          </option>
+
+          <option value="Heritage II">
+            Heritage II
+          </option>
+
+          <option value="Heritage III">
+            Heritage III
+          </option>
+
+          <option value="Heritage IV">
+            Heritage IV
+          </option>
+
+          <option value="Heritage V">
+            Heritage V
+          </option>
+
+          <option value="Heritage VI">
+            Heritage VI
+          </option>
+
+          <option value="Custom Enquiry">
+            Custom Enquiry
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="message">MESSAGE</label>
+
+        <textarea
+          id="message"
+          rows="4"
+          placeholder="Tell us what you're looking for..."
+        ></textarea>
+
+      </div>
+
+
+      <button class="form-submit" type="submit">
+
+        <span>SEND ENQUIRY ON WHATSAPP</span>
+
+        <i>↗</i>
+
+      </button>
+
+      <p class="form-note">
+        Your enquiry will open directly in WhatsApp.
+      </p>
+
+    </form>
+
+  </div>
+
+</section>
+
+
+
+<!-- ================= INSTAGRAM CTA ================= -->
+
+<section class="instagram-section">
+
+  <div class="instagram-inner reveal">
+
+    <span class="eyebrow">FOLLOW THE JOURNEY</span>
+
+    <h2>
+      See more.
+      <br>
+      <em>Feel Rangthar.</em>
+    </h2>
+
+    <a
+      href="https://www.instagram.com/rangthar_?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw=="
+      target="_blank"
+      class="instagram-link"
+    >
+      <span>@rangthar_</span>
+      <i>↗</i>
+    </a>
+
+  </div>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="luxury-footer">
+
+  <div class="footer-top">
+
+    <div class="footer-brand">
+
+      <div class="footer-logo">
+        RANGTHAR
+      </div>
+
+      <p>
+        Wear your legacy.
+      </p>
+
+    </div>
+
+
+    <div class="footer-column">
+
+      <span>EXPLORE</span>
+
+      <a href="#home">Home</a>
+      <a href="#collections">Collection</a>
+      <a href="#why-rangthar">Why Rangthar</a>
+      <a href="#story">Our Story</a>
+
+    </div>
+
+
+    <div class="footer-column">
+
+      <span>CONNECT</span>
+
+      <a href="#enquiry">Enquiry</a>
+      <a href="#faq">FAQ</a>
+
+      <a
+        href="https://www.instagram.com/rangthar_?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw=="
+        target="_blank"
+      >
+        Instagram
+      </a>
+
+    </div>
+
+
+    <div class="footer-column">
+
+      <span>WHATSAPP</span>
+
+      <a href="https://wa.me/919414323733" target="_blank">
+        +91 94143 23733
+      </a>
+
+      <a href="https://wa.me/919829012755" target="_blank">
+        +91 98290 12755
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <div class="footer-middle">
+
+    <div class="footer-big-text">
+      RANGTHAR
+    </div>
+
+  </div>
+
+
+  <div class="footer-bottom">
+
+    <span>
+      © <span id="footerYear"></span> RANGTHAR
+    </span>
+
+    <span>
+      WEAR YOUR LEGACY
+    </span>
+
+    <button onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      BACK TO TOP ↑
+    </button>
+
+  </div>
+
+</footer>
+
+
+
+<!-- ================= PRODUCT MODAL ================= -->
+
+<div class="product-modal" id="productModal">
+
+  <div class="modal-backdrop" onclick="closeProduct()"></div>
+
+  <div class="product-modal-content">
+
+    <button
+      class="modal-close"
+      onclick="closeProduct()"
+    >
+      ×
+    </button>
+
+    <div class="modal-image">
+      <img id="modalProductImage" src="" alt="">
+    </div>
+
+    <div class="modal-info">
+
+      <span class="eyebrow">RANGTHAR COLLECTION</span>
+
+      <h2 id="modalProductName">
+        Heritage
+      </h2>
+
+      <p>
+        A piece inspired by heritage,
+        designed for the present.
+      </p>
+
+      <a
+        href="#enquiry"
+        onclick="closeProduct()"
+        class="luxury-button"
+      >
+        <span>ENQUIRE ABOUT THIS PIECE</span>
+        <i>↗</i>
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!-- ================= FLOATING WHATSAPP ================= -->
+
+<a
+  href="https://wa.me/919414323733?text=Hello%20Rangthar,%20I%20would%20like%20to%20know%20more%20about%20your%20collection."
+  target="_blank"
+  class="floating-whatsapp"
+  aria-label="WhatsApp"
+>
+
+  <span class="whatsapp-pulse"></span>
+
+  <span class="whatsapp-icon">
+    WA
+  </span>
+
+  <span class="whatsapp-text">
+    ENQUIRE
+  </span>
+
+</a>
+
+
+
+<!-- =========================================================
+     PART 2 JAVASCRIPT
+     ========================================================= -->
+
+<script>
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const revealElements = document.querySelectorAll(".reveal");
+
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+
+    entries.forEach((entry) => {
+
+      if (entry.isIntersecting) {
+
+        entry.target.classList.add("revealed");
+
+        revealObserver.unobserve(entry.target);
+
+      }
+
+    });
+
+  },
+  {
+    threshold: 0.12,
+    rootMargin: "0px 0px -60px 0px"
+  }
+);
+
+
+revealElements.forEach((element) => {
+
+  revealObserver.observe(element);
+
+});
+
+
+
+/* =========================
+   FAQ ACCORDION
+========================= */
+
+const faqQuestions =
+  document.querySelectorAll(".faq-question");
+
+
+faqQuestions.forEach((question) => {
+
+  question.addEventListener("click", () => {
+
+    const currentItem =
+      question.closest(".faq-item");
+
+    const alreadyOpen =
+      currentItem.classList.contains("open");
+
+
+    document
+      .querySelectorAll(".faq-item")
+      .forEach((item) => {
+
+        item.classList.remove("open");
+
+      });
+
+
+    if (!alreadyOpen) {
+
+      currentItem.classList.add("open");
+
+    }
+
+  });
+
+});
+
+
+
+/* =========================
+   TESTIMONIAL SLIDER
+========================= */
+
+let currentReview = 0;
+
+const testimonials =
+  document.querySelectorAll(".testimonial");
+
+const progressItems =
+  document.querySelectorAll(".testimonial-progress span");
+
+
+function showReview(index) {
+
+  testimonials.forEach((item) => {
+
+    item.classList.remove("active");
+
+  });
+
+
+  progressItems.forEach((item) => {
+
+    item.classList.remove("progress-active");
+
+  });
+
+
+  currentReview =
+    (index + testimonials.length)
+    % testimonials.length;
+
+
+  testimonials[currentReview]
+    .classList.add("active");
+
+
+  progressItems[currentReview]
+    .classList.add("progress-active");
+
+}
+
+
+function nextReview() {
+
+  showReview(currentReview + 1);
+
+}
+
+
+function previousReview() {
+
+  showReview(currentReview - 1);
+
+}
+
+
+
+/* =========================
+   AUTO TESTIMONIAL
+========================= */
+
+setInterval(() => {
+
+  nextReview();
+
+}, 6500);
+
+
+
+/* =========================
+   PRODUCT MODAL
+========================= */
+
+function openProduct(image, name) {
+
+  const modal =
+    document.getElementById("productModal");
+
+  const modalImage =
+    document.getElementById("modalProductImage");
+
+  const modalName =
+    document.getElementById("modalProductName");
+
+
+  modalImage.src = image;
+
+  modalName.textContent = name;
+
+  modal.classList.add("active");
+
+  document.body.classList.add("modal-open");
+
+}
+
+
+function closeProduct() {
+
+  const modal =
+    document.getElementById("productModal");
+
+  modal.classList.remove("active");
+
+  document.body.classList.remove("modal-open");
+
+}
+
+
+document.addEventListener("keydown", (event) => {
+
+  if (event.key === "Escape") {
+
+    closeProduct();
+
+  }
+
+});
+
+
+
+/* =========================
+   WHATSAPP ENQUIRY
+========================= */
+
+function sendWhatsApp(event) {
+
+  event.preventDefault();
+
+
+  const name =
+    document.getElementById("name").value.trim();
+
+  const phone =
+    document.getElementById("phone").value.trim();
+
+  const email =
+    document.getElementById("email").value.trim();
+
+  const interest =
+    document.getElementById("interest").value;
+
+  const message =
+    document.getElementById("message").value.trim();
+
+
+  const whatsappMessage =
+
+`Hello Rangthar,
+
+I would like to enquire about your collection.
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email || "Not provided"}
+Interested In: ${interest}
+
+Message:
+${message || "I would like to know more about this collection."}
+
+Thank you.`;
+
+
+  const whatsappURL =
+    "https://wa.me/919414323733?text="
+    + encodeURIComponent(whatsappMessage);
+
+
+  window.open(
+    whatsappURL,
+    "_blank"
+  );
+
+}
+
+
+
+/* =========================
+   FOOTER YEAR
+========================= */
+
+const yearElement =
+  document.getElementById("footerYear");
+
+
+if (yearElement) {
+
+  yearElement.textContent =
+    new Date().getFullYear();
+
+}
+
+
+
+/* =========================
+   IMAGE PARALLAX
+========================= */
+
+const storyImage =
+  document.querySelector(".story-image-inner");
+
+
+window.addEventListener(
+  "scroll",
+  () => {
+
+    if (!storyImage) return;
+
+    const rect =
+      storyImage.getBoundingClientRect();
+
+    const viewport =
+      window.innerHeight;
+
+
+    if (
+      rect.top < viewport &&
+      rect.bottom > 0
+    ) {
+
+      const progress =
+        (viewport - rect.top)
+        / (viewport + rect.height);
+
+      const movement =
+        (progress - 0.5) * 35;
+
+      storyImage.style.transform =
+        `translateY(${movement}px) scale(1.05)`;
+
+    }
+
+  },
+  {
+    passive: true
+  }
+);
+
+
+
+/* =========================
+   PRODUCT IMAGE TILT
+========================= */
+
+document
+  .querySelectorAll(".product-image-wrap")
+  .forEach((card) => {
+
+    card.addEventListener(
+      "mousemove",
+      (event) => {
+
+        const rect =
+          card.getBoundingClientRect();
+
+        const x =
+          event.clientX - rect.left;
+
+        const y =
+          event.clientY - rect.top;
+
+
+        const rotateX =
+          ((y / rect.height) - 0.5) * -4;
+
+        const rotateY =
+          ((x / rect.width) - 0.5) * 4;
+
+
+        card.style.transform =
+          `perspective(900px)
+           rotateX(${rotateX}deg)
+           rotateY(${rotateY}deg)
+           scale(1.015)`;
+
+      }
+    );
+
+
+    card.addEventListener(
+      "mouseleave",
+      () => {
+
+        card.style.transform =
+          "perspective(900px) rotateX(0) rotateY(0) scale(1)";
+
+      }
+    );
+
+  });
+
+
+
+/* =========================
+   SMOOTH ANCHOR SCROLL
+========================= */
+
+document
+  .querySelectorAll('a[href^="#"]')
+  .forEach((link) => {
+
+    link.addEventListener(
+      "click",
+      function(event) {
+
+        const target =
+          document.querySelector(
+            this.getAttribute("href")
+          );
+
+
+        if (target) {
+
+          event.preventDefault();
+
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+
+        }
+
+      }
+    );
+
+  });
+
+
+
+/* =========================
+   CURSOR GLOW
+========================= */
+
+const cursorGlow =
+  document.createElement("div");
+
+cursorGlow.className =
+  "cursor-glow";
+
+document.body.appendChild(cursorGlow);
+
+
+window.addEventListener(
+  "mousemove",
+  (event) => {
+
+    cursorGlow.style.left =
+      event.clientX + "px";
+
+    cursorGlow.style.top =
+      event.clientY + "px";
+
+  },
+  {
+    passive: true
+  }
+);
+
+
+
+/* =========================
+   MAGNETIC BUTTONS
+========================= */
+
+document
+  .querySelectorAll(
+    ".luxury-button, .form-submit"
+  )
+  .forEach((button) => {
+
+    button.addEventListener(
+      "mousemove",
+      (event) => {
+
+        const rect =
+          button.getBoundingClientRect();
+
+        const x =
+          event.clientX -
+          rect.left -
+          rect.width / 2;
+
+        const y =
+          event.clientY -
+          rect.top -
+          rect.height / 2;
+
+
+        button.style.transform =
+          `translate(${x * 0.08}px,
+                     ${y * 0.08}px)`;
+
+      }
+    );
+
+
+    button.addEventListener(
+      "mouseleave",
+      () => {
+
+        button.style.transform =
+          "translate(0,0)";
+
+      }
+    );
+
+  });
+
+
+
+/* =========================
+   PAGE LOAD REVEAL
+========================= */
+
+window.addEventListener(
+  "load",
+  () => {
+
+    document.body.classList.add(
+      "page-loaded"
+    );
+
+  }
+);
+
+</script> <style>
+
+/* =========================================================
+   RANGTHAR — PART 3
+   PREMIUM LUXURY CSS
+   ========================================================= */
+
+
+/* =========================
+   ROOT
+========================= */
+
+:root {
+  --ink: #15120f;
+  --paper: #f2eee7;
+  --cream: #e8dfd2;
+  --muted: #82786d;
+  --line: rgba(21,18,15,.16);
+  --dark-line: rgba(255,255,255,.16);
+  --gold: #a88a5a;
+
+  --serif: "Cormorant Garamond",
+            "Times New Roman",
+            serif;
+
+  --sans: "Inter",
+           Arial,
+           sans-serif;
+
+  --ease: cubic-bezier(.16,1,.3,1);
+}
+
+
+/* =========================
+   RESET
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--paper);
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  overflow-x: hidden;
+  cursor: default;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+
+/* =========================
+   SELECTION
+========================= */
+
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+
+/* =========================
+   GLOBAL TYPOGRAPHY
+========================= */
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+}
+
+em {
+  font-style: italic;
+}
+
+
+/* =========================
+   CUSTOM SCROLLBAR
+========================= */
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7c7062;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink);
+}
+
+
+/* =========================
+   PAGE LOAD
+========================= */
+
+body {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+body.page-loaded {
+  opacity: 1;
+}
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+.reveal {
+  opacity: 0;
+  transform:
+    translateY(80px)
+    scale(.97);
+
+  transition:
+    opacity 1.15s var(--ease),
+    transform 1.15s var(--ease);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform:
+    translateY(0)
+    scale(1);
+}
+
+.reveal-delay-1 {
+  transition-delay: .12s;
+}
+
+.reveal-delay-2 {
+  transition-delay: .24s;
+}
+
+.reveal-delay-3 {
+  transition-delay: .36s;
+}
+
+
+/* =========================================================
+   PRODUCTS
+========================================================= */
+
+.products-section {
+  position: relative;
+  padding: 160px 7vw 180px;
+  background: var(--paper);
+}
+
+.section-heading {
+  max-width: 760px;
+  margin-bottom: 90px;
+}
+
+.section-heading h2 {
+  margin-top: 20px;
+
+  font-size:
+    clamp(58px, 8vw, 125px);
+
+  line-height: .86;
+  letter-spacing: -.045em;
+}
+
+.section-heading h2 em {
+  color: #85735e;
+}
+
+.section-heading p {
+  max-width: 430px;
+  margin-top: 30px;
+
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+
+/* =========================
+   PRODUCT GRID
+========================= */
+
+.product-showcase {
+  display: grid;
+  grid-template-columns:
+    repeat(12, minmax(0, 1fr));
+
+  gap: 70px 24px;
+}
+
+
+/* =========================
+   PRODUCT CARD
+========================= */
+
+.product-card {
+  grid-column: span 4;
+}
+
+.product-card.product-large {
+  grid-column: span 7;
+}
+
+.product-card.product-wide {
+  grid-column: span 7;
+}
+
+.product-card:nth-child(2) {
+  margin-top: 110px;
+}
+
+.product-card:nth-child(3) {
+  margin-top: -20px;
+}
+
+.product-card:nth-child(4) {
+  margin-top: 80px;
+}
+
+.product-card:nth-child(6) {
+  margin-top: 120px;
+}
+
+
+/* =========================
+   PRODUCT IMAGE
+========================= */
+
+.product-image-wrap {
+  position: relative;
+  overflow: hidden;
+  background: #ded5c8;
+
+  aspect-ratio: 4 / 5;
+
+  transition:
+    transform .7s var(--ease),
+    box-shadow .7s var(--ease);
+}
+
+.product-large .product-image-wrap,
+.product-wide .product-image-wrap {
+  aspect-ratio: 1.15 / 1;
+}
+
+.product-image-wrap::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent 45%,
+      rgba(0,0,0,.45)
+    );
+
+  opacity: 0;
+
+  transition:
+    opacity .7s var(--ease);
+}
+
+.product-image-wrap img {
+  height: 100%;
+  object-fit: cover;
+
+  transition:
+    transform 1.2s var(--ease),
+    filter 1s ease;
+}
+
+.product-card:hover .product-image-wrap {
+  box-shadow:
+    0 30px 80px rgba(24,18,12,.18);
+}
+
+.product-card:hover
+.product-image-wrap::after {
+  opacity: 1;
+}
+
+.product-card:hover
+.product-image-wrap img {
+  transform: scale(1.075);
+}
+
+
+/* =========================
+   PRODUCT OVERLAY
+========================= */
+
+.product-overlay {
+  position: absolute;
+  z-index: 3;
+
+  inset: 0;
+
+  padding: 28px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  color: white;
+
+  opacity: 0;
+
+  transition:
+    opacity .6s var(--ease);
+}
+
+.product-card:hover
+.product-overlay {
+  opacity: 1;
+}
+
+.product-overlay span {
+  font-size: 10px;
+  letter-spacing: .18em;
+}
+
+.product-overlay button {
+  color: white;
+
+  padding: 12px 0;
+
+  border-bottom:
+    1px solid rgba(255,255,255,.8);
+
+  font-size: 10px;
+  letter-spacing: .18em;
+
+  transition:
+    padding .4s var(--ease);
+}
+
+.product-overlay button:hover {
+  padding-right: 18px;
+}
+
+
+/* =========================
+   PRODUCT INFO
+========================= */
+
+.product-info {
+  padding: 23px 4px 0;
+}
+
+.product-info > span {
+  font-size: 9px;
+  letter-spacing: .2em;
+  color: var(--muted);
+}
+
+.product-info h3 {
+  margin-top: 8px;
+
+  font-size: 30px;
+  line-height: 1;
+}
+
+.product-info p {
+  margin-top: 8px;
+
+  font-size: 12px;
+  color: var(--muted);
+}
+
+
+/* =========================
+   COLLECTION CTA
+========================= */
+
+.collection-cta {
+  margin-top: 110px;
+
+  display: flex;
+  justify-content: center;
+}
+
+
+/* =========================
+   LUXURY BUTTON
+========================= */
+
+.luxury-button {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 45px;
+
+  min-width: 260px;
+  padding: 18px 22px;
+
+  border: 1px solid var(--ink);
+
+  overflow: hidden;
+
+  font-size: 9px;
+  letter-spacing: .18em;
+
+  transition:
+    color .5s ease,
+    transform .4s var(--ease);
+}
+
+.luxury-button::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: var(--ink);
+
+  transform: translateY(101%);
+
+  transition:
+    transform .55s var(--ease);
+}
+
+.luxury-button span,
+.luxury-button i {
+  position: relative;
+  z-index: 2;
+}
+
+.luxury-button i {
+  font-size: 16px;
+  font-style: normal;
+}
+
+.luxury-button:hover {
+  color: var(--paper);
+}
+
+.luxury-button:hover::before {
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   MARQUEE
+========================================================= */
+
+.heritage-marquee {
+  overflow: hidden;
+
+  padding: 35px 0;
+
+  background: var(--ink);
+  color: var(--paper);
+
+  white-space: nowrap;
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+
+  width: max-content;
+
+  animation:
+    marqueeMove 28s linear infinite;
+}
+
+.marquee-track span {
+  margin-right: 50px;
+
+  font-family: var(--serif);
+  font-size: clamp(45px, 6vw, 90px);
+
+  font-style: italic;
+  letter-spacing: -.03em;
+}
+
+.marquee-track span:nth-child(even) {
+  font-family: var(--sans);
+  font-size: 18px;
+  font-style: normal;
+}
+
+@keyframes marqueeMove {
+
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+
+}
+
+
+/* =========================================================
+   WHY RANGTHAR
+========================================================= */
+
+.why-section {
+  padding: 180px 7vw;
+
+  background: #e7dfd4;
+}
+
+.why-intro {
+  max-width: 1000px;
+}
+
+.why-intro h2 {
+  margin-top: 22px;
+
+  font-size:
+    clamp(62px, 9vw, 135px);
+
+  line-height: .83;
+
+  letter-spacing: -.05em;
+}
+
+.why-intro h2 em {
+  color: #8d795f;
+}
+
+.why-intro p {
+  max-width: 560px;
+
+  margin-top: 45px;
+
+  font-size: 15px;
+  line-height: 1.9;
+
+  color: #665e55;
+}
+
+
+/* =========================
+   WHY GRID
+========================= */
+
+.why-grid {
+  margin-top: 130px;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  border-top: 1px solid var(--line);
+}
+
+.why-card {
+  position: relative;
+
+  min-height: 370px;
+
+  padding: 35px 30px 40px;
+
+  border-right: 1px solid var(--line);
+
+  transition:
+    background .6s var(--ease),
+    transform .6s var(--ease);
+}
+
+.why-card:first-child {
+  border-left: 1px solid var(--line);
+}
+
+.why-card:hover {
+  background: rgba(255,255,255,.28);
+  transform: translateY(-10px);
+}
+
+.why-number {
+  font-size: 10px;
+  letter-spacing: .15em;
+  color: var(--muted);
+}
+
+.why-icon {
+  margin-top: 75px;
+
+  font-family: var(--serif);
+
+  font-size: 48px;
+
+  color: #9a815f;
+}
+
+.why-card h3 {
+  margin-top: 30px;
+
+  font-size: 28px;
+}
+
+.why-card p {
+  margin-top: 15px;
+
+  max-width: 240px;
+
+  font-size: 12px;
+  line-height: 1.8;
+
+  color: var(--muted);
+}
+
+
+/* =========================================================
+   STORY
+========================================================= */
+
+.story-section {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.05fr)
+    minmax(0, .95fr);
+
+  min-height: 100vh;
+
+  background: #181512;
+  color: var(--paper);
+}
+
+.story-image {
+  position: relative;
+
+  min-height: 800px;
+
+  overflow: hidden;
+}
+
+.story-image-inner {
+  position: absolute;
+
+  inset: -5%;
+
+  will-change: transform;
+}
+
+.story-image img {
+  height: 100%;
+  object-fit: cover;
+
+  filter: saturate(.75);
+}
+
+.story-image::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent 60%,
+      rgba(0,0,0,.45)
+    );
+}
+
+.vertical-label {
+  position: absolute;
+
+  z-index: 5;
+
+  right: 25px;
+  top: 50%;
+
+  writing-mode: vertical-rl;
+
+  transform:
+    translateY(-50%)
+    rotate(180deg);
+
+  font-size: 9px;
+  letter-spacing: .25em;
+
+  opacity: .8;
+}
+
+.story-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding:
+    100px
+    9vw
+    100px
+    8vw;
+}
+
+.story-content .eyebrow {
+  color: #b8ab9a;
+}
+
+.story-content h2 {
+  margin-top: 30px;
+
+  font-size:
+    clamp(70px, 8vw, 125px);
+
+  line-height: .8;
+
+  letter-spacing: -.05em;
+}
+
+.story-content h2 em {
+  color: #b89a70;
+}
+
+.story-lead {
+  margin-top: 60px;
+
+  font-family: var(--serif);
+
+  font-size: 28px;
+  font-style: italic;
+
+  color: #d0c3b4;
+}
+
+.story-content > p:not(.story-lead) {
+  max-width: 470px;
+
+  margin-top: 20px;
+
+  font-size: 13px;
+  line-height: 1.9;
+
+  color: #a99d91;
+}
+
+.story-signature {
+  margin-top: 60px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.story-signature span {
+  font-family: var(--serif);
+  font-size: 34px;
+  letter-spacing: .08em;
+}
+
+.story-signature small {
+  font-size: 8px;
+  letter-spacing: .25em;
+  color: #8f8378;
+}
+
+
+/* =========================================================
+   PHILOSOPHY
+========================================================= */
+
+.philosophy-section {
+  position: relative;
+
+  min-height: 90vh;
+
+  display: flex;
+  align-items: center;
+
+  padding: 160px 7vw;
+
+  overflow: hidden;
+
+  background: var(--cream);
+}
+
+.philosophy-content {
+  position: relative;
+  z-index: 3;
+}
+
+.philosophy-content h2 {
+  margin-top: 25px;
+
+  font-size:
+    clamp(70px, 11vw, 170px);
+
+  line-height: .78;
+
+  letter-spacing: -.055em;
+}
+
+.philosophy-content h2 em {
+  color: #907b62;
+}
+
+.philosophy-line {
+  width: 100px;
+  height: 1px;
+
+  margin: 55px 0 30px;
+
+  background: var(--ink);
+}
+
+.philosophy-content p {
+  max-width: 400px;
+
+  font-size: 14px;
+  line-height: 1.8;
+
+  color: var(--muted);
+}
+
+.philosophy-number {
+  position: absolute;
+
+  right: -5vw;
+  bottom: -15vw;
+
+  font-family: var(--serif);
+
+  font-size:
+    clamp(400px, 65vw, 1000px);
+
+  line-height: .6;
+
+  color: rgba(21,18,15,.035);
+}
+
+
+/* =========================================================
+   TESTIMONIALS
+========================================================= */
+
+.testimonials-section {
+  padding: 170px 7vw;
+
+  background: var(--paper);
+}
+
+.testimonials-section
+.section-heading {
+  margin-bottom: 80px;
+}
+
+.testimonial-slider {
+  max-width: 1050px;
+  margin: auto;
+}
+
+.testimonial {
+  display: none;
+
+  min-height: 390px;
+
+  padding:
+    70px 8vw;
+
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+
+  animation:
+    testimonialIn .8s var(--ease);
+}
+
+.testimonial.active {
+  display: block;
+}
+
+@keyframes testimonialIn {
+
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+}
+
+.quote-mark {
+  font-family: var(--serif);
+
+  font-size: 100px;
+
+  line-height: .4;
+
+  color: #a88a5a;
+}
+
+.testimonial p {
+  max-width: 800px;
+
+  margin-top: 35px;
+
+  font-family: var(--serif);
+
+  font-size:
+    clamp(28px, 4vw, 53px);
+
+  line-height: 1.05;
+
+  letter-spacing: -.025em;
+}
+
+.review-author {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  margin-top: 50px;
+}
+
+.review-author > span {
+  width: 36px;
+  height: 1px;
+
+  background: var(--ink);
+}
+
+.review-author strong {
+  display: block;
+
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.review-author small {
+  display: block;
+
+  margin-top: 5px;
+
+  font-size: 9px;
+  color: var(--muted);
+}
+
+
+/* =========================
+   TESTIMONIAL CONTROLS
+========================= */
+
+.testimonial-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 25px;
+}
+
+.testimonial-controls button {
+  width: 48px;
+  height: 48px;
+
+  border: 1px solid var(--line);
+
+  font-size: 18px;
+
+  transition:
+    background .4s ease,
+    color .4s ease;
+}
+
+.testimonial-controls button:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.testimonial-progress {
+  display: flex;
+  gap: 8px;
+}
+
+.testimonial-progress span {
+  width: 30px;
+  height: 1px;
+
+  background: #c4bbb0;
+
+  transition:
+    width .5s var(--ease),
+    background .5s ease;
+}
+
+.testimonial-progress
+span.progress-active {
+  width: 60px;
+  background: var(--ink);
+}
+
+
+/* =========================================================
+   FAQ
+========================================================= */
+
+.faq-section {
+  display: grid;
+
+  grid-template-columns:
+    .8fr 1.2fr;
+
+  gap: 100px;
+
+  padding:
+    170px 10vw;
+
+  background: #e9e1d6;
+}
+
+.faq-title h2 {
+  margin-top: 25px;
+
+  font-size:
+    clamp(65px, 8vw, 115px);
+
+  line-height: .8;
+
+  letter-spacing: -.05em;
+}
+
+.faq-title h2 em {
+  color: #8c765d;
+}
+
+.faq-list {
+  border-top: 1px solid var(--line);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-question {
+  width: 100%;
+
+  padding: 28px 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  text-align: left;
+
+  font-family: var(--serif);
+
+  font-size: 25px;
+
+  transition:
+    color .4s ease;
+}
+
+.faq-question i {
+  font-family: var(--sans);
+
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 300;
+
+  transition:
+    transform .5s var(--ease);
+}
+
+.faq-item.open
+.faq-question i {
+  transform: rotate(45deg);
+}
+
+.faq-question:hover {
+  color: #8b704d;
+}
+
+.faq-answer {
+  display: grid;
+
+  grid-template-rows: 0fr;
+
+  transition:
+    grid-template-rows .6s var(--ease);
+}
+
+.faq-answer p {
+  overflow: hidden;
+
+  font-size: 13px;
+  line-height: 1.8;
+
+  color: var(--muted);
+
+  max-width: 600px;
+}
+
+.faq-item.open
+.faq-answer {
+  grid-template-rows: 1fr;
+}
+
+.faq-item.open
+.faq-answer p {
+  padding-bottom: 30px;
+}
+
+
+/* =========================================================
+   ENQUIRY
+========================================================= */
+
+.enquiry-section {
+  position: relative;
+
+  padding:
+    180px 8vw;
+
+  background: #171411;
+
+  color: var(--paper);
+
+  overflow: hidden;
+}
+
+.enquiry-background {
+  position: absolute;
+
+  width: 700px;
+  height: 700px;
+
+  right: -250px;
+  top: -250px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(168,138,90,.15),
+      transparent 65%
+    );
+
+  pointer-events: none;
+}
+
+.enquiry-inner {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+
+  grid-template-columns:
+    .85fr 1.15fr;
+
+  gap: 100px;
+
+  max-width: 1400px;
+
+  margin: auto;
+}
+
+.enquiry-copy .eyebrow {
+  color: #9c9186;
+}
+
+.enquiry-copy h2 {
+  margin-top: 28px;
+
+  font-size:
+    clamp(70px, 9vw, 130px);
+
+  line-height: .8;
+
+  letter-spacing: -.055em;
+}
+
+.enquiry-copy h2 em {
+  color: #b99a6c;
+}
+
+.enquiry-copy > p {
+  max-width: 420px;
+
+  margin-top: 45px;
+
+  font-size: 13px;
+  line-height: 1.9;
+
+  color: #9e9489;
+}
+
+.enquiry-contact {
+  margin-top: 65px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 24px;
+}
+
+.enquiry-contact small {
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-size: 8px;
+  letter-spacing: .2em;
+
+  color: #766d64;
+}
+
+.enquiry-contact a {
+  font-family: var(--serif);
+
+  font-size: 22px;
+
+  transition:
+    color .4s ease;
+}
+
+.enquiry-contact a:hover {
+  color: #b99a6c;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.enquiry-form {
+  padding-top: 15px;
+}
+
+.form-row {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 25px;
+}
+
+.field {
+  margin-bottom: 30px;
+}
+
+.field label {
+  display: block;
+
+  margin-bottom: 12px;
+
+  font-size: 8px;
+  letter-spacing: .2em;
+
+  color: #82786f;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+
+  padding: 15px 0;
+
+  background: transparent;
+
+  border: 0;
+  border-bottom:
+    1px solid rgba(255,255,255,.18);
+
+  outline: none;
+
+  color: var(--paper);
+
+  font-size: 14px;
+
+  transition:
+    border-color .4s ease;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  border-color: #b99a6c;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #5f5851;
+}
+
+.field select {
+  appearance: none;
+
+  cursor: pointer;
+}
+
+.field select option {
+  color: var(--ink);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+
+/* =========================
+   SUBMIT
+========================= */
+
+.form-submit {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 22px 24px;
+
+  margin-top: 15px;
+
+  background: var(--paper);
+  color: var(--ink);
+
+  font-size: 9px;
+  letter-spacing: .18em;
+
+  overflow: hidden;
+
+  transition:
+    transform .4s var(--ease),
+    background .5s ease,
+    color .5s ease;
+}
+
+.form-submit:hover {
+  background: #b99a6c;
+}
+
+.form-submit i {
+  font-size: 18px;
+  font-style: normal;
+}
+
+.form-note {
+  margin-top: 15px;
+
+  font-size: 9px;
+
+  color: #625b54;
+}
+
+
+/* =========================================================
+   INSTAGRAM
+========================================================= */
+
+.instagram-section {
+  padding:
+    180px 7vw;
+
+  background: #ded4c7;
+
+  text-align: center;
+}
+
+.instagram-inner h2 {
+  margin-top: 25px;
+
+  font-size:
+    clamp(75px, 11vw, 160px);
+
+  line-height: .78;
+
+  letter-spacing: -.06em;
+}
+
+.instagram-inner h2 em {
+  color: #8e7559;
+}
+
+.instagram-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+
+  margin-top: 65px;
+
+  padding-bottom: 10px;
+
+  border-bottom: 1px solid var(--ink);
+
+  font-family: var(--serif);
+
+  font-size: 25px;
+
+  transition:
+    gap .5s var(--ease),
+    color .4s ease;
+}
+
+.instagram-link:hover {
+  gap: 35px;
+  color: #8e7559;
+}
+
+.instagram-link i {
+  font-family: var(--sans);
+  font-style: normal;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.luxury-footer {
+  padding:
+    100px 7vw 25px;
+
+  background: var(--ink);
+
+  color: var(--paper);
+}
+
+.footer-top {
+  display: grid;
+
+  grid-template-columns:
+    2fr 1fr 1fr 1fr;
+
+  gap: 50px;
+
+  padding-bottom: 100px;
+
+  border-bottom:
+    1px solid var(--dark-line);
+}
+
+.footer-logo {
+  font-family: var(--serif);
+
+  font-size: 45px;
+
+  letter-spacing: .08em;
+}
+
+.footer-brand p {
+  margin-top: 12px;
+
+  font-family: var(--serif);
+
+  font-size: 18px;
+  font-style: italic;
+
+  color: #91867b;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+.footer-column > span {
+  margin-bottom: 10px;
+
+  font-size: 8px;
+  letter-spacing: .22em;
+
+  color: #716860;
+}
+
+.footer-column a {
+  width: max-content;
+
+  font-family: var(--serif);
+
+  font-size: 17px;
+
+  color: #b5aaa0;
+
+  transition:
+    color .3s ease,
+    transform .4s var(--ease);
+}
+
+.footer-column a:hover {
+  color: var(--paper);
+  transform: translateX(7px);
+}
+
+
+/* =========================
+   BIG FOOTER LOGO
+========================= */
+
+.footer-middle {
+  overflow: hidden;
+
+  padding:
+    90px 0 70px;
+}
+
+.footer-big-text {
+  font-family: var(--serif);
+
+  font-size:
+    clamp(100px, 20vw, 320px);
+
+  line-height: .65;
+
+  letter-spacing: -.07em;
+
+  color: #25211e;
+
+  white-space: nowrap;
+
+  transform:
+    translateX(-3%);
+}
+
+
+/* =========================
+   FOOTER BOTTOM
+========================= */
+
+.footer-bottom {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding-top: 25px;
+
+  border-top:
+    1px solid var(--dark-line);
+
+  font-size: 8px;
+  letter-spacing: .15em;
+
+  color: #726961;
+}
+
+.footer-bottom button {
+  color: #726961;
+
+  font-size: 8px;
+  letter-spacing: .15em;
+
+  transition:
+    color .3s ease;
+}
+
+.footer-bottom button:hover {
+  color: var(--paper);
+}
+
+
+/* =========================================================
+   PRODUCT MODAL
+========================================================= */
+
+.product-modal {
+  position: fixed;
+
+  z-index: 9999;
+
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity .6s ease,
+    visibility .6s ease;
+}
+
+.product-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-backdrop {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    rgba(10,8,6,.82);
+
+  backdrop-filter: blur(12px);
+}
+
+.product-modal-content {
+  position: relative;
+  z-index: 2;
+
+  width: min(1100px, 95vw);
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  background: var(--paper);
+
+  transform:
+    translateY(50px)
+    scale(.96);
+
+  transition:
+    transform .7s var(--ease);
+}
+
+.product-modal.active
+.product-modal-content {
+  transform:
+    translateY(0)
+    scale(1);
+}
+
+.modal-image {
+  height: 650px;
+  overflow: hidden;
+}
+
+.modal-image img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 70px;
+}
+
+.modal-info h2 {
+  margin-top: 25px;
+
+  font-size:
+    clamp(55px, 6vw, 90px);
+
+  line-height: .8;
+}
+
+.modal-info p {
+  max-width: 300px;
+
+  margin:
+    30px 0 45px;
+
+  font-size: 13px;
+  line-height: 1.8;
+
+  color: var(--muted);
+}
+
+.modal-close {
+  position: absolute;
+
+  z-index: 10;
+
+  right: 20px;
+  top: 20px;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+
+  background: var(--ink);
+  color: var(--paper);
+
+  font-size: 24px;
+
+  transition:
+    transform .4s var(--ease);
+}
+
+.modal-close:hover {
+  transform: rotate(90deg);
+}
+
+
+/* =========================================================
+   FLOATING WHATSAPP
+========================================================= */
+
+.floating-whatsapp {
+  position: fixed;
+
+  z-index: 500;
+
+  right: 25px;
+  bottom: 25px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 9px 15px 9px 9px;
+
+  border-radius: 100px;
+
+  background: #171411;
+  color: var(--paper);
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.2);
+
+  transition:
+    transform .4s var(--ease);
+}
+
+.floating-whatsapp:hover {
+  transform: translateY(-5px);
+}
+
+.whatsapp-icon {
+  width: 36px;
+  height: 36px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: #b99a6c;
+
+  color: var(--ink);
+
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.whatsapp-text {
+  font-size: 8px;
+  letter-spacing: .18em;
+}
+
+.whatsapp-pulse {
+  position: absolute;
+
+  inset: -5px;
+
+  border:
+    1px solid rgba(185,154,108,.5);
+
+  border-radius: 100px;
+
+  animation:
+    whatsappPulse 2.4s infinite;
+}
+
+@keyframes whatsappPulse {
+
+  0% {
+    transform: scale(.95);
+    opacity: .7;
+  }
+
+  70% {
+    transform: scale(1.08);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1.08);
+    opacity: 0;
+  }
+
+}
+
+
+/* =========================================================
+   CURSOR GLOW
+========================================================= */
+
+.cursor-glow {
+  position: fixed;
+
+  z-index: 9998;
+
+  width: 280px;
+  height: 280px;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  transform:
+    translate(-50%, -50%);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(168,138,90,.055),
+      transparent 65%
+    );
+
+  mix-blend-mode: multiply;
+
+  transition:
+    left .15s ease,
+    top .15s ease;
+}
+
+
+/* =========================================================
+   IMAGE HOVER MICRO INTERACTION
+========================================================= */
+
+.product-image-wrap,
+.story-image-inner {
+  will-change: transform;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+  .products-section,
+  .why-section,
+  .testimonials-section,
+  .instagram-section {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+
+  .product-card {
+    grid-column: span 6;
+  }
+
+  .product-card.product-large,
+  .product-card.product-wide {
+    grid-column: span 12;
+  }
+
+  .product-card:nth-child(n) {
+    margin-top: 0;
+  }
+
+  .why-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .why-card:nth-child(2) {
+    border-right: 0;
+  }
+
+  .why-card:nth-child(3) {
+    border-left: 1px solid var(--line);
+    border-top: 1px solid var(--line);
+  }
+
+  .why-card:nth-child(4) {
+    border-top: 1px solid var(--line);
+  }
+
+  .story-section {
+    grid-template-columns: 1fr;
+  }
+
+  .story-image {
+    min-height: 70vh;
+  }
+
+  .story-content {
+    padding:
+      100px 8vw 130px;
+  }
+
+  .faq-section {
+    grid-template-columns: 1fr;
+
+    gap: 70px;
+
+    padding-left: 7vw;
+    padding-right: 7vw;
+  }
+
+  .enquiry-inner {
+    grid-template-columns: 1fr;
+
+    gap: 80px;
+  }
+
+  .footer-top {
+    grid-template-columns:
+      2fr 1fr 1fr;
+  }
+
+  .footer-column:last-child {
+    grid-column: 2 / 4;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+  body {
+    cursor: auto;
+  }
+
+  .cursor-glow {
+    display: none;
+  }
+
+  .products-section,
+  .why-section,
+  .testimonials-section,
+  .instagram-section {
+    padding:
+      100px 6vw;
+  }
+
+  .section-heading {
+    margin-bottom: 60px;
+  }
+
+  .section-heading h2 {
+    font-size:
+      clamp(55px, 16vw, 85px);
+  }
+
+  .product-showcase {
+    display: block;
+  }
+
+  .product-card,
+  .product-card.product-large,
+  .product-card.product-wide {
+    width: 100%;
+    margin: 0 0 65px !important;
+  }
+
+  .product-large .product-image-wrap,
+  .product-wide .product-image-wrap,
+  .product-image-wrap {
+    aspect-ratio: 4 / 5;
+  }
+
+  .product-overlay {
+    opacity: 1;
+
+    padding: 18px;
+
+    align-items: flex-end;
+  }
+
+  .product-overlay button {
+    font-size: 8px;
+  }
+
+  .product-info h3 {
+    font-size: 27px;
+  }
+
+
+  /* MARQUEE */
+
+  .marquee-track span {
+    font-size: 48px;
+  }
+
+
+  /* WHY */
+
+  .why-section {
+    padding-top: 110px;
+    padding-bottom: 110px;
+  }
+
+  .why-intro h2 {
+    font-size:
+      clamp(58px, 17vw, 88px);
+  }
+
+  .why-grid {
+    grid-template-columns: 1fr;
+
+    margin-top: 80px;
+  }
+
+  .why-card,
+  .why-card:first-child,
+  .why-card:nth-child(3) {
+    border-left: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+    border-top: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .why-card:first-child {
+    border-top: 1px solid var(--line);
+  }
+
+  .why-card {
+    min-height: 300px;
+  }
+
+
+  /* STORY */
+
+  .story-image {
+    min-height: 65vh;
+  }
+
+  .story-content {
+    padding:
+      90px 7vw 110px;
+  }
+
+  .story-content h2 {
+    font-size:
+      clamp(65px, 18vw, 100px);
+  }
+
+
+  /* PHILOSOPHY */
+
+  .philosophy-section {
+    min-height: 75vh;
+
+    padding:
+      100px 7vw;
+  }
+
+  .philosophy-content h2 {
+    font-size:
+      clamp(62px, 18vw, 100px);
+  }
+
+  .philosophy-number {
+    font-size: 500px;
+  }
+
+
+  /* TESTIMONIALS */
+
+  .testimonial {
+    padding:
+      50px 5vw;
+
+    min-height: 430px;
+  }
+
+  .testimonial p {
+    font-size:
+      clamp(28px, 8vw, 40px);
+  }
+
+  .quote-mark {
+    font-size: 75px;
+  }
+
+
+  /* FAQ */
+
+  .faq-section {
+    padding:
+      100px 7vw;
+  }
+
+  .faq-title h2 {
+    font-size:
+      clamp(60px, 18vw, 95px);
+  }
+
+  .faq-question {
+    font-size: 21px;
+
+    gap: 20px;
+  }
+
+
+  /* ENQUIRY */
+
+  .enquiry-section {
+    padding:
+      100px 7vw;
+  }
+
+  .enquiry-copy h2 {
+    font-size:
+      clamp(65px, 18vw, 100px);
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+
+    gap: 0;
+  }
+
+  .enquiry-contact a {
+    font-size: 19px;
+  }
+
+
+  /* INSTAGRAM */
+
+  .instagram-section {
+    padding:
+      110px 6vw;
+  }
+
+  .instagram-inner h2 {
+    font-size:
+      clamp(68px, 18vw, 100px);
+  }
+
+
+  /* FOOTER */
+
+  .luxury-footer {
+    padding:
+      75px 6vw 25px;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 55px 30px;
+
+    padding-bottom: 70px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / 3;
+  }
+
+  .footer-column:last-child {
+    grid-column: auto;
+  }
+
+  .footer-middle {
+    padding:
+      75px 0 55px;
+  }
+
+  .footer-big-text {
+    font-size:
+      26vw;
+  }
+
+  .footer-bottom {
+    flex-wrap: wrap;
+
+    gap: 18px;
+  }
+
+
+  /* MODAL */
+
+  .product-modal {
+    padding: 15px;
+  }
+
+  .product-modal-content {
+    grid-template-columns: 1fr;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+  }
+
+  .modal-image {
+    height: 48vh;
+  }
+
+  .modal-info {
+    padding: 45px 30px 50px;
+  }
+
+  .modal-info h2 {
+    font-size: 60px;
+  }
+
+
+  /* WHATSAPP */
+
+  .floating-whatsapp {
+    right: 15px;
+    bottom: 15px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+}
+
+
+/* =========================================================
+   FINAL POLISH
+========================================================= */
+
+.product-card,
+.why-card,
+.testimonial,
+.faq-item,
+.enquiry-form,
+.instagram-inner {
+  -webkit-font-smoothing: antialiased;
+}
+
+</style>
