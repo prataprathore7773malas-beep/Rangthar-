@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RANGTHAR — Wear Your Legacy</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --black:#0b0907;
+  --brown:#17110c;
+  --cream:#eee4d2;
+  --muted:#a99d8b;
+  --gold:#c79a58;
+  --gold2:#e0bb7d;
+  --line:rgba(224,187,125,.18);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--black);
+  color:var(--cream);
+  font-family:"DM Sans",sans-serif;
+  overflow-x:hidden;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+img{
+  max-width:100%;
+  display:block;
+}
+
+.container{
+  width:min(1160px,90%);
+  margin:auto;
+}
+
+/* PRELOADER */
+.loader{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:var(--black);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:.7s ease;
+}
+
+.loader.hide{
+  opacity:0;
+  visibility:hidden;
+}
+
+.loader-inner{
+  text-align:center;
+}
+
+.loader-logo{
+  width:90px;
+  margin:auto;
+  animation:float 2s ease-in-out infinite;
+}
+
+.loader p{
+  margin-top:18px;
+  font-size:10px;
+  letter-spacing:4px;
+  color:var(--gold2);
+}
+
+@keyframes float{
+  50%{transform:translateY(-8px)}
+}
+
+/* NAVBAR */
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  padding:18px 5%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  transition:.35s;
+}
+
+nav.scrolled{
+  background:rgba(8,7,5,.92);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid var(--line);
+  padding:12px 5%;
+}
+
+.nav-logo{
+  width:75px;
+}
+
+.nav-links{
+  display:flex;
+  gap:35px;
+  align-items:center;
+  font-size:12px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+.nav-links a{
+  color:#ddd0bc;
+  position:relative;
+}
+
+.nav-links a:after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-7px;
+  width:0;
+  height:1px;
+  background:var(--gold2);
+  transition:.3s;
+}
+
+.nav-links a:hover:after{
+  width:100%;
+}
+
+.nav-order{
+  border:1px solid var(--gold);
+  padding:11px 18px;
+  color:var(--gold2)!important;
+}
+
+.menu{
+  display:none;
+  font-size:25px;
+  cursor:pointer;
+}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+}
+
+.hero-bg{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,rgba(7,6,5,.88) 0%,rgba(7,6,5,.48) 45%,rgba(7,6,5,.18) 100%),
+    url("hero.png") center/cover no-repeat;
+  transform:scale(1.04);
+  animation:heroZoom 12s ease-out forwards;
+}
+
+@keyframes heroZoom{
+  to{transform:scale(1)}
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  width:min(1160px,90%);
+  margin:auto;
+  padding-top:80px;
+}
+
+.hero-kicker{
+  color:var(--gold2);
+  letter-spacing:5px;
+  text-transform:uppercase;
+  font-size:11px;
+  margin-bottom:22px;
+}
+
+.hero h1{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(65px,10vw,145px);
+  line-height:.75;
+  font-weight:500;
+  letter-spacing:-4px;
+  max-width:800px;
+}
+
+.hero h1 span{
+  display:block;
+  font-style:italic;
+  color:var(--gold2);
+  margin-left:70px;
+}
+
+.hero-desc{
+  max-width:430px;
+  color:#c7baa7;
+  line-height:1.8;
+  font-size:14px;
+  margin:40px 0 28px;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  padding:14px 24px;
+  font-size:11px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  transition:.3s;
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+}
+
+.btn-gold{
+  background:var(--gold);
+  color:#120e09;
+}
+
+.btn-gold:hover{
+  background:var(--gold2);
+  transform:translateY(-3px);
+}
+
+.btn-outline{
+  border:1px solid rgba(238,228,210,.4);
+}
+
+.btn-outline:hover{
+  border-color:var(--gold2);
+  color:var(--gold2);
+}
+
+.hero-side{
+  position:absolute;
+  right:5%;
+  bottom:50px;
+  writing-mode:vertical-rl;
+  color:#8e8170;
+  font-size:9px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+}
+
+/* MARQUEE */
+.marquee{
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+  padding:15px 0;
+  background:#100c08;
+}
+
+.marquee-track{
+  width:max-content;
+  display:flex;
+  animation:marquee 25s linear infinite;
+}
+
+.marquee span{
+  font-family:"Cormorant Garamond",serif;
+  font-size:20px;
+  letter-spacing:2px;
+  padding:0 35px;
+  color:#c9b99e;
+}
+
+.marquee b{
+  color:var(--gold);
+  font-weight:400;
+}
+
+@keyframes marquee{
+  to{transform:translateX(-50%)}
+}
+
+/* COMMON */
+.section{
+  padding:120px 0;
+}
+
+.eyebrow{
+  color:var(--gold2);
+  text-transform:uppercase;
+  font-size:10px;
+  letter-spacing:4px;
+  margin-bottom:17px;
+}
+
+.section-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(45px,6vw,75px);
+  font-weight:500;
+  line-height:.95;
+}
+
+.section-title em{
+  color:var(--gold2);
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  margin-bottom:55px;
+  gap:30px;
+}
+
+.section-head p{
+  max-width:380px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.8;
+}
+
+/* STORY */
+.story{
+  background:
+    radial-gradient(circle at 85% 30%,rgba(199,154,88,.08),transparent 28%),
+    var(--black);
+}
+
+.story-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:center;
+}
+
+.story-image{
+  position:relative;
+}
+
+.story-image img{
+  width:100%;
+  height:580px;
+  object-fit:cover;
+  filter:saturate(.75);
+}
+
+.story-image:before{
+  content:"";
+  position:absolute;
+  inset:18px -18px -18px 18px;
+  border:1px solid var(--gold);
+  opacity:.4;
+}
+
+.story-number{
+  position:absolute;
+  bottom:25px;
+  left:-15px;
+  font-family:"Cormorant Garamond";
+  font-size:90px;
+  color:var(--gold);
+  line-height:1;
+}
+
+.story-text p{
+  color:#b8ab99;
+  line-height:2;
+  font-size:14px;
+  margin:28px 0;
+}
+
+.signature{
+  font-family:"Cormorant Garamond",serif;
+  font-style:italic;
+  font-size:26px;
+  color:var(--gold2);
+}
+
+/* COLLECTION */
+.collection{
+  background:#0e0b08;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.product{
+  position:relative;
+  background:#15100c;
+  overflow:hidden;
+  cursor:pointer;
+  border:1px solid rgba(224,187,125,.09);
+  transition:.45s;
+}
+
+.product:hover{
+  transform:translateY(-8px);
+  border-color:rgba(224,187,125,.35);
+}
+
+.product-img{
+  height:430px;
+  overflow:hidden;
+  background:#201810;
+}
+
+.product-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:.7s;
+}
+
+.product:hover .product-img img{
+  transform:scale(1.06);
+}
+
+.product-info{
+  padding:20px;
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.product-info small{
+  color:#827665;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:2px;
+}
+
+.product-info h3{
+  font-family:"Cormorant Garamond";
+  font-size:24px;
+  font-weight:500;
+  margin-top:6px;
+}
+
+.product-arrow{
+  width:36px;
+  height:36px;
+  border:1px solid var(--line);
+  display:grid;
+  place-items:center;
+  color:var(--gold2);
+}
+
+/* HERITAGE BANNER */
+.heritage{
+  min-height:520px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
+  background:
+    linear-gradient(rgba(8,6,4,.72),rgba(8,6,4,.82)),
+    url("logo.png") center/cover;
+  background-attachment:fixed;
+}
+
+.heritage:before{
+  content:"✦";
+  position:absolute;
+  font-size:360px;
+  color:rgba(224,187,125,.04);
+}
+
+.heritage-content{
+  position:relative;
+  z-index:2;
+}
+
+.heritage h2{
+  font-family:"Cormorant Garamond";
+  font-size:clamp(48px,7vw,90px);
+  font-weight:500;
+  line-height:.9;
+}
+
+.heritage h2 span{
+  color:var(--gold2);
+  font-style:italic;
+}
+
+.heritage p{
+  max-width:550px;
+  margin:25px auto 30px;
+  color:#c0b3a0;
+  line-height:1.8;
+  font-size:13px;
+}
+
+/* VALUES */
+.values{
+  padding:90px 0;
+}
+
+.values-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+
+.value{
+  padding:45px 35px;
+  border-right:1px solid var(--line);
+}
+
+.value:last-child{
+  border-right:0;
+}
+
+.value-num{
+  color:var(--gold);
+  font-family:"Cormorant Garamond";
+  font-size:28px;
+}
+
+.value h3{
+  font-family:"Cormorant Garamond";
+  font-size:28px;
+  margin:15px 0;
+}
+
+.value p{
+  color:#928676;
+  line-height:1.8;
+  font-size:12px;
+}
+
+/* INSTAGRAM */
+.instagram{
+  text-align:center;
+  background:#0e0b08;
+}
+
+.insta-link{
+  display:inline-block;
+  margin-top:25px;
+  color:var(--gold2);
+  font-size:13px;
+  border-bottom:1px solid var(--gold);
+  padding-bottom:5px;
+}
+
+/* CTA */
+.cta{
+  padding:100px 0;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.cta:after{
+  content:"RANGTHAR";
+  position:absolute;
+  font-family:"Cormorant Garamond";
+  font-size:22vw;
+  color:rgba(224,187,125,.025);
+  white-space:nowrap;
+  left:50%;
+  transform:translateX(-50%);
+  pointer-events:none;
+}
+
+.cta-content{
+  position:relative;
+  z-index:2;
+}
+
+.cta h2{
+  font-family:"Cormorant Garamond";
+  font-size:clamp(48px,7vw,85px);
+  font-weight:500;
+}
+
+.cta p{
+  color:#958877;
+  max-width:500px;
+  margin:18px auto 30px;
+  line-height:1.8;
+  font-size:13px;
+}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--line);
+  padding:60px 0 25px;
+  background:#090806;
+}
+
+.footer-top{
+  display:flex;
+  justify-content:space-between;
+  gap:40px;
+  padding-bottom:50px;
+}
+
+.footer-logo{
+  width:90px;
+  margin-bottom:18px;
+}
+
+.footer-brand p{
+  max-width:280px;
+  color:#817668;
+  font-size:11px;
+  line-height:1.8;
+}
+
+.footer-links{
+  display:flex;
+  gap:70px;
+}
+
+.footer-col h4{
+  font-size:10px;
+  color:var(--gold2);
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:18px;
+}
+
+.footer-col a{
+  display:block;
+  color:#938675;
+  font-size:11px;
+  margin-bottom:11px;
+}
+
+.footer-col a:hover{
+  color:var(--gold2);
+}
+
+.footer-bottom{
+  border-top:1px solid var(--line);
+  padding-top:22px;
+  display:flex;
+  justify-content:space-between;
+  color:#62594f;
+  font-size:9px;
+  letter-spacing:1px;
+}
+
+.footer-bottom a{
+  color:var(--gold);
+}
+
+/* FLOATING BUTTONS */
+.float-buttons{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:900;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.float-btn{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:white;
+  font-size:18px;
+  box-shadow:0 8px 25px rgba(0,0,0,.35);
+  transition:.3s;
+}
+
+.float-btn:hover{
+  transform:scale(1.1);
+}
+
+.whatsapp{
+  background:#25D366;
+}
+
+.call{
+  background:#b58a4d;
+}
+
+/* REVEAL */
+.reveal{
+  opacity:0;
+  transform:translateY(35px);
+  transition:1s ease;
+}
+
+.reveal.active{
+  opacity:1;
+  transform:none;
+}
+
+/* MOBILE */
+@media(max-width:800px){
+
+  nav{
+    padding:13px 5%;
+  }
+
+  .nav-logo{
+    width:62px;
+  }
+
+  .menu{
+    display:block;
+    color:var(--cream);
+  }
+
+  .nav-links{
+    position:absolute;
+    top:100%;
+    left:0;
+    width:100%;
+    background:rgba(9,7,5,.97);
+    backdrop-filter:blur(15px);
+    display:none;
+    flex-direction:column;
+    gap:0;
+    padding:10px 5% 20px;
+    border-bottom:1px solid var(--line);
+  }
+
+  .nav-links.show{
+    display:flex;
+  }
+
+  .nav-links a{
+    width:100%;
+    padding:15px 0;
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+
+  .nav-order{
+    border:0;
+    padding:15px 0!important;
+  }
+
+  .hero{
+    min-height:90vh;
+  }
+
+  .hero-bg{
+    background-position:center;
+  }
+
+  .hero-content{
+    padding-top:100px;
+  }
+
+  .hero h1{
+    font-size:72px;
+    letter-spacing:-2px;
+  }
+
+  .hero h1 span{
+    margin-left:25px;
+  }
+
+  .hero-desc{
+    font-size:12px;
+    max-width:330px;
+    margin:30px 0 22px;
+  }
+
+  .hero-side{
+    display:none;
+  }
+
+  .section{
+    padding:80px 0;
+  }
+
+  .section-head{
+    display:block;
+    margin-bottom:35px;
+  }
+
+  .section-head p{
+    margin-top:20px;
+  }
+
+  .story-grid{
+    grid-template-columns:1fr;
+    gap:55px;
+  }
+
+  .story-image img{
+    height:430px;
+  }
+
+  .story-image:before{
+    inset:12px -10px -12px 10px;
+  }
+
+  .story-number{
+    font-size:65px;
+  }
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+  }
+
+  .product-img{
+    height:270px;
+  }
+
+  .product-info{
+    padding:13px;
+  }
+
+  .product-info h3{
+    font-size:20px;
+  }
+
+  .product-arrow{
+    width:30px;
+    height:30px;
+    font-size:12px;
+  }
+
+  .heritage{
+    min-height:450px;
+    background-attachment:scroll;
+  }
+
+  .values-grid{
+    grid-template-columns:1fr;
+  }
+
+  .value{
+    border-right:0;
+    border-bottom:1px solid var(--line);
+    padding:30px 20px;
+  }
+
+  .value:last-child{
+    border-bottom:0;
+  }
+
+  .footer-top{
+    flex-direction:column;
+  }
+
+  .footer-links{
+    gap:50px;
+  }
+
+  .footer-bottom{
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .float-buttons{
+    right:14px;
+    bottom:14px;
+  }
+
+  .float-btn{
+    width:44px;
+    height:44px;
+  }
+}
+
+@media(max-width:430px){
+
+  .hero h1{
+    font-size:59px;
+  }
+
+  .hero h1 span{
+    margin-left:15px;
+  }
+
+  .products{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .product-img{
+    height:230px;
+  }
+
+  .product-info h3{
+    font-size:18px;
+  }
+
+  .product-info small{
+    font-size:8px;
+  }
+
+  .footer-links{
+    gap:30px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADER -->
+<div class="loader">
+  <div class="loader-inner">
+    <img src="logo.png" class="loader-logo" alt="Rangthar">
+    <p>WEAR YOUR LEGACY</p>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#home">
+    <img src="logo.png" class="nav-logo" alt="Rangthar Logo">
+  </a>
+
+  <div class="nav-links" id="navLinks">
+    <a href="#home">Home</a>
+    <a href="#story">Our Story</a>
+    <a href="#collection">Collection</a>
+    <a href="#heritage">Heritage</a>
+    <a href="#contact" class="nav-order">Order Now</a>
+  </div>
+
+  <div class="menu" id="menu">☰</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+
+  <div class="hero-content reveal">
+    <div class="hero-kicker">Born in Rajasthan · Made for the World</div>
+
+    <h1>
+      Wear
+      <span>Your Legacy.</span>
+    </h1>
+
+    <p class="hero-desc">
+      Rangthar brings the soul of Rajasthan into contemporary fashion —
+      crafted for those who carry their roots with pride and wear their
+      identity with confidence.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#collection" class="btn btn-gold">Explore Collection ↗</a>
+      <a href="https://wa.me/919079294929" target="_blank" class="btn btn-outline">
+        WhatsApp Order
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-side">Rajasthan · Heritage · Identity</div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>RANGTHAR <b>✦</b></span>
+    <span>WEAR YOUR LEGACY <b>✦</b></span>
+    <span>ROOTED IN RAJASTHAN <b>✦</b></span>
+    <span>CRAFTED WITH PRIDE <b>✦</b></span>
+    <span>RANGTHAR <b>✦</b></span>
+    <span>WEAR YOUR LEGACY <b>✦</b></span>
+    <span>ROOTED IN RAJASTHAN <b>✦</b></span>
+    <span>CRAFTED WITH PRIDE <b>✦</b></span>
+  </div>
+</div>
+
+<!-- STORY -->
+<section class="section story" id="story">
+  <div class="container story-grid">
+
+    <div class="story-image reveal">
+      <img src="about.jpg" alt="Rangthar Heritage">
+      <div class="story-number">01</div>
+    </div>
+
+    <div class="story-text reveal">
+      <div class="eyebrow">The Rangthar Story</div>
+
+      <h2 class="section-title">
+        More than<br>
+        <em>clothing.</em>
+      </h2>
+
+      <p>
+        Rangthar is born from a simple belief — your clothes should carry
+        something deeper than style. They should carry where you come from,
+        what you stand for and the legacy you choose to continue.
+      </p>
+
+      <p>
+        Inspired by the colours, courage, artistry and timeless spirit of
+        Rajasthan, Rangthar creates fashion that bridges heritage with
+        today's generation.
+      </p>
+
+      <div class="signature">Wear what you represent.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COLLECTION -->
+<section class="section collection" id="collection">
+  <div class="container">
+
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">The Collection</div>
+        <h2 class="section-title">Made to be<br><em>remembered.</em></h2>
+      </div>
+
+      <p>
+        Discover pieces inspired by Rajasthan's timeless identity,
+        reimagined for a modern wardrobe.
+      </p>
+    </div>
+
+    <div class="products">
+
+      <div class="product reveal">
+        <div class="product-img">
+          <img src="p1.png" alt="Rangthar Collection 01">
+        </div>
+        <div class="product-info">
+          <div>
+            <small>Rangthar · 01</small>
+            <h3>Legacy I</h3>
+          </div>
+          <div class="product-arrow">↗</div>
+        </div>
+      </div>
+
+      <div class="product reveal">
+        <div class="product-img">
+          <img src="p2.png" alt="Rangthar Collection 02">
+        </div>
+        <div class="product-info">
+          <div>
+            <small>Rangthar · 02</small>
+            <h3>Legacy II</h3>
+          </div>
+          <div class="product-arrow">↗</div>
+        </div>
+      </div>
+
+      <div class="product reveal">
+        <div class="product-img">
+          <img src="p3.png" alt="Rangthar Collection 03">
+        </div>
+        <div class="product-info">
+          <div>
+            <small>Rangthar · 03</small>
+            <h3>Legacy III</h3>
+          </div>
+          <div class="product-arrow">↗</div>
+        </div>
+      </div>
+
+      <div class="product reveal">
+        <div class="product-img">
+          <img src="p4.png" alt="Rangthar Collection 04">
+        </div>
+        <div class="product-info">
+          <div>
+            <small>Rangthar · 04</small>
+            <h3>Legacy IV</h3>
+          </div>
+          <div class="product-arrow">↗</div>
+        </div>
+      </div>
+
+      <div class="product reveal">
+        <div class="product-img">
+          <img src="p5.png" alt="Rangthar Collection 05">
+        </div>
+        <div class="product-info">
+          <div>
+            <small>Rangthar · 05</small>
+            <h3>Legacy V</h3>
+          </div>
+          <div class="product-arrow">↗</div>
+        </div>
+      </div>
+
+      <div class="product reveal">
+        <div class="product-img">
+          <img src="p6.png" alt="Rangthar Collection 06">
+        </div>
+        <div class="product-info">
+          <div>
+            <small>Rangthar · 06</small>
+            <h3>Legacy VI</h3>
+          </div>
+          <div class="product-arrow">↗</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HERITAGE -->
+<section class="heritage" id="heritage">
+  <div class="heritage-content reveal">
+
+    <div class="eyebrow">Our Philosophy</div>
+
+    <h2>
+      Your roots.<br>
+      Your story.<br>
+      <span>Your legacy.</span>
+    </h2>
+
+    <p>
+      From the desert winds to royal architecture, from handcrafted details
+      to generations of tradition — Rajasthan has always had a language of
+      its own. Rangthar turns that language into something you can wear.
+    </p>
+
+    <a href="https://www.instagram.com/rangthar_/" target="_blank" class="btn btn-gold">
+      Follow @rangthar_ ↗
+    </a>
+
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values">
+  <div class="container">
+
+    <div class="values-grid">
+
+      <div class="value reveal">
+        <div class="value-num">01</div>
+        <h3>Rooted</h3>
+        <p>
+          Every Rangthar piece carries the spirit of Rajasthan and its
+          timeless cultural identity.
+        </p>
+      </div>
+
+      <div class="value reveal">
+        <div class="value-num">02</div>
+        <h3>Contemporary</h3>
+        <p>
+          Heritage doesn't belong only to the past. We reinterpret it for
+          today's generation.
+        </p>
+      </div>
+
+      <div class="value reveal">
+        <div class="value-num">03</div>
+        <h3>Made With Pride</h3>
+        <p>
+          Fashion becomes meaningful when it represents something. Wear
+          Rangthar with pride.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section class="section instagram">
+  <div class="container reveal">
+
+    <div class="eyebrow">Follow The Journey</div>
+
+    <h2 class="section-title">
+      See Rangthar<br>
+      <em>in the wild.</em>
+    </h2>
+
+    <p style="color:#938675;margin-top:20px;font-size:13px;">
+      New drops, heritage stories and everyday style.
+    </p>
+
+    <a
+      href="https://www.instagram.com/rangthar_/"
+      target="_blank"
+      class="insta-link"
+    >
+      Instagram · @rangthar_
+    </a>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="container cta-content reveal">
+
+    <div class="eyebrow">Start Your Journey</div>
+
+    <h2>Wear Your Legacy.</h2>
+
+    <p>
+      Found something you love? Connect with Rangthar directly and place
+      your order through WhatsApp.
+    </p>
+
+    <div class="hero-buttons" style="justify-content:center;">
+
+      <a
+        href="https://wa.me/919079294929"
+        target="_blank"
+        class="btn btn-gold"
+      >
+        WhatsApp · 9079294929
+      </a>
+
+      <a
+        href="tel:+918955505266"
+        class="btn btn-outline"
+      >
+        Call · 8955505266
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <img src="logo.png" class="footer-logo" alt="Rangthar Logo">
+
+        <p>
+          Rangthar — a fashion brand rooted in Rajasthan's legacy,
+          created for those who proudly carry their roots forward.
+        </p>
+      </div>
+
+      <div class="footer-links">
+
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="#home">Home</a>
+          <a href="#story">Our Story</a>
+          <a href="#collection">Collection</a>
+          <a href="#heritage">Heritage</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="tel:+918955505266">8955505266</a>
+          <a href="https://wa.me/919079294929" target="_blank">WhatsApp</a>
+          <a href="https://www.instagram.com/rangthar_/" target="_blank">
+            Instagram
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 RANGTHAR. ALL RIGHTS RESERVED.</span>
+      <span>Website crafted by <a href="#">Marwar Infotech</a></span>
+    </div>
+
+  </div>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<div class="float-buttons">
+
+  <a
+    href="https://wa.me/919079294929"
+    target="_blank"
+    class="float-btn whatsapp"
+    aria-label="WhatsApp"
+  >
+    ☎
+  </a>
+
+  <a
+    href="tel:+918955505266"
+    class="float-btn call"
+    aria-label="Call"
+  >
+    ☎
+  </a>
+
+</div>
+
+<script>
+
+/* LOADER */
+window.addEventListener("load",()=>{
+  setTimeout(()=>{
+    document.querySelector(".loader").classList.add("hide");
+  },700);
+});
+
+/* NAVBAR */
+const navbar = document.getElementById("navbar");
+
+window.addEventListener("scroll",()=>{
+  if(window.scrollY > 50){
+    navbar.classList.add("scrolled");
+  }else{
+    navbar.classList.remove("scrolled");
+  }
+});
+
+/* MOBILE MENU */
+const menu = document.getElementById("menu");
+const navLinks = document.getElementById("navLinks");
+
+menu.addEventListener("click",()=>{
+  navLinks.classList.toggle("show");
+});
+
+document.querySelectorAll(".nav-links a").forEach(link=>{
+  link.addEventListener("click",()=>{
+    navLinks.classList.remove("show");
+  });
+});
+
+/* REVEAL ANIMATION */
+const revealItems = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("active");
+      observer.unobserve(entry.target);
+    }
+  });
+},{
+  threshold:.12
+});
+
+revealItems.forEach(item=>observer.observe(item));
+
+/* PRODUCT WHATSAPP */
+document.querySelectorAll(".product").forEach((card,index)=>{
+
+  card.addEventListener("click",()=>{
+
+    const productNumber = index + 1;
+
+    const message =
+      `Hello Rangthar! I am interested in Product ${productNumber} from your collection. Please share the details.`;
+
+    window.open(
+      `https://wa.me/919079294929?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
+
+  });
+
+});
+
+</script>
+
+</body>
+</html>
