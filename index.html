@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RANGTHAR — Wear Your Legacy</title>
+    <title>RANGTHAR — Wear Your Legacy | Luxury Fashion House</title>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -38,13 +38,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- FontAwesome for Icons -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- GSAP and ScrollTrigger for Luxury Animations -->
+    <!-- GSAP & ScrollTrigger for High-End Scroll Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/SplitText.min.js"></script>
+
+    <!-- Lenis for Buttery Smooth International Luxury Scrolling -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
 
     <style>
         ::selection {
@@ -56,28 +58,51 @@
             color: #F7F4EF;
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
+            cursor: default;
         }
         h1, h2, h3, h4, .font-serif {
             font-family: 'Playfair Display', serif;
         }
+        /* Custom Magnetic Luxury Cursor */
+        .cursor-dot, .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            border-radius: 50%;
+            z-index: 9999;
+            transition: transform 0.15s ease-out, opacity 0.15s ease-out;
+        }
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: #D4AF37;
+        }
+        .cursor-outline {
+            width: 36px;
+            height: 36px;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            transform: translate(-14px, -14px);
+        }
         .glass-nav {
             background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(212, 175, 55, 0.15);
         }
         .glass-card {
-            background: rgba(26, 26, 26, 0.6);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(212, 175, 55, 0.12);
+            background: rgba(26, 26, 26, 0.55);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+        .glass-card:hover {
+            border-color: rgba(212, 175, 55, 0.4);
         }
         .gold-gradient-text {
             background: linear-gradient(135deg, #FDF0CD 0%, #D4AF37 50%, #997515 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-        .gold-border {
-            border-color: rgba(212, 175, 55, 0.3);
         }
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
@@ -97,11 +122,19 @@
             mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
             -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
         }
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(60px);
+        }
     </style>
 </head>
 <body class="bg-brand-black text-brand-sand antialiased">
 
-    <!-- Preloader -->
+    <!-- Custom Cursor -->
+    <div class="cursor-dot hidden md:block" id="cursor-dot"></div>
+    <div class="cursor-outline hidden md:block" id="cursor-outline"></div>
+
+    <!-- Cinematic Preloader -->
     <div id="preloader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-brand-black transition-opacity duration-700">
         <div class="relative w-32 h-32 mb-6 flex items-center justify-center">
             <div class="absolute inset-0 border-2 border-brand-gold/20 rounded-full animate-ping"></div>
@@ -111,30 +144,28 @@
         <h1 class="font-serif text-3xl tracking-[0.3em] gold-gradient-text uppercase font-light">Rangthar</h1>
         <p class="text-xs tracking-[0.5em] text-brand-muted uppercase mt-3">Wear Your Legacy</p>
         <div class="w-48 h-[1px] bg-brand-gold/20 mt-6 relative overflow-hidden">
-            <div id="loader-bar" class="absolute inset-y-0 left-0 bg-brand-gold w-0 transition-all duration-300"></div>
+            <div id="loader-bar" class="absolute inset-y-0 left-0 bg-brand-gold w-0 transition-all duration-500"></div>
         </div>
     </div>
 
-    <!-- Navigation -->
+    <!-- Navigation Bar -->
     <header class="fixed top-0 left-0 right-0 z-40 glass-nav transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
-            <!-- Brand Logo -->
             <a href="#" class="flex items-center gap-3 group">
                 <img src="logo.png" alt="Rangthar" class="w-10 h-10 object-contain group-hover:scale-105 transition-transform" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100';">
                 <span class="font-serif text-2xl tracking-[0.2em] font-medium gold-gradient-text">RANGTHAR</span>
             </a>
 
-            <!-- Desktop Links -->
-            <nav class="hidden md:flex items-center gap-10 text-sm tracking-[0.15em] uppercase text-brand-sand/80">
+            <nav class="hidden md:flex items-center gap-8 text-xs tracking-[0.2em] uppercase text-brand-sand/80 font-medium">
                 <a href="#heritage" class="hover:text-brand-gold transition-colors">Heritage</a>
                 <a href="#collection" class="hover:text-brand-gold transition-colors">Collection</a>
-                <a href="#craft" class="hover:text-brand-gold transition-colors">The Craft</a>
-                <a href="#story" class="hover:text-brand-gold transition-colors">Legacy</a>
-                <a href="#contact" class="hover:text-brand-gold transition-colors">Enquiry</a>
+                <a href="#why-us" class="hover:text-brand-gold transition-colors">Why Us</a>
+                <a href="#craft" class="hover:text-brand-gold transition-colors">Craft</a>
+                <a href="#reviews" class="hover:text-brand-gold transition-colors">Reviews</a>
+                <a href="#faq" class="hover:text-brand-gold transition-colors">FAQ</a>
             </nav>
 
-            <!-- Actions / CTA -->
-            <div class="hidden lg:flex items-center gap-6">
+            <div class="hidden lg:flex items-center gap-5">
                 <a href="https://www.instagram.com/rangthar_/" target="_blank" class="text-brand-sand/80 hover:text-brand-gold transition-colors text-lg" aria-label="Instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
@@ -143,7 +174,6 @@
                 </a>
             </div>
 
-            <!-- Mobile Menu Toggle -->
             <button id="menu-btn" class="md:hidden text-brand-gold text-2xl focus:outline-none" aria-label="Toggle Menu">
                 <i class="fas fa-bars"></i>
             </button>
@@ -151,48 +181,50 @@
     </header>
 
     <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 z-30 bg-brand-black/95 backdrop-blur-2xl flex flex-col items-center justify-center opacity-0 pointer-events-none transition-all duration-500 md:hidden">
+    <div id="mobile-menu" class="fixed inset-0 z-30 bg-brand-black/98 backdrop-blur-2xl flex flex-col items-center justify-center opacity-0 pointer-events-none transition-all duration-500 md:hidden">
         <button id="close-menu" class="absolute top-8 right-8 text-brand-gold text-3xl focus:outline-none" aria-label="Close Menu">
             <i class="fas fa-times"></i>
         </button>
-        <nav class="flex flex-col items-center gap-6 text-center text-xl tracking-[0.2em] uppercase font-serif">
+        <nav class="flex flex-col items-center gap-6 text-center text-lg tracking-[0.2em] uppercase font-serif">
             <a href="#heritage" class="mobile-link text-brand-sand hover:text-brand-gold transition-colors">Heritage</a>
             <a href="#collection" class="mobile-link text-brand-sand hover:text-brand-gold transition-colors">Collection</a>
-            <a href="#craft" class="mobile-link text-brand-sand hover:text-brand-gold transition-colors">The Craft</a>
-            <a href="#story" class="mobile-link text-brand-sand hover:text-brand-gold transition-colors">Legacy</a>
-            <a href="#contact" class="mobile-link text-brand-sand hover:text-brand-gold transition-colors">Enquiry</a>
+            <a href="#why-us" class="mobile-link text-brand-sand hover:text-brand-gold transition-colors">Why Us</a>
+            <a href="#craft" class="mobile-link text-brand-sand hover:text-brand-gold transition-colors">Craft</a>
+            <a href="#reviews" class="mobile-link text-brand-sand hover:text-brand-gold transition-colors">Reviews</a>
+            <a href="#faq" class="mobile-link text-brand-sand hover:text-brand-gold transition-colors">FAQ</a>
+            <a href="#contact" class="mobile-link text-brand-gold hover:text-brand-sand transition-colors">Enquiry</a>
         </nav>
-        <div class="flex items-center gap-6 mt-12">
-            <a href="https://www.instagram.com/rangthar_/" target="_blank" class="w-12 h-12 rounded-full border border-brand-gold/30 flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-brand-black transition-all">
-                <i class="fab fa-instagram text-lg"></i>
+        <div class="flex items-center gap-6 mt-10">
+            <a href="https://www.instagram.com/rangthar_/" target="_blank" class="w-12 h-12 rounded-full border border-brand-gold/30 flex items-center justify-center text-brand-gold">
+                <i class="fab fa-instagram"></i>
             </a>
-            <a href="https://wa.me/919079294929" target="_blank" class="w-12 h-12 rounded-full border border-brand-gold/30 flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-brand-black transition-all">
-                <i class="fab fa-whatsapp text-lg"></i>
+            <a href="https://wa.me/919079294929" target="_blank" class="w-12 h-12 rounded-full border border-brand-gold/30 flex items-center justify-center text-brand-gold">
+                <i class="fab fa-whatsapp"></i>
             </a>
-            <a href="tel:+918955505266" class="w-12 h-12 rounded-full border border-brand-gold/30 flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-brand-black transition-all">
-                <i class="fas fa-phone-alt text-lg"></i>
+            <a href="tel:+918955505266" class="w-12 h-12 rounded-full border border-brand-gold/30 flex items-center justify-center text-brand-gold">
+                <i class="fas fa-phone-alt"></i>
             </a>
         </div>
     </div>
 
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 hero-mask">
-        <!-- Background Imagery & Parallax Layers -->
+    <!-- Hero Section with Multi-Layer Parallax Assets (hero.png + h1-h5) -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 hero-mask" id="hero-section">
         <div class="absolute inset-0 z-0">
-            <img src="hero.png" alt="Rangthar Hero Background" class="w-full h-full object-cover object-center opacity-60 scale-105 transition-transform duration-1000" id="hero-bg" onerror="this.src='https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&q=80&w=2000';">
+            <img src="hero.png" alt="Rangthar Hero Background" class="w-full h-full object-cover object-center opacity-50 scale-105 transition-transform duration-1000" id="parallax-bg" onerror="this.src='https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&q=80&w=2000';">
             <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/40 to-brand-black/80"></div>
         </div>
 
-        <!-- Floating Atmospheric Layers (h1-h5) -->
+        <!-- Floating Atmospheric Layers (h1.png to h5.png) -->
         <div class="absolute inset-0 pointer-events-none z-1 overflow-hidden hidden lg:block">
-            <img src="h1.png" alt="" class="absolute top-1/4 left-10 w-48 opacity-20 floating-asset" style="animation: floatSlow 8s ease-in-out infinite;" onerror="this.style.display='none';">
-            <img src="h2.png" alt="" class="absolute bottom-10 right-16 w-56 opacity-25 floating-asset" style="animation: floatSlow 10s ease-in-out infinite 1s;" onerror="this.style.display='none';">
-            <img src="h3.png" alt="" class="absolute top-1/3 right-12 w-40 opacity-20 floating-asset" style="animation: floatSlow 9s ease-in-out infinite 2s;" onerror="this.style.display='none';">
+            <img src="h1.png" alt="" class="absolute top-1/4 left-12 w-48 opacity-25" style="animation: floatSlow 8s ease-in-out infinite;" onerror="this.style.display='none';">
+            <img src="h2.png" alt="" class="absolute bottom-12 right-16 w-56 opacity-30" style="animation: floatSlow 10s ease-in-out infinite 1s;" onerror="this.style.display='none';">
+            <img src="h3.png" alt="" class="absolute top-1/3 right-12 w-40 opacity-25" style="animation: floatSlow 9s ease-in-out infinite 2s;" onerror="this.style.display='none';">
+            <img src="h4.png" alt="" class="absolute bottom-1/4 left-20 w-44 opacity-20" style="animation: floatSlow 11s ease-in-out infinite 1.5s;" onerror="this.style.display='none';">
+            <img src="h5.png" alt="" class="absolute top-20 right-1/3 w-36 opacity-20" style="animation: floatSlow 7s ease-in-out infinite 0.5s;" onerror="this.style.display='none';">
         </div>
 
-        <!-- Hero Content -->
         <div class="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center">
-            <div class="inline-flex items-center gap-3 px-5 py-2 rounded-full glass-card mb-8 border border-brand-gold/30 opacity-0 animate-fade-in-down" style="animation: fadeInDown 1s forwards 0.5s;">
+            <div class="inline-flex items-center gap-3 px-5 py-2 rounded-full glass-card mb-8 border border-brand-gold/30 opacity-0 animate-fade-in-down" style="animation: fadeInDown 1s forwards 0.3s;">
                 <span class="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span>
                 <span class="text-xs uppercase tracking-[0.3em] text-brand-gold font-medium">Royal Heritage Reimagined</span>
             </div>
@@ -215,29 +247,24 @@
             </div>
         </div>
 
-        <!-- Scroll Indicator -->
         <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-60">
             <span class="text-[10px] uppercase tracking-[0.3em] text-brand-muted">Scroll</span>
             <div class="w-[1px] h-12 bg-gradient-to-b from-brand-gold to-transparent animate-bounce"></div>
         </div>
     </section>
 
-    <!-- Brand Philosophy / Heritage Section -->
+    <!-- Brand Heritage Section (about.jpg) -->
     <section id="heritage" class="py-32 relative overflow-hidden border-t border-brand-gold/10">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-                <!-- Left: Artistic Image Composition -->
-                <div class="lg:col-span-6 relative">
-                    <div class="relative z-10 rounded-2xl overflow-hidden border border-brand-gold/20 shadow-2xl">
+                <div class="lg:col-span-6 relative reveal-up">
+                    <div class="relative z-10 rounded-2xl overflow-hidden border border-brand-gold/25 shadow-2xl">
                         <img src="about.jpg" alt="Rangthar Heritage Craft" class="w-full h-[600px] object-cover hover:scale-105 transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&q=80&w=1000';">
                     </div>
-                    <!-- Decorative Frame Element -->
                     <div class="absolute -bottom-6 -right-6 w-full h-full border border-brand-gold/30 rounded-2xl -z-10 hidden sm:block"></div>
-                    <div class="absolute -top-6 -left-6 w-32 h-32 bg-brand-gold/5 rounded-full blur-2xl -z-10"></div>
                 </div>
 
-                <!-- Right: Editorial Copy -->
-                <div class="lg:col-span-6 flex flex-col justify-center">
+                <div class="lg:col-span-6 flex flex-col justify-center reveal-up">
                     <div class="inline-flex items-center gap-2 text-brand-gold text-xs uppercase tracking-[0.3em] mb-4">
                         <i class="fas fa-crown text-[10px]"></i> The Philosophy
                     </div>
@@ -247,8 +274,6 @@
                     <p class="text-brand-muted text-base md:text-lg leading-relaxed mb-8 font-light">
                         Rangthar is not merely a fashion label; it is a profound custodian of identity, culture, and centuries-old royal legacy. Every thread weaves the rich tapestry of desert palaces, vibrant folklore, and artisan heritage into sleek, contemporary silhouettes designed for the global connoisseur.
                     </p>
-
-                    <!-- Core Pillars Grid -->
                     <div class="grid grid-cols-2 gap-6 pt-4 border-t border-brand-gold/15">
                         <div>
                             <h4 class="font-serif text-xl text-brand-gold mb-2">Royal Roots</h4>
@@ -264,11 +289,10 @@
         </div>
     </section>
 
-    <!-- Product Collection Showcase -->
+    <!-- Signature Collection Showcase (p1.png to p6.png) -->
     <section id="collection" class="py-32 relative bg-brand-charcoal/50 border-t border-brand-gold/10">
         <div class="max-w-7xl mx-auto px-6">
-            <!-- Section Header -->
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 reveal-up">
                 <div>
                     <span class="text-xs uppercase tracking-[0.3em] text-brand-gold block mb-3 font-medium">Curated Masterpieces</span>
                     <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl tracking-tight font-light">
@@ -280,14 +304,13 @@
                 </p>
             </div>
 
-            <!-- Product Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Product Card 1 -->
-                <div class="group relative glass-card rounded-2xl overflow-hidden border border-brand-gold/15 hover:border-brand-gold/50 transition-all duration-500">
+                <!-- Product 1 -->
+                <div class="group relative glass-card rounded-2xl overflow-hidden reveal-up">
                     <div class="relative h-[420px] overflow-hidden bg-brand-black">
-                        <img src="p1.png" alt="Rangthar Royal Sherwani" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&q=80&w=800';">
+                        <img src="p1.png" alt="Rajputana Sherwani" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&q=80&w=800';">
                         <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
-                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-brand-black/80 backdrop-blur-md text-[10px] uppercase tracking-[0.2em] text-brand-gold border border-brand-gold/30">Heritage Series</span>
+                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-brand-black/85 backdrop-blur-md text-[10px] uppercase tracking-[0.2em] text-brand-gold border border-brand-gold/30">Heritage Series</span>
                     </div>
                     <div class="p-6">
                         <h3 class="font-serif text-2xl mb-2 text-brand-sand group-hover:text-brand-gold transition-colors">The Rajputana Regal Sherwani</h3>
@@ -301,12 +324,12 @@
                     </div>
                 </div>
 
-                <!-- Product Card 2 -->
-                <div class="group relative glass-card rounded-2xl overflow-hidden border border-brand-gold/15 hover:border-brand-gold/50 transition-all duration-500">
+                <!-- Product 2 -->
+                <div class="group relative glass-card rounded-2xl overflow-hidden reveal-up">
                     <div class="relative h-[420px] overflow-hidden bg-brand-black">
-                        <img src="p2.png" alt="Rangthar Bandhgala" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=800';">
+                        <img src="p2.png" alt="Jodhpuri Bandhgala" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=800';">
                         <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
-                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-brand-black/80 backdrop-blur-md text-[10px] uppercase tracking-[0.2em] text-brand-gold border border-brand-gold/30">Contemporary</span>
+                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-brand-black/85 backdrop-blur-md text-[10px] uppercase tracking-[0.2em] text-brand-gold border border-brand-gold/30">Contemporary</span>
                     </div>
                     <div class="p-6">
                         <h3 class="font-serif text-2xl mb-2 text-brand-sand group-hover:text-brand-gold transition-colors">Modern Jodhpuri Bandhgala</h3>
@@ -320,12 +343,12 @@
                     </div>
                 </div>
 
-                <!-- Product Card 3 -->
-                <div class="group relative glass-card rounded-2xl overflow-hidden border border-brand-gold/15 hover:border-brand-gold/50 transition-all duration-500">
+                <!-- Product 3 -->
+                <div class="group relative glass-card rounded-2xl overflow-hidden reveal-up">
                     <div class="relative h-[420px] overflow-hidden bg-brand-black">
-                        <img src="p3.png" alt="Rangthar Royal Couture" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=800';">
+                        <img src="p3.png" alt="Thar Silk Ensemble" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=800';">
                         <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
-                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-brand-black/80 backdrop-blur-md text-[10px] uppercase tracking-[0.2em] text-brand-gold border border-brand-gold/30">Couture</span>
+                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-brand-black/85 backdrop-blur-md text-[10px] uppercase tracking-[0.2em] text-brand-gold border border-brand-gold/30">Couture</span>
                     </div>
                     <div class="p-6">
                         <h3 class="font-serif text-2xl mb-2 text-brand-sand group-hover:text-brand-gold transition-colors">Thar Desert Silk Ensemble</h3>
@@ -339,12 +362,12 @@
                     </div>
                 </div>
 
-                <!-- Product Card 4 -->
-                <div class="group relative glass-card rounded-2xl overflow-hidden border border-brand-gold/15 hover:border-brand-gold/50 transition-all duration-500">
+                <!-- Product 4 -->
+                <div class="group relative glass-card rounded-2xl overflow-hidden reveal-up">
                     <div class="relative h-[420px] overflow-hidden bg-brand-black">
-                        <img src="p4.png" alt="Rangthar Royal Ensemble" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=800';">
+                        <img src="p4.png" alt="Udaipur Velvet Achkan" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=800';">
                         <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
-                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-brand-black/80 backdrop-blur-md text-[10px] uppercase tracking-[0.2em] text-brand-gold border border-brand-gold/30">Bridal & Festive</span>
+                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-brand-black/85 backdrop-blur-md text-[10px] uppercase tracking-[0.2em] text-brand-gold border border-brand-gold/30">Festive Edit</span>
                     </div>
                     <div class="p-6">
                         <h3 class="font-serif text-2xl mb-2 text-brand-sand group-hover:text-brand-gold transition-colors">Udaipur Velvet Achkan</h3>
@@ -358,12 +381,12 @@
                     </div>
                 </div>
 
-                <!-- Product Card 5 -->
-                <div class="group relative glass-card rounded-2xl overflow-hidden border border-brand-gold/15 hover:border-brand-gold/50 transition-all duration-500">
+                <!-- Product 5 -->
+                <div class="group relative glass-card rounded-2xl overflow-hidden reveal-up">
                     <div class="relative h-[420px] overflow-hidden bg-brand-black">
-                        <img src="p5.png" alt="Rangthar Luxury Wear" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&q=80&w=800';">
+                        <img src="p5.png" alt="Jaipur Palace Kurta" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&q=80&w=800';">
                         <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
-                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-brand-black/80 backdrop-blur-md text-[10px] uppercase tracking-[0.2em] text-brand-gold border border-brand-gold/30">Royal Jaipur</span>
+                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-brand-black/85 backdrop-blur-md text-[10px] uppercase tracking-[0.2em] text-brand-gold border border-brand-gold/30">Royal Jaipur</span>
                     </div>
                     <div class="p-6">
                         <h3 class="font-serif text-2xl mb-2 text-brand-sand group-hover:text-brand-gold transition-colors">Jaipur Palace Kurta Set</h3>
@@ -377,12 +400,12 @@
                     </div>
                 </div>
 
-                <!-- Product Card 6 -->
-                <div class="group relative glass-card rounded-2xl overflow-hidden border border-brand-gold/15 hover:border-brand-gold/50 transition-all duration-500">
+                <!-- Product 6 -->
+                <div class="group relative glass-card rounded-2xl overflow-hidden reveal-up">
                     <div class="relative h-[420px] overflow-hidden bg-brand-black">
-                        <img src="p6.png" alt="Rangthar Legacy Line" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&q=80&w=800';">
+                        <img src="p6.png" alt="Legacy Cape" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" onerror="this.src='https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&q=80&w=800';">
                         <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
-                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-brand-black/80 backdrop-blur-md text-[10px] uppercase tracking-[0.2em] text-brand-gold border border-brand-gold/30">Avant-Garde</span>
+                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-brand-black/85 backdrop-blur-md text-[10px] uppercase tracking-[0.2em] text-brand-gold border border-brand-gold/30">Avant-Garde</span>
                     </div>
                     <div class="p-6">
                         <h3 class="font-serif text-2xl mb-2 text-brand-sand group-hover:text-brand-gold transition-colors">The Legacy Cape & Layer</h3>
@@ -399,10 +422,67 @@
         </div>
     </section>
 
-    <!-- The Craft & Artistry Section -->
-    <section id="craft" class="py-32 relative overflow-hidden border-t border-brand-gold/10">
+    <!-- NEW: "Why Us" Section -->
+    <section id="why-us" class="py-32 relative border-t border-brand-gold/10 overflow-hidden">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-20">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal-up">
+                <span class="text-xs uppercase tracking-[0.3em] text-brand-gold block mb-3 font-medium">The Rangthar Standard</span>
+                <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl tracking-tight font-light mb-6">
+                    Why Connoisseurs <span class="gold-gradient-text italic font-normal">Choose Us</span>
+                </h2>
+                <p class="text-brand-muted text-base font-light">
+                    We transcend ordinary fashion by preserving authentic cultural artistry while meeting the rigorous demands of modern luxury.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="glass-card p-8 rounded-2xl reveal-up">
+                    <div class="w-14 h-14 rounded-full bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold text-xl mb-6">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3 class="font-serif text-xl mb-3 text-brand-sand">Authentic Roots</h3>
+                    <p class="text-sm text-brand-muted font-light leading-relaxed">
+                        Direct connection with royal textile houses and artisan lineages across Rajasthan.
+                    </p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl reveal-up">
+                    <div class="w-14 h-14 rounded-full bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold text-xl mb-6">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3 class="font-serif text-xl mb-3 text-brand-sand">Bespoke Precision</h3>
+                    <p class="text-sm text-brand-muted font-light leading-relaxed">
+                        Custom tailored to absolute perfection to ensure impeccable posture and grace.
+                    </p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl reveal-up">
+                    <div class="w-14 h-14 rounded-full bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold text-xl mb-6">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="font-serif text-xl mb-3 text-brand-sand">Pure Sustainable Fabrics</h3>
+                    <p class="text-sm text-brand-muted font-light leading-relaxed">
+                        Sustainably sourced organic silks, rich velvets, and handloom cottons of the highest tier.
+                    </p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl reveal-up">
+                    <div class="w-14 h-14 rounded-full bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold text-xl mb-6">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="font-serif text-xl mb-3 text-brand-sand">Dedicated Concierge</h3>
+                        <p class="text-sm text-brand-muted font-light leading-relaxed">
+                        Personal styling assistance available 24/7 via WhatsApp and direct consultation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Craft & Artistry Section -->
+    <section id="craft" class="py-32 relative overflow-hidden bg-brand-charcoal/30 border-t border-brand-gold/10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal-up">
                 <span class="text-xs uppercase tracking-[0.3em] text-brand-gold block mb-3 font-medium">Uncompromising Standards</span>
                 <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl tracking-tight font-light mb-6">
                     The Art of <span class="gold-gradient-text italic font-normal">Rajasthani Tailoring</span>
@@ -413,60 +493,165 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <!-- Craft Card 1 -->
-                <div class="glass-card p-10 rounded-2xl border border-brand-gold/15 text-center group hover:border-brand-gold/40 transition-all duration-500">
-                    <div class="w-16 h-16 rounded-full bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center mx-auto mb-6 text-brand-gold text-2xl group-hover:scale-110 transition-transform">
+                <div class="glass-card p-10 rounded-2xl text-center reveal-up">
+                    <div class="w-16 h-16 rounded-full bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center mx-auto mb-6 text-brand-gold text-2xl">
                         <i class="fas fa-seedling"></i>
                     </div>
                     <h3 class="font-serif text-2xl mb-4 text-brand-sand">Pure Sustainable Textiles</h3>
                     <p class="text-sm text-brand-muted font-light leading-relaxed">
-                        Sourced directly from artisan clusters across Rajasthan, utilizing organic silks, handloom cottons, and rich sustainable velvet.
+                        Sourced directly from artisan clusters across Rajasthan, utilizing organic silks and rich sustainable velvet.
                     </p>
                 </div>
 
-                <!-- Craft Card 2 -->
-                <div class="glass-card p-10 rounded-2xl border border-brand-gold/15 text-center group hover:border-brand-gold/40 transition-all duration-500">
-                    <div class="w-16 h-16 rounded-full bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center mx-auto mb-6 text-brand-gold text-2xl group-hover:scale-110 transition-transform">
+                <div class="glass-card p-10 rounded-2xl text-center reveal-up">
+                    <div class="w-16 h-16 rounded-full bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center mx-auto mb-6 text-brand-gold text-2xl">
                         <i class="fas fa-hands"></i>
                     </div>
                     <h3 class="font-serif text-2xl mb-4 text-brand-sand">Master Artisan Craft</h3>
                     <p class="text-sm text-brand-muted font-light leading-relaxed">
-                        Intricate hand-embroidery, block printing, and zardozi techniques passed down through royal households for generations.
+                        Intricate hand-embroidery, block printing, and zardozi techniques passed down through royal households.
                     </p>
                 </div>
 
-                <!-- Craft Card 3 -->
-                <div class="glass-card p-10 rounded-2xl border border-brand-gold/15 text-center group hover:border-brand-gold/40 transition-all duration-500">
-                    <div class="w-16 h-16 rounded-full bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center mx-auto mb-6 text-brand-gold text-2xl group-hover:scale-110 transition-transform">
+                <div class="glass-card p-10 rounded-2xl text-center reveal-up">
+                    <div class="w-16 h-16 rounded-full bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center mx-auto mb-6 text-brand-gold text-2xl">
                         <i class="fas fa-gem"></i>
                     </div>
                     <h3 class="font-serif text-2xl mb-4 text-brand-sand">Regal Aesthetics</h3>
                     <p class="text-sm text-brand-muted font-light leading-relaxed">
-                        Designed with modern architectural cuts to ensure a commanding presence while preserving traditional comfort and grace.
+                        Designed with modern architectural cuts to ensure a commanding presence while preserving traditional comfort.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Brand Story Quote Section -->
-    <section id="story" class="py-32 relative bg-brand-charcoal/30 border-t border-brand-gold/10 text-center overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:32px_32px]"></div>
-        <div class="max-w-4xl mx-auto px-6 relative z-10">
-            <span class="text-xs uppercase tracking-[0.4em] text-brand-gold block mb-6 font-medium">Our Vow</span>
-            <blockquote class="font-serif text-3xl md:text-5xl lg:text-6xl tracking-tight leading-tight font-light italic text-brand-sand mb-8">
-                "To carry the pride of Rajasthan into the future, transforming heritage into an eternal statement of modern luxury."
-            </blockquote>
-            <span class="text-sm uppercase tracking-[0.3em] text-brand-gold font-medium">— House of Rangthar</span>
+    <!-- NEW: Reviews / Testimonials Section -->
+    <section id="reviews" class="py-32 relative border-t border-brand-gold/10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal-up">
+                <span class="text-xs uppercase tracking-[0.3em] text-brand-gold block mb-3 font-medium">Client Testimonials</span>
+                <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl tracking-tight font-light mb-6">
+                    Praised by <span class="gold-gradient-text italic font-normal">Connoisseurs</span>
+                </h2>
+                <p class="text-brand-muted text-base font-light">
+                    Read what our esteemed patrons have to say about their bespoke Rangthar experience.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-2xl reveal-up flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-brand-gold gap-1 text-sm mb-6">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-brand-sand font-serif italic text-lg leading-relaxed mb-6">
+                            "The Rajputana Sherwani I ordered for my wedding was an absolute masterpiece. The craftsmanship and fit felt truly royal."
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-brand-gold/10">
+                        <h4 class="font-serif text-brand-gold text-base">Digvijay Singh Rathore</h4>
+                        <span class="text-xs text-brand-muted uppercase tracking-widest">Udaipur</span>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl reveal-up flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-brand-gold gap-1 text-sm mb-6">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-brand-sand font-serif italic text-lg leading-relaxed mb-6">
+                            "Rangthar successfully captures the essence of Rajasthan's heritage in modern silhouettes. Their WhatsApp concierge was extremely helpful."
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-brand-gold/10">
+                        <h4 class="font-serif text-brand-gold text-base">Aarav Mehta</h4>
+                        <span class="text-xs text-brand-muted uppercase tracking-widest">Jaipur</span>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl reveal-up flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-brand-gold gap-1 text-sm mb-6">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-brand-sand font-serif italic text-lg leading-relaxed mb-6">
+                            "Unmatched fabric quality and sophisticated detailing. Wearing Rangthar genuinely makes you feel connected to a rich legacy."
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-brand-gold/10">
+                        <h4 class="font-serif text-brand-gold text-base">Vikramaditya Jodhpur</h4>
+                        <span class="text-xs text-brand-muted uppercase tracking-widest">Jodhpur</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Contact & Enquiry Section -->
+    <!-- NEW: FAQ Section -->
+    <section id="faq" class="py-32 relative bg-brand-charcoal/30 border-t border-brand-gold/10">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal-up">
+                <span class="text-xs uppercase tracking-[0.3em] text-brand-gold block mb-3 font-medium">Got Questions?</span>
+                <h2 class="font-serif text-4xl md:text-5xl tracking-tight font-light mb-6">
+                    Frequently Asked <span class="gold-gradient-text italic font-normal">Questions</span>
+                </h2>
+            </div>
+
+            <div class="space-y-4 reveal-up">
+                <!-- FAQ Item 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-brand-gold/15">
+                    <button class="faq-toggle w-full px-8 py-6 text-left flex justify-between items-center text-brand-sand font-serif text-xl focus:outline-none">
+                        <span>How do I place a custom bespoke order?</span>
+                        <i class="fas fa-plus text-brand-gold transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 px-8 text-brand-muted font-light text-sm leading-relaxed">
+                        <p class="pb-6">You can easily initiate a bespoke order by filling out our client enquiry form below or contacting our concierge directly via WhatsApp at +91 9079294929. We will guide you through measurements and design customization.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-brand-gold/15">
+                    <button class="faq-toggle w-full px-8 py-6 text-left flex justify-between items-center text-brand-sand font-serif text-xl focus:outline-none">
+                        <span>What is the delivery timeline for signature pieces?</span>
+                        <i class="fas fa-plus text-brand-gold transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 px-8 text-brand-muted font-light text-sm leading-relaxed">
+                        <p class="pb-6">Since our pieces involve intricate hand-embroidery and master artisan tailors, standard bespoke creation and delivery take between 14 to 21 business days.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-brand-gold/15">
+                    <button class="faq-toggle w-full px-8 py-6 text-left flex justify-between items-center text-brand-sand font-serif text-xl focus:outline-none">
+                        <span>Do you ship internationally?</span>
+                        <i class="fas fa-plus text-brand-gold transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 px-8 text-brand-muted font-light text-sm leading-relaxed">
+                        <p class="pb-6">Yes, Rangthar caters to connoisseurs globally. International shipping arrangements can be coordinated directly through our WhatsApp concierge.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-brand-gold/15">
+                    <button class="faq-toggle w-full px-8 py-6 text-left flex justify-between items-center text-brand-sand font-serif text-xl focus:outline-none">
+                        <span>How should I care for my Rangthar silk and velvet garments?</span>
+                        <i class="fas fa-plus text-brand-gold transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 px-8 text-brand-muted font-light text-sm leading-relaxed">
+                        <p class="pb-6">We strictly recommend professional dry cleaning only to preserve the intricate zardozi metallic threads and pure luxury fabrics.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enquiry / Contact Section with WhatsApp Integration -->
     <section id="contact" class="py-32 relative border-t border-brand-gold/10">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
-                <!-- Left: Contact Details -->
-                <div class="lg:col-span-5 flex flex-col justify-between">
+                <!-- Left: Contact Info -->
+                <div class="lg:col-span-5 flex flex-col justify-between reveal-up">
                     <div>
                         <span class="text-xs uppercase tracking-[0.3em] text-brand-gold block mb-3 font-medium">Connect With Us</span>
                         <h2 class="font-serif text-4xl md:text-5xl tracking-tight font-light mb-6">
@@ -476,7 +661,6 @@
                             Whether you seek private consultations, custom sizing, or bridal curation, our concierge team is available to assist you.
                         </p>
 
-                        <!-- Contact Methods List -->
                         <div class="space-y-6">
                             <a href="tel:+918955505266" class="flex items-center gap-5 p-4 rounded-xl glass-card border border-brand-gold/15 hover:border-brand-gold/40 transition-all group">
                                 <div class="w-12 h-12 rounded-full bg-brand-gold/10 flex items-center justify-center text-brand-gold text-lg group-hover:bg-brand-gold group-hover:text-brand-black transition-all">
@@ -511,22 +695,9 @@
                     </div>
                 </div>
 
-                <!-- Right: Enquiry Form -->
-                <div class="lg:col-span-7">
+                <!-- Right: Enquiry Form (WhatsApp Redirection) -->
+                <div class="lg:col-span-7 reveal-up">
                     <div class="glass-card p-8 md:p-12 rounded-3xl border border-brand-gold/20 shadow-2xl relative">
-                        <div id="form-success" class="hidden absolute inset-0 bg-brand-card/95 backdrop-blur-xl rounded-3xl flex flex-col items-center justify-center text-center p-8 z-20">
-                            <div class="w-20 h-20 rounded-full bg-brand-gold/20 border border-brand-gold flex items-center justify-center text-brand-gold text-3xl mb-6">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <h3 class="font-serif text-3xl text-brand-sand mb-4">Enquiry Received</h3>
-                            <p class="text-brand-muted max-w-md font-light mb-8">
-                                Thank you for connecting with Rangthar. Our concierge team has received your request and will contact you via phone or WhatsApp shortly.
-                            </p>
-                            <button id="reset-form" class="px-8 py-3 rounded-full bg-brand-gold text-brand-black text-xs uppercase tracking-[0.2em] font-semibold hover:bg-white transition-all">
-                                Send Another Enquiry
-                            </button>
-                        </div>
-
                         <form id="enquiry-form" class="space-y-6">
                             <h3 class="font-serif text-2xl mb-6 text-brand-sand">Client Consultation Form</h3>
                             
@@ -558,8 +729,8 @@
                                 <textarea id="client-message" rows="4" required class="w-full bg-brand-black/60 border border-brand-gold/20 rounded-xl px-5 py-4 text-brand-sand focus:outline-none focus:border-brand-gold transition-colors text-sm resize-none" placeholder="Share your custom requirements, event dates, or sizing preferences..."></textarea>
                             </div>
 
-                            <button type="submit" class="w-full py-4 rounded-xl bg-brand-gold text-brand-black text-xs uppercase tracking-[0.25em] font-semibold hover:bg-white transition-all duration-300 shadow-xl shadow-brand-gold/10">
-                                Submit Enquiry to Concierge
+                            <button type="submit" class="w-full py-4 rounded-xl bg-brand-gold text-brand-black text-xs uppercase tracking-[0.25em] font-semibold hover:bg-white transition-all duration-300 shadow-xl shadow-brand-gold/10 flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp text-lg"></i> Send Enquiry via WhatsApp
                             </button>
                         </form>
                     </div>
@@ -572,7 +743,6 @@
     <footer class="bg-brand-black border-t border-brand-gold/20 pt-20 pb-12">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-                <!-- Brand Info -->
                 <div>
                     <div class="flex items-center gap-3 mb-6">
                         <img src="logo.png" alt="Rangthar" class="w-8 h-8 object-contain" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100';">
@@ -594,19 +764,18 @@
                     </div>
                 </div>
 
-                <!-- Quick Links -->
                 <div>
                     <h4 class="font-serif text-lg text-brand-sand mb-6 tracking-wide">Navigation</h4>
                     <ul class="space-y-3 text-sm text-brand-muted font-light">
                         <li><a href="#heritage" class="hover:text-brand-gold transition-colors">Heritage & Philosophy</a></li>
                         <li><a href="#collection" class="hover:text-brand-gold transition-colors">Signature Collection</a></li>
+                        <li><a href="#why-us" class="hover:text-brand-gold transition-colors">Why Us</a></li>
                         <li><a href="#craft" class="hover:text-brand-gold transition-colors">The Craft & Artistry</a></li>
-                        <li><a href="#story" class="hover:text-brand-gold transition-colors">Our Legacy</a></li>
-                        <li><a href="#contact" class="hover:text-brand-gold transition-colors">Private Enquiry</a></li>
+                        <li><a href="#reviews" class="hover:text-brand-gold transition-colors">Client Reviews</a></li>
+                        <li><a href="#faq" class="hover:text-brand-gold transition-colors">FAQ</a></li>
                     </ul>
                 </div>
 
-                <!-- Collections -->
                 <div>
                     <h4 class="font-serif text-lg text-brand-sand mb-6 tracking-wide">Collections</h4>
                     <ul class="space-y-3 text-sm text-brand-muted font-light">
@@ -618,7 +787,6 @@
                     </ul>
                 </div>
 
-                <!-- Contact Summary -->
                 <div>
                     <h4 class="font-serif text-lg text-brand-sand mb-6 tracking-wide">Concierge</h4>
                     <ul class="space-y-4 text-sm text-brand-muted font-light">
@@ -638,7 +806,6 @@
                 </div>
             </div>
 
-            <!-- Bottom Bar -->
             <div class="pt-8 border-t border-brand-gold/10 flex flex-col md:flex-row items-center justify-between text-xs text-brand-muted font-light">
                 <p>&copy; 2026 RANGTHAR. All Rights Reserved. Wear Your Legacy.</p>
                 <div class="flex gap-6 mt-4 md:mt-0">
@@ -650,9 +817,22 @@
         </div>
     </footer>
 
-    <!-- Core Scripts -->
+    <!-- Scripts & Animations -->
     <script>
-        // Preloader Animation
+        // Lenis Smooth Scroll Setup
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smooth: true
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Preloader Logic
         window.addEventListener('load', () => {
             const loaderBar = document.getElementById('loader-bar');
             const preloader = document.getElementById('preloader');
@@ -665,34 +845,34 @@
                     preloader.style.display = 'none';
                     initHeroAnimations();
                 }, 700);
-            }, 600);
+            }, 500);
         });
 
-        // Hero Entrance Animations with GSAP
+        // Hero Entrance Animations
         function initHeroAnimations() {
-            gsap.to('#hero-title', {
-                opacity: 1,
-                y: 0,
-                duration: 1.2,
-                ease: 'power3.out'
-            });
-            gsap.to('#hero-subtitle', {
-                opacity: 1,
-                y: 0,
-                duration: 1.2,
-                delay: 0.3,
-                ease: 'power3.out'
-            });
-            gsap.to('#hero-cta', {
-                opacity: 1,
-                y: 0,
-                duration: 1.2,
-                delay: 0.6,
-                ease: 'power3.out'
-            });
+            gsap.to('#hero-title', { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out' });
+            gsap.to('#hero-subtitle', { opacity: 1, y: 0, duration: 1.2, delay: 0.3, ease: 'power3.out' });
+            gsap.to('#hero-cta', { opacity: 1, y: 0, duration: 1.2, delay: 0.6, ease: 'power3.out' });
         }
 
-        // Navbar Scroll Effect
+        // GSAP ScrollTrigger Reveals for all sections
+        gsap.registerPlugin(ScrollTrigger);
+        
+        document.querySelectorAll('.reveal-up').forEach((elem) => {
+            gsap.to(elem, {
+                scrollTrigger: {
+                    trigger: elem,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: 'power3.out'
+            });
+        });
+
+        // Navbar Scroll Background Transition
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
@@ -702,6 +882,24 @@
                 navbar.style.background = 'rgba(10, 10, 10, 0.85)';
                 navbar.style.boxShadow = 'none';
             }
+        });
+
+        // Custom Magnetic Cursor Logic
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorOutline = document.getElementById('cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            cursorDot.style.transform = `translate(${posX}px, ${posY}px)`;
+            
+            gsap.to(cursorOutline, {
+                x: posX,
+                y: posY,
+                duration: 0.15,
+                ease: 'power2.out'
+            });
         });
 
         // Mobile Menu Toggle
@@ -725,11 +923,33 @@
         closeMenu.addEventListener('click', closeMobileNav);
         mobileLinks.forEach(link => link.addEventListener('click', closeMobileNav));
 
-        // Enquiry Form Handling (Frontend simulated submission + WhatsApp redirect option)
-        const enquiryForm = document.getElementById('enquiry-form');
-        const formSuccess = document.getElementById('form-success');
-        const resetFormBtn = document.getElementById('reset-form');
+        // FAQ Accordion Toggle
+        const faqToggles = document.querySelectorAll('.faq-toggle');
+        faqToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('i');
+                
+                // Close other open accordions
+                faqToggles.forEach(otherToggle => {
+                    if (otherToggle !== toggle) {
+                        otherToggle.nextElementSibling.style.maxHeight = null;
+                        otherToggle.querySelector('i').style.transform = 'rotate(0deg)';
+                    }
+                });
 
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    icon.style.transform = 'rotate(45deg)';
+                }
+            });
+        });
+
+        // Direct WhatsApp Enquiry Form Submission
+        const enquiryForm = document.getElementById('enquiry-form');
         enquiryForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const name = document.getElementById('client-name').value;
@@ -737,19 +957,9 @@
             const requirement = document.getElementById('client-requirement').value;
             const message = document.getElementById('client-message').value;
 
-            // Optional: Construct WhatsApp message or show success state
-            const whatsappText = `Hello Rangthar Concierge,%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Phone:* ${encodeURIComponent(phone)}%0A*Requirement:* ${encodeURIComponent(requirement)}%0A*Message:* ${encodeURIComponent(message)}`;
+            const whatsappUrl = `https://wa.me/919079294929?text=Hello%20Rangthar%20Concierge,%0A%0AMy%20Name:%20${encodeURIComponent(name)}%0APhone:%20${encodeURIComponent(phone)}%0ARequirement:%20${encodeURIComponent(requirement)}%0AMessage:%20${encodeURIComponent(message)}`;
             
-            // Show Success UI
-            formSuccess.classList.remove('hidden');
-
-            // Also open WhatsApp in background or let user click send
-            // window.open(`https://wa.me/919079294929?text=${whatsappText}`, '_blank');
-        });
-
-        resetFormBtn.addEventListener('click', () => {
-            formSuccess.classList.add('hidden');
-            enquiryForm.reset();
+            window.open(whatsappUrl, '_blank');
         });
     </script>
 </body>
